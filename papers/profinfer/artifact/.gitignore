@@ -1,0 +1,13 @@
+# Downloaded dependencies, model weights, and local environments
+/models/
+/llama.cpp/
+/llama.cp/
+/Linux/pyvenv.cfg
+/Linux/include/
+/Linux/lib/
+/Linux/lib64/
+/Linux/share/
+/Linux/bin/
+/Linux/figures/
+**/__pycache__/
+*.py[cod]

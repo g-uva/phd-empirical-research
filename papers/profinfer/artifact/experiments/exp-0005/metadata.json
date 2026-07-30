@@ -1,0 +1,53 @@
+{
+  "id": "exp-0005",
+  "uid": "f07c54b5",
+  "title": "Qwen2.5 0.5B trace",
+  "status": "working",
+  "parent": null,
+  "created": "2026-05-29T13:51:52",
+  "last_modified": null,
+  "objective": "Profile qwen2.5 0.5b trace with ProfInfer on the Linux CPU path.",
+  "description": "Catalogued from the existing generated run directory Linux/experiments/2026-05-29-13-51-52_trace_qwen2.5-0.5B.",
+  "git_commit": null,
+  "paper_sections": [],
+  "datasets": [
+    "dataset:qwen2.5-0.5b-instruct-gguf"
+  ],
+  "software_components": [
+    "software:profinfer",
+    "software:llama-cpp",
+    "software:bcc"
+  ],
+  "configuration_files": [
+    "Linux/experiments/2026-05-29-13-51-52_trace_qwen2.5-0.5B/config/config.json"
+  ],
+  "configuration_entities": [
+    "configuration:profinfer-exp-0005"
+  ],
+  "execution_commands": [
+    "cd Linux && sudo /usr/bin/python3 run_llama.py --config jsons/config.json"
+  ],
+  "expected_outputs": [
+    "metrics.json",
+    "trace_<model>_f16_t<n_threads>_p<n_prompt>.csv",
+    "bpftool_prog.json",
+    "bpftool_map.json",
+    "process.pid",
+    "config/config.json"
+  ],
+  "actual_outputs": [
+    "Linux/experiments/2026-05-29-13-51-52_trace_qwen2.5-0.5B/"
+  ],
+  "result_entities": [
+    "result:profinfer-exp-0005-outputs"
+  ],
+  "notes": [
+    "The created timestamp is transcribed from the generated directory name; its timezone was not recorded.",
+    "Generated outputs remain excluded from Git."
+  ],
+  "metadata_gaps": [
+    "The Git commit at execution time is unknown.",
+    "Hardware, kernel, BCC version, and exact invocation environment are unknown.",
+    "The relationship to specific paper figures or tables has not been verified."
+  ]
+}

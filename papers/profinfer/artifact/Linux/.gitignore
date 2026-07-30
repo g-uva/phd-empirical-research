@@ -1,0 +1,14 @@
+# Cache
+**/__pycache__/
+
+# Folders
+experiments/
+exp_overhead/
+data/
+archive/
+exp_overhead*/
+experiment_data/
+
+# VSCode
+/.vscode
+share/

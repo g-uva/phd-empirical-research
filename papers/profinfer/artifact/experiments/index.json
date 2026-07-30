@@ -1,0 +1,105 @@
+{
+  "schema_version": "0.2.0",
+  "artifact": "artifact:profinfer",
+  "next_experiment_number": 15,
+  "experiments": [
+    {
+      "id": "exp-0001",
+      "uid": "1acd2f20",
+      "path": "exp-0001/metadata.json",
+      "status": "draft",
+      "source_run": "Linux/experiments/2026-05-28-21-05-58_llama-trace"
+    },
+    {
+      "id": "exp-0002",
+      "uid": "dec6da8c",
+      "path": "exp-0002/metadata.json",
+      "status": "working",
+      "source_run": "Linux/experiments/2026-05-28-21-06-57_llama-trace"
+    },
+    {
+      "id": "exp-0003",
+      "uid": "8b993d9d",
+      "path": "exp-0003/metadata.json",
+      "status": "working",
+      "source_run": "Linux/experiments/2026-05-28-21-15-39_llama-trace"
+    },
+    {
+      "id": "exp-0004",
+      "uid": "5fb0d4b3",
+      "path": "exp-0004/metadata.json",
+      "status": "working",
+      "source_run": "Linux/experiments/2026-05-28-21-19-01_llama-trace"
+    },
+    {
+      "id": "exp-0005",
+      "uid": "f07c54b5",
+      "path": "exp-0005/metadata.json",
+      "status": "working",
+      "source_run": "Linux/experiments/2026-05-29-13-51-52_trace_qwen2.5-0.5B"
+    },
+    {
+      "id": "exp-0006",
+      "uid": "d8fe06ba",
+      "path": "exp-0006/metadata.json",
+      "status": "working",
+      "source_run": "Linux/experiments/2026-05-29-13-52-27_trace_llama3.2-1B"
+    },
+    {
+      "id": "exp-0007",
+      "uid": "7f53932f",
+      "path": "exp-0007/metadata.json",
+      "status": "working",
+      "source_run": "Linux/experiments/2026-05-29-13-52-59_trace_deepseek-r1-qwen-1.5B"
+    },
+    {
+      "id": "exp-0008",
+      "uid": "1eb944cd",
+      "path": "exp-0008/metadata.json",
+      "status": "working",
+      "source_run": "Linux/experiments/2026-05-29-13-53-13_trace_gemma2-2B"
+    },
+    {
+      "id": "exp-0009",
+      "uid": "87c6f0df",
+      "path": "exp-0009/metadata.json",
+      "status": "working",
+      "source_run": "Linux/experiments/2026-06-25-14-17-34_trace_qwen2.5-0.5B"
+    },
+    {
+      "id": "exp-0010",
+      "uid": "49015a0e",
+      "path": "exp-0010/metadata.json",
+      "status": "working",
+      "source_run": "Linux/experiments/2026-06-25-14-20-05_trace_llama3.2-1B"
+    },
+    {
+      "id": "exp-0011",
+      "uid": "aa8ecc8c",
+      "path": "exp-0011/metadata.json",
+      "status": "working",
+      "source_run": "Linux/experiments/2026-06-25-14-30-19_trace_qwen2.5-0.5B"
+    },
+    {
+      "id": "exp-0012",
+      "uid": "0da27b3c",
+      "path": "exp-0012/metadata.json",
+      "status": "working",
+      "source_run": "Linux/experiments/2026-06-25-14-32-41_trace_llama3.2-1B"
+    },
+    {
+      "id": "exp-0013",
+      "uid": "83b05724",
+      "path": "exp-0013/metadata.json",
+      "status": "working",
+      "source_run": "Linux/experiments/2026-06-25-14-35-07_trace_deepseek-r1-qwen-1.5B"
+    },
+    {
+      "id": "exp-0014",
+      "uid": "be6f7b54",
+      "path": "exp-0014/metadata.json",
+      "status": "working",
+      "source_run": "Linux/experiments/2026-06-25-14-37-49_trace_gemma2-2B"
+    }
+  ]
+}

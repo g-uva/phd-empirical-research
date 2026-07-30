@@ -1,0 +1,81 @@
+{
+    "exp": {
+        "name": "trace_gemma2-2B",
+        "dir": "experiments"
+    },
+    "llama-cli": {
+        "model_path": "../../../../models/gemma-2-2B-Q4_K_M.gguf",
+        "sched_fifo": false,
+        "model": "gemma2-2B",
+        "n_threads": 2,
+        "work_dir": "../../../../llama.cpp/build/bin",
+        "cpu_ids": [
+            0,
+            1
+        ],
+        "no-cnv": true,
+        "ngl": 0,
+        "runtime_info": true,
+        "n_prompt": 100,
+        "n_tokens": 100,
+        "prompt": ", in a small village nestled in the rolling hills of Tuscany, there was a tiny, family-owned winery. The vineyard was nestled among the olive groves, surrounded by the warm sunlight and the gentle rustle of leaves. It was a place of beauty and tranquility, where the air was sweet with the scent of ripening grapes and the sound of the wind carried the whispers of the past.\n\nThe winery was run by the proud and dedicated Signor Rossi, who had inherited the business from his father. Signor Rossi"
+    },
+    "trace": {
+        "lib_llama": "../../build/bin/llama-cli",
+        "lib_llama_dyn": "../../../../llama.cpp/build/bin/libllama.so",
+        "lib_ggml_dyn_base": "../../../../llama.cpp/build/bin/libggml-base.so",
+        "lib_ggml_dyn_cpu": "../../../../llama.cpp/build/bin/libggml-cpu.so",
+        "lib_ggml_dyn_acc": "",
+        "lib_c": "/lib/aarch64-linux-gnu/libc.so.6",
+        "activated_funcs_llama": [
+            "llama_decode"
+        ],
+        "activated_funcs_ggml_base": [
+            "ggml_backend_graph_compute_async"
+        ],
+        "activated_funcs_ggml_cpu": [
+            "ggml_compute_forward"
+        ],
+        "activated_funcs_ggml_acc": [],
+        "activated_ops": [],
+        "cmd_name": "llama-cli",
+        "structrual_info": true,
+        "trace_moe": false,
+        "open_perf": false,
+        "dynamic_link": true,
+        "ring_buffer": false,
+        "perf_type_1": "raw",
+        "perf_type_2": "raw",
+        "perf_config_1": "mem_access_wr",
+        "perf_config_2": "l3d_cache_refill",
+        "perf_events_path": "jsons/perf_events.json",
+        "timeout": 120,
+        "target_iter": 3,
+        "trace_kernel": false
+    },
+    "trace_mem": {
+        "cmd_name": "tinymembench",
+        "open_perf": true,
+        "perf_type": "raw",
+        "raw_config": "l1d_cache",
+        "c_src_path": "trace_mem.c",
+        "lib_path": "../build/bin/tinymembench"
+    },
+    "func_count": {
+        "parent_func": "llama_decode",
+        "child_func": "ggml_compute_forward",
+        "trace_file": "trace_results/trace_llama-cpp_func_t_4.json"
+    },
+    "perf": {
+        "perf_event": "l3d_cache_refill",
+        "model": "llama3-1B",
+        "precision": "f16",
+        "n_threads": 2,
+        "trace_result_dir": "trace_results_perf",
+        "n_decode": [
+            100
+        ],
+        "output_csv": true,
+        "ref_perf_event": ""
+    }
+}

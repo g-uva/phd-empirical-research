@@ -1,0 +1,121 @@
+{
+    "op_mat_mul": {
+        "models":{
+            "LLaMA3.2-1B": {
+                "csv_path": "results/2025-10-19-23-31_llama-trace-cpu/trace_llama-3.2-1B-Instruct_f16_t2_p5.csv",
+                "arch_csv_path": "results/2025-10-20-00-06_llama-trace-cpu-arch/trace_llama-3.2-1B-Instruct_f16_t2_p5.csv",
+                "ops": ["Qcur", "Kcur", "kq", "kqv", "ffn_gate", "result_output"],
+                "n_iter": 3
+            },
+            "Gemma2-2B": {
+                "csv_path": "results/2025-10-20-17-18_gemma-trace-cpu/trace_gemma-2-2b_f16_t2_p5.csv",
+                "arch_csv_path": "results/2025-10-20-17-05_gemma-trace-cpu-arch/trace_gemma-2-2b_f16_t2_p5.csv",
+                "ops": ["Qcur", "Kcur", "kq", "kqv", "ffn_gate", "node_1046"],
+                "n_iter": 3
+            },
+            "Qwen2.5-1.5B": {
+                "csv_path": "results/2025-10-20-19-07_qwen-trace-cpu/trace_deepseek-r1-qwen-1.5b_f16_t2_p5.csv",
+                "arch_csv_path": "results/2025-10-20-19-06_qwen-trace-cpu-arch/trace_deepseek-r1-qwen-1.5b_f16_t2_p5.csv",
+                "ops": ["Qcur", "Kcur", "kq", "kqv", "ffn_gate", "result_output"],
+                "n_iter": 3
+            }
+        },
+        "output_path": "figures/op_mat_mul.pdf"
+    },
+    "trace_event": {
+        "kernel_file": "experiments/2025-10-26-15-47-28_gemma-trace-interfere-cpu/ktrace_gemma2-2b_f16_t2_p5.txt",
+        "func_file": "experiments/2025-10-22-22-46-45_llama-trace/trace_llama-3.2-1B-Instruct_f16_t2_p5.txt",
+        "pid_file": "experiments/2025-10-22-22-46-45_llama-trace/process.pid",
+        "output_sched_switch": false,
+        "output_dir": "results",
+        "ops_file": "jsons/ggml_ops_new.json",
+        "clblast": false
+    },
+    "ops": {
+        "ops_file": "jsons/ggml_ops_new.json",
+        "trace_file": "experiments/2025-10-24-18-16-09_llama-trace/trace_llama-3.2-1B-Instruct_f16_t2_p5.csv",
+        "model_name": "llama3.2-1B-Instruct",
+        "with_data_tensor": false,
+        "with_order": false,
+        "with_edge_attr": true,
+        "is_prefill": false,
+        "output_dir": "figures",
+        "fig_format": ".pdf",
+        "start_node_id": 24,
+        "end_node_id": 32,
+        "target_iter": 5,
+        "figsize": [8, 2],
+        "metric": "pmc_mean_ps_all",
+        "metric_name": "Avg. memory bandwidth (MB/s)",
+        "cmap": "coolwarm"
+    },
+    "op_mat_mul_pmc": {
+        "models":{
+            "1 thread - 5.85 tps": {
+                "csv_path": "results/pmc/2025-10-29-22-44-53_llama-pmc/trace_llama3.2-1B_f16_t1_p5.csv",
+                "arch_csv_path": "results/2025-10-20-00-06_llama-trace-cpu-arch/trace_llama-3.2-1B-Instruct_f16_t2_p5.csv",
+                "ops": ["Qcur", "Kcur", "kq", "kqv", "ffn_gate", "result_output"],
+                "n_iter": 3
+            },
+            "2 threads - 8,29 tps": {
+                "csv_path": "results/pmc/2025-10-29-22-23-04_llama-pmc/trace_llama3.2-1B_f16_t2_p5.csv",
+                "arch_csv_path": "results/2025-10-20-00-06_llama-trace-cpu-arch/trace_llama-3.2-1B-Instruct_f16_t2_p5.csv",
+                "ops": ["Qcur", "Kcur", "kq", "kqv", "ffn_gate", "result_output"],
+                "n_iter": 3
+            },
+            "3 threads - 9.30 tps": {
+                "csv_path": "results/pmc/2025-10-29-22-59-01_llama-pmc/trace_llama3.2-1B_f16_t3_p5.csv",
+                "arch_csv_path": "results/2025-10-20-00-06_llama-trace-cpu-arch/trace_llama-3.2-1B-Instruct_f16_t2_p5.csv",
+                "ops": ["Qcur", "Kcur", "kq", "kqv", "ffn_gate", "result_output"],
+                "n_iter": 3
+            },
+            "4 threads - 9.44 tps": {
+                "csv_path": "results/pmc/2025-10-29-23-13-21_llama-pmc/trace_llama3.2-1B_f16_t4_p5.csv",
+                "arch_csv_path": "results/2025-10-20-00-06_llama-trace-cpu-arch/trace_llama-3.2-1B-Instruct_f16_t2_p5.csv",
+                "ops": ["Qcur", "Kcur", "kq", "kqv", "ffn_gate", "result_output"],
+                "n_iter": 3
+            }
+        },
+        "output_path": "figures/op_mat_mul_pmc.pdf"
+    },
+    "op_mat_mul_pmc_cpu": {
+        "models":{
+            "1 thread - 5.85 tps": {
+                "csv_path": "experiments/2025-10-29-23-28-26_llama-pmc-cycle/trace_llama3.2-1B_f16_t1_p5.csv",
+                "arch_csv_path": "results/2025-10-20-00-06_llama-trace-cpu-arch/trace_llama-3.2-1B-Instruct_f16_t2_p5.csv",
+                "ops": ["Qcur", "Kcur", "kq", "kqv", "ffn_gate", "result_output"],
+                "n_iter": 3
+            },
+            "2 threads - 8,29 tps": {
+                "csv_path": "experiments/2025-10-29-23-27-57_llama-pmc-cycle/trace_llama3.2-1B_f16_t2_p5.csv",
+                "arch_csv_path": "results/2025-10-20-00-06_llama-trace-cpu-arch/trace_llama-3.2-1B-Instruct_f16_t2_p5.csv",
+                "ops": ["Qcur", "Kcur", "kq", "kqv", "ffn_gate", "result_output"],
+                "n_iter": 3
+            },
+            "3 threads - 9.30 tps": {
+                "csv_path": "experiments/2025-10-29-23-27-06_llama-pmc-cycle/trace_llama3.2-1B_f16_t3_p5.csv",
+                "arch_csv_path": "results/2025-10-20-00-06_llama-trace-cpu-arch/trace_llama-3.2-1B-Instruct_f16_t2_p5.csv",
+                "ops": ["Qcur", "Kcur", "kq", "kqv", "ffn_gate", "result_output"],
+                "n_iter": 3
+            },
+            "4 threads - 9.44 tps": {
+                "csv_path": "experiments/2025-10-29-23-26-36_llama-pmc-cycle/trace_llama3.2-1B_f16_t4_p5.csv",
+                "arch_csv_path": "results/2025-10-20-00-06_llama-trace-cpu-arch/trace_llama-3.2-1B-Instruct_f16_t2_p5.csv",
+                "ops": ["Qcur", "Kcur", "kq", "kqv", "ffn_gate", "result_output"],
+                "n_iter": 3
+            }
+        },
+        "output_path": "figures/op_mat_mul_pmc_cpu.pdf"
+    },
+    "op_mat_mul_id_pmc": {
+        "models":{
+            "qwen1.5-MoE": {
+                "csv_path": "experiments/2025-10-30-15-45-16_qwen-moe/trace_qwen1.5-moe-a2.7b-q4_k_f16_t2_p5.csv",
+                "arch_csv_path": "results/2025-10-20-00-06_llama-trace-cpu-arch/trace_llama-3.2-1B-Instruct_f16_t2_p5.csv",
+                "ops": ["ffn_moe_up-0", "ffn_moe_down-0", "ffn_moe_gate-0"],
+                "n_iter": 3
+            }
+        },
+        "output_path": "figures/op_mat_mul_id_pmc.pdf"
+    }
+}

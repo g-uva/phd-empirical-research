@@ -1,0 +1,82 @@
+{
+    "perf_hw_id": {
+        "PERF_COUNT_HW_CPU_CYCLES"		    : 0,
+        "PERF_COUNT_HW_INSTRUCTIONS"	    : 1,
+        "PERF_COUNT_HW_CACHE_REFERENCES"    : 2,
+        "PERF_COUNT_HW_CACHE_MISSES"		: 3,
+        "PERF_COUNT_HW_BRANCH_INSTRUCTIONS"	: 4,
+        "PERF_COUNT_HW_BRANCH_MISSES"		: 5,
+        "PERF_COUNT_HW_BUS_CYCLES"		    : 6,
+        "PERF_COUNT_HW_STALLED_CYCLES_FRONTEND"	: 7,
+        "PERF_COUNT_HW_STALLED_CYCLES_BACKEND"	: 8,
+        "PERF_COUNT_HW_REF_CPU_CYCLES"		: 9
+    },
+    
+    "perf_hw_cache_id": {
+        "PERF_COUNT_HW_CACHE_L1D"		: 0,
+        "PERF_COUNT_HW_CACHE_L1I"		: 1,
+        "PERF_COUNT_HW_CACHE_LL"		: 2,
+        "PERF_COUNT_HW_CACHE_DTLB"		: 3,
+        "PERF_COUNT_HW_CACHE_ITLB"		: 4,
+        "PERF_COUNT_HW_CACHE_BPU"		: 5,
+        "PERF_COUNT_HW_CACHE_NODE"		: 6
+    },
+
+    "perf_hw_cache_op_id": {
+        "PERF_COUNT_HW_CACHE_OP_READ"		: 0,
+        "PERF_COUNT_HW_CACHE_OP_WRITE"		: 1,
+        "PERF_COUNT_HW_CACHE_OP_PREFETCH"   : 2
+    },
+
+    "perf_hw_cache_op_result_id": {
+        "PERF_COUNT_HW_CACHE_RESULT_ACCESS"	: 0,
+        "PERF_COUNT_HW_CACHE_RESULT_MISS"	: 1
+    },
+
+    "perf_sw_id": {
+        "CPU_CLOCK" : 0,
+        "TASK_CLOCK" : 1,
+        "PAGE_FAULTS" : 2,
+        "CONTEXT_SWITCHES" : 3,
+        "CPU_MIGRATIONS" : 4,
+        "PAGE_FAULTS_MIN" : 5,
+        "PAGE_FAULTS_MAJ" : 6,
+        "ALIGNMENT_FAULTS" : 7,
+        "EMULATION_FAULTS" : 8,
+        "DUMMY" : 9,
+        "BPF_OUTPUT" : 10
+    },
+
+    "perf_raw_config": {
+        "l1d_cache": "0x04",
+        "l1d_cache_rd": "0x40",
+        "l1d_cache_wr": "0x41",
+        "l1d_cache_wb": "0x15",
+
+        "l2d_cache":"0x16",
+        "l2d_cache_rd": "0x50",
+        "l2d_cache_wr": "0x51",
+        "l2d_cache_wb": "0x18",
+
+        "l3d_cache": "0x2b",
+        "l3d_cache_wb": "0x2c",
+        "l3d_cache_allocate":"0x29",
+        "l3d_cache_refill": "0x2a",
+        "l3d_cache_wr": "0xa1",
+        "l3d_cache_refill_rd": "0xa2",
+
+        "ll_cache_miss_rd": "0x37",
+
+        "bus_cycles": "0x1d",
+        "bus_access": "0x19",
+
+        "cycles": "0x11",
+        "mem_access": "0x13",
+        "mem_access_rd": "0x66",
+        "mem_access_wr": "0x67",
+
+        "l1d_ws_mode": "0xc5",
+        "l2d_ws_mode": "0xc3",
+        "l3d_ws_mode": "0xc7"
+    }
+}
