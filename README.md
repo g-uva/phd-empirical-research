@@ -198,6 +198,21 @@ Enable the managed hooks once per clone:
 git config core.hooksPath .githooks
 ```
 
+The simplest preparation workflow is:
+
+```bash
+scripts/prepare_commit.sh "Describe why these catalogue changes were made"
+git commit -m "Describe the change"
+git push
+```
+
+The helper asks the existing Python versioning logic to detect and update every
+stale experiment hash, generates the required change records, stages the
+working tree, validates the staged experiment catalogue and metadata, checks
+the diff, and displays the final status. If no experiment metadata changed,
+the hash update is a no-op. The reason remains explicit because it is recorded
+as experiment provenance.
+
 For ordinary changes that do not modify experiment metadata:
 
 ```bash
@@ -223,8 +238,9 @@ git push
 The pre-commit hook validates the staged experiment hashes and catalogue
 metadata. The pre-push hook repeats validation against the working tree, and
 GitHub Actions performs the same checks after pushing or in a pull request.
-Hash validation never changes files automatically: an intentional experiment
-change must use the explicit `update --reason` command.
+The hooks themselves never modify files. Use `prepare_commit.sh` to perform an
+explicit automatic refresh before committing, or invoke `update --reason`
+directly when updating selected experiments.
 
 Always review the second `git status` before committing. `git add .` stages all
 modified, deleted, and untracked files below the current directory, including

@@ -85,6 +85,16 @@ python3 scripts/experiment_versions.py check
 python3 scripts/validate_metadata.py
 ```
 
+For a repository-wide automatic refresh and validation, use:
+
+```bash
+scripts/prepare_commit.sh "Explain the catalogue or scientific change"
+```
+
+This updates only stale experiment hashes, creates their change records, stages
+the working tree, and runs the validators. The reason is mandatory provenance.
+Git hooks remain validation-only and must not rewrite files during a commit.
+
 The update command must generate the JSON change record. Validators must never
 silently rewrite hashes.
 
