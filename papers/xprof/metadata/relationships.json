@@ -1,0 +1,10 @@
+{
+  "relationships": [
+    {"source": "paper:xprof", "predicate": "has-artifact", "target": "artifact:xprof", "evidence": {"source_file": "papers/xprof/artifact/UPSTREAM_README.md"}},
+    {"source": "artifact:xprof", "predicate": "supports-paper", "target": "paper:xprof", "evidence": {"source_file": "papers/xprof/artifact/UPSTREAM_README.md"}},
+    {"source": "paper:xprof", "predicate": "published-at", "target": "venue:mlsys", "evidence": {"source_file": "papers/xprof/artifact/UPSTREAM_README.md"}},
+    {"source": "artifact:xprof", "predicate": "implements-software", "target": "software:xprof", "evidence": {"source_file": "papers/xprof/artifact/README.md"}},
+    {"source": "experiment:xprof-exp-0001", "predicate": "uses-software", "target": "software:xprof", "evidence": {"source_file": "papers/xprof/artifact/experiments/exp-0001/metadata.json"}},
+    {"source": "experiment:xprof-exp-0001", "predicate": "uses-dataset", "target": "dataset:xprof-profile", "evidence": {"source_file": "papers/xprof/artifact/experiments/exp-0001/metadata.json"}}
+  ]
+}

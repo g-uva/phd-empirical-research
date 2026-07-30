@@ -1,0 +1,38 @@
+{
+  "id": "exp-0005",
+  "uid": "27139852",
+  "title": "GPU scheduling-policy evaluation",
+  "status": "draft",
+  "parent": null,
+  "created": null,
+  "last_modified": null,
+  "objective": "Reproduce native, LRU, and LFU end-to-end scheduling runtimes.",
+  "description": "Pre-registered from artifact/graph4.py; only hard-coded summary values are currently present.",
+  "git_commit": null,
+  "paper_sections": [],
+  "datasets": [],
+  "software_components": [
+    "software:egpu",
+    "software:cuda"
+  ],
+  "configuration_files": [
+    "artifact/graph4.py"
+  ],
+  "configuration_entities": [],
+  "execution_commands": [
+    "python3 artifact/graph4.py"
+  ],
+  "expected_outputs": [
+    "lru_lfu.pdf",
+    "Raw scheduling measurements"
+  ],
+  "actual_outputs": [],
+  "result_entities": [],
+  "notes": [
+    "Running the plotting script alone is not scientific reproduction."
+  ],
+  "metadata_gaps": [
+    "Scheduler configuration, workload, GPU, repetitions, and raw data are unknown."
+  ],
+  "content_hash": "cba37d39fd00dfd8c18a4d5393b0de953fb5a6c07ae359820e3f9823426dbea2"
+}

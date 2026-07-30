@@ -1,0 +1,38 @@
+{
+  "id": "exp-0004",
+  "uid": "d3ebb6c0",
+  "title": "GPU memory-tracing overhead",
+  "status": "draft",
+  "parent": null,
+  "created": null,
+  "last_modified": null,
+  "objective": "Reproduce native, eGPU/Cuprobe, and NVBit memory-tracing time.",
+  "description": "Pre-registered from artifact/graph3.py; only hard-coded summary values are currently present.",
+  "git_commit": null,
+  "paper_sections": [],
+  "datasets": [],
+  "software_components": [
+    "software:egpu",
+    "software:cuda"
+  ],
+  "configuration_files": [
+    "artifact/graph3.py"
+  ],
+  "configuration_entities": [],
+  "execution_commands": [
+    "python3 artifact/graph3.py"
+  ],
+  "expected_outputs": [
+    "memtrace.pdf",
+    "Raw GEMM, stencil, and SpMV measurements"
+  ],
+  "actual_outputs": [],
+  "result_entities": [],
+  "notes": [
+    "Running the plotting script alone is not scientific reproduction."
+  ],
+  "metadata_gaps": [
+    "Benchmark implementations, problem sizes, tool versions, GPU, repetitions, and raw data are unknown."
+  ],
+  "content_hash": "2c610c60cb0e38bb786d48de40d1d20113203068c4c15f811042ede08011f02a"
+}

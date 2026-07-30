@@ -1,0 +1,32 @@
+{
+  "people": [
+    {"id": "person:robert-hundt", "name": "Robert Hundt", "affiliations": []},
+    {"id": "person:naveen-kumar", "name": "Naveen Kumar", "affiliations": []},
+    {"id": "person:jose-baiocchi-paredes", "name": "Jose Baiocchi Paredes", "affiliations": []},
+    {"id": "person:scott-goodson", "name": "Scott Goodson", "affiliations": []},
+    {"id": "person:clive-verghese", "name": "Clive Verghese", "affiliations": []},
+    {"id": "person:prasanna-rengasamy", "name": "Prasanna Rengasamy", "affiliations": []},
+    {"id": "person:kelvin-le", "name": "Kelvin Le", "affiliations": []},
+    {"id": "person:jiya-zhang", "name": "Jiya Zhang", "affiliations": []},
+    {"id": "person:charles-alaras", "name": "Charles Alaras", "affiliations": []},
+    {"id": "person:yin-zhang", "name": "Yin Zhang", "affiliations": []},
+    {"id": "person:kan-cai", "name": "Kan Cai", "affiliations": []},
+    {"id": "person:jiten-thakkar", "name": "Jiten Thakkar", "affiliations": []},
+    {"id": "person:sai-ganesh-bandiatmakuri", "name": "Sai Ganesh Bandiatmakuri", "affiliations": []},
+    {"id": "person:yogesh-sy", "name": "Yogesh SY", "affiliations": []},
+    {"id": "person:aniruddha-n-udipi", "name": "Aniruddha N Udipi", "affiliations": []},
+    {"id": "person:vikas-aggarwal", "name": "Vikas Aggarwal", "affiliations": []}
+  ],
+  "organisations": [],
+  "software": [
+    {"id": "software:xprof", "name": "XProf", "type": "ml-profiler", "version": "713b05f09e30bce895af985cf4846f3274a1e558", "url": "https://github.com/openxla/xprof"}
+  ],
+  "datasets": [
+    {"id": "dataset:xprof-profile", "name": "XProf XPlane profile input", "type": "profile-trace", "version": null, "url": null, "tracked_in_git": false}
+  ],
+  "experiments": [
+    {"id": "experiment:xprof-exp-0001", "name": "exp-0001", "metadata_path": "../artifact/experiments/exp-0001/metadata.json"}
+  ],
+  "venues": [],
+  "funding_projects": []
+}

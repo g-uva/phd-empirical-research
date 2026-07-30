@@ -1,0 +1,18 @@
+@use 'frontend/app/styles/common';
+
+.info-table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin: 0.5em 0;
+
+  td {
+    border: none;
+    padding: 0;
+  }
+
+  .info-table-header {
+    font-weight: bold;
+    padding-right: 1em;
+    padding-left: 0.5em;
+  }
+}

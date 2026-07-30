@@ -1,0 +1,2363 @@
+<!--
+@license
+Copyright 2017 The TensorFlow Authors. All Rights Reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+
+<link rel="import" href="trace_viewer_full.html" />
+
+<!--
+If WebComponents V0 are not available, show a warning regarding Polymer and
+Trace Viewer.
+-->
+<style>
+  html, body {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+  }
+
+  .no-webcomponents-container.hidden {
+    display: none;
+  }
+
+  .no-webcomponents-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 80px;
+    font-family: Roboto, sans-serif;
+  }
+
+  .no-webcomponents-container .title {
+    font-size: 22px;
+    font-weight: bold;
+  }
+
+  .no-webcomponents-container .contents {
+    max-width: 600px;
+  }
+
+  #event-details {
+    float: right;
+    display: flex;
+    /* only display detail panel if content exists, up to 30% width */
+    width: fit-content;
+    max-width: 30%;
+    background-color: #ececec;
+  }
+
+  #side_panel_container,
+  #view_options_dropdown,
+  #view_console_button {
+    display: none;
+  }
+
+  input:focus {
+    outline: none;
+  }
+
+  tr-ui-b-tab-view {
+    height: fit-content;
+    float: left;
+    flex: 1;
+  }
+
+  tr-ui-a-single-thread-slice-sub-view  {
+    flex-direction: column !important;
+  }
+
+  tr-v-ui-scalar-span {
+    float: left;
+  }
+
+  tr-ui-find-control {
+    /* keep consistent with menubar total height 20px */
+    height: 20px;
+  }
+
+  /* Align height of different buttons on the menubar
+   * tr-ui-b-toolbar-button, button.tr-ui-b-dropdown
+   */
+  tr-ui-b-toolbar-button {
+    padding: 2px 0;
+    /* total height = 14px + 2*2padding + 1*2 border = 20px */
+    height: 14px;
+    cursor: pointer;
+    border: silver solid 1px;
+  }
+
+  #analysis {
+    flex-flow: row nowrap;
+    /* make vertical drag handle and the tabs covering the whole content height */
+    height: fit-content;
+    /* won't cover the whole window with super long content */
+    max-height: 40%;
+  }
+
+  #eventSummaryTable table.tr-ui-b-table {
+    /* Make text content wrap when the container resizes. */
+    overflow-wrap: anywhere;
+
+    /* Table layout fixed is needed since otherwise the td element's width don't
+     * get calculated properly for `resize: horizontal`. We set width to 100% so the table still
+     * dynamically reflows based on window width. */
+    table-layout:fixed;
+    width: 100%;
+  }
+
+  /* Columns in Event Summary Table. */
+  #eventSummaryTable thead.tr-ui-b-table > tr.tr-ui-b-table > td.tr-ui-b-table {
+    /* Allow Event Summary Table Columns width to be resizable */
+    resize: horizontal;
+    min-width: 100px;
+  }
+
+  /* Name Column in Event Summary Table. */
+  #eventSummaryTable thead.tr-ui-b-table > tr.tr-ui-b-table > td.tr-ui-b-table:first-child {
+    min-width: 350px;
+    width: 500px;
+    max-width: 900px;
+  }
+
+  #eventSummaryTable tr-ui-a-analysis-link {
+    /* Override Catapult CSS which sets this as no-wrap preventing resizing the HTML element. */
+    white-space: normal;
+  }
+
+  tr-ui-a-generic-object-view {
+    /* Help break the long op name */
+    overflow-wrap: anywhere;
+  }
+
+</style>
+
+<div class="no-webcomponents-container hidden">
+  <div class="contents">
+    <div class="title">The trace viewer is currently unavailable.</div>
+    <p>
+      For more details, see
+      <a
+        href="https://github.com/tensorflow/tensorboard/issues/3209"
+        rel="noopener"
+        target="_blank"
+        >this issue</a
+      >.
+    </p>
+    <br />
+    <br />
+    <p>
+      If you are running a Chromium-based browser, one workaround is to download
+      your data as JSON and load it in your browser's viewer at
+      "about://tracing". This run's data can be found here:
+    </p>
+  </div>
+</div>
+
+<script>
+  const canUseWebComponentsV0 =
+    typeof document.registerElement === 'function' &&
+    typeof Element.prototype.createShadowRoot === 'function';
+  if (!canUseWebComponentsV0) {
+    const containerEl = document.querySelector('.no-webcomponents-container');
+    const contentsEl = document.querySelector(
+      '.no-webcomponents-container .contents'
+    );
+    containerEl.classList.remove('hidden');
+
+    const currentURL = new URL(window.location.href);
+    const relativeTraceURL = currentURL.searchParams.get('trace_data_url');
+    const traceURL = new URL(relativeTraceURL, window.location.href).toString();
+
+    const profileDataLink = document.createElement('i');
+    profileDataLink.textContent = `${traceURL}`;
+    contentsEl.appendChild(profileDataLink);
+  }
+</script>
+
+<!--
+tf-trace-viewer is the frontend entry point for Trace Viewer on TensorBoard.
+
+The server serves the trace viewer app at a separate endpoint. TensorBoard
+dashboard would integrate trace viewer app using iframe.
+-->
+<style>
+  /* Tooltip text */
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    background-color: white;
+    color: black;
+    font-weight: normal;
+    text-align: center;
+    padding: 5px;
+    text-align: left;
+
+    /* Position the tooltip text */
+    position: absolute;
+    z-index: 1000;
+    top: 56px;
+
+    /* Fade in tooltip */
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  /* Show the tooltip text when you mouse over the tooltip container */
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 0.9;
+  }
+
+  tr-ui-timeline-view {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+  /* The "throbber": a spinning loading indicator */
+  #throbber-initial,
+  #throbber {
+    /* Position: top right of the page, non-blocking to the trace events exploration */
+    position: fixed;
+    top: 10%;
+    right: 3%;
+    border: 14px solid #424242;
+    border-radius: 50%;
+    border-top: 14px solid #e6e6e6; /* control bar background color */
+    width: 40px;
+    height: 40px;
+    -webkit-animation: spin 1s linear infinite; /* Safari */
+    animation: spin 1s linear infinite;
+    z-index: 10;
+    /* Hide the throbber when it's inactive */
+    opacity: 0;
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  #throbber-initial.active,
+  #throbber.active {
+    opacity: 0.8;
+    /* Wait a short time before showing the throbber (no delay for hiding). */
+    transition-delay: 0.3s;
+  }
+
+  #throbber-initial {
+    /* Put intial loading throbber on page center for better visibility */
+    top: 20%;
+    left: 50%;
+    margin-left: -128px;
+    width: 64px;
+    height: 64px;
+    border: 14px solid #fafafa;
+    border-radius: 50%;
+    border-top: 14px solid #e6e6e6; /* control bar background color */
+  }
+  #wait-msg {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-size: 20px;
+    z-index: 11;
+  }
+
+  .x-axis-track {
+    height: 24px;
+  }
+  #control.tr-ui-timeline-view {
+    align-content: center;
+    align-items: center;
+    min-height: 30px;
+    background-image: unset;
+    background-color: white;
+    border-bottom: 1px solid #dadce0;
+    border-top: 1px solid #dadce0;
+  }
+  #bar.tr-ui-timeline-view {
+    align-items: center;
+  }
+  #view_console_button.right-controls-button,
+  #backend_toggle_button,
+  #button.right-controls-button,
+  #expand_all_button,
+  #collapse_all_button,
+  #mpmd_pipeline_view_button{
+    height: 36px;
+    background-color: #f8f8f8;
+    border: #f8f8f8 solid 0.5px;
+    margin-left: 2px;
+    align-items: center;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  #mpmd_pipeline_view_button {
+    min-width: 180px;
+    text-align: center;
+  }
+  #backend_toggle_button{
+    color: #3f51b5;
+    font-weight: bold;
+  }
+  #view_console_button.right-controls-button:hover,
+  #button.right-controls-button:hover,
+  #mpmd_pipeline_view_button:hover {
+    background-color: white;
+    border: #dadce0 solid 0.5px;
+  }
+  #expand_collapse_all_text_bar {
+    height: 36px;
+    margin-left: 2px;
+    align-items: center;
+    text-align: center;
+    padding-left: 25px;
+    padding-right: 5px;
+    padding-top: 2px;
+    display: flex;
+    justify-content: center;
+    font-size: 14px;
+  }
+  #dialog.right-controls-dialog {
+    padding:0px;
+    min-width:150px;
+    border:none;
+    border-radius:5px;
+  }
+  #view_find_control {
+    height: fit-content;
+    padding: 2px;
+  }
+  input.tr-ui-find-control {
+    width:250px;
+    min-height:36px;
+    border:none;
+    margin-left:12px;
+    padding-right:64px;
+    padding-left:5px;
+    cursor: text;
+  }
+  input.tr-ui-find-control:hover {
+    background-color: white;
+    border: #dadce0 solid 0.5px;
+    cursor: text;
+  }
+
+  tr-ui-b-toolbar-button.tr-ui-find-control {
+    border:none;
+    height: 36px;
+    width: 36px;
+    margin-left: 2px;
+  }
+
+  #spinner.tr-ui-find-control {
+    height: 12px;
+    width: 12px;
+    top: 12px;
+  }
+
+  #hitCount.tr-ui-find-control {
+    width: 245px; /* Make search hit number always visible */
+    min-height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  tr-ui-b-heading {
+    background-color: transparent;
+    cursor: e-resize;
+  }
+
+  tr-ui-b-heading,
+  .process-track-header {
+    border: none;
+    display: flex;
+    align-items: center;
+  }
+
+  .process-track-header {
+    height: 36px;
+    font-size: 14px;
+    background-image: unset;
+    background-color: rgb(243, 245, 247);
+  }
+  .dragging {
+    opacity : 0.5;
+    border : 2px solid red;
+  }
+  .process-track-header:hover{
+    cursor: pointer;
+  }
+  /* Move the triangle button from process-track-name to process-track-header to enable track name selection */
+  .process-track-base.expanded .process-track-header:before {
+    content: '\25BE'; /* Down triangle */
+    cursor: pointer;
+  }
+  .process-track-header:before {
+    content: '\25B8'; /* Right triangle */
+    padding: 0 5px;
+    cursor: pointer;
+  }
+  .process-track-base.expanded .process-track-header {
+    background-image: unset;
+    background-color: #cbd6e3;
+  }
+
+  .process-track-drag-handle {
+    position: absolute;
+    left: 18px;
+    user-select: text;
+    flex-grow: unset;
+    cursor: grab;
+  }
+  .process-track-drag-handle:hover {
+    outline: none;
+    border: none;
+  }
+  .process-track-name {
+    position: absolute;
+    left: 36px;
+    user-select: text;
+    flex-grow: unset;
+    padding-right: 36px;
+    cursor: text;
+  }
+  .process-track-name:before {
+    display: none;
+  }
+  .process-track-base.expanded .process-track-name:before {
+    display: none;
+  }
+  #arrow.tr-ui-b-heading {
+    cursor: pointer;
+  }
+  .process-track-close {
+    color: #424242;
+    cursor: pointer;
+    border: none;
+    position: absolute;
+    right: 5px;
+  }
+  .process-track-close:hover {
+    outline: none;
+    border: none;
+  }
+  #codesearchLink {
+    display: none;
+  }
+  #process_filter_dropdown,
+  #flow_event_filter_dropdown {
+    display: none;
+  }
+  canvas.drawing-container-canvas {
+    border-left: 2px dotted #08a;
+  }
+
+  tr-ui-a-stack-frame {
+    display: flex;
+    flex-flow: column;
+    align-items: start;
+  }
+
+  .collapsible {
+    color: black;
+    cursor: pointer;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    text-align: left;
+    outline: none;
+    font-size: 12px;
+  }
+
+  .collapsible:hover {
+    background-color: #555;
+    color: white;
+  }
+
+  .collapsible-content {
+    display: none;
+    overflow: hidden;
+  }
+</style>
+<script src="tf-trace-viewer-helper.js"></script>
+<script>
+  'use strict';
+
+  /* tf-trace-viewer will work in two modes: static mode and streaming mode.
+   * in static mode, data are load at 'ready' time,
+   * in streaming mode, data are load on demand when resolution and view port is changed.
+   * static mode limit the amount of trace that we can collect and show to the users.
+   */
+  Polymer({
+    is: 'tf-trace-viewer',
+    properties: {
+      // The URL of hosts data. Provided by caller via URL parameter.
+      hostsDataUrl: {
+        type: String,
+        value: null,
+      },
+      // The URL of trace data. Provided by caller via URL parameter.
+      traceDataUrl: {
+        type: String,
+        value: null,
+      },
+      currentViewportRange: Object,
+      // TODO(tf-profiler): Fix naming (Leading underscores are not allowed in field names)
+      // _traceData is used for static mode.
+      _traceData: {
+        type: Object,
+        observer: '_traceDataChanged',
+      },
+      _traceViewer: Object,
+      _traceContainer: Object,
+      _traceModel: Object,
+      _throbber: Object,
+      _waitMessage: Object,
+      _eventDetails: Object,
+      _isStreaming: {type: Boolean, value: false},
+      _isOss: {type: Boolean, value: false},
+      _loadedRange: Object,
+      _loadedTraceEents: Object,
+      _fullBounds: Object,
+      // TODO(yinzz/rahulnayar): Refactor the use of _isLoading.
+      // It is used inconsistently across different data fetching functions.
+      // _isLoading should only be set to false after both _updateModel and
+      // _updateView (and any other related async operations) are fully completed
+      // to prevent race conditions. For example, in _searchAndAddTraceEvents,
+      // _isLoading is set to false immediately after the data fetch, before
+      // _updateModel and _updateView are finished.
+      _isLoading: {type: Boolean, value: false},
+      _dirty: {type: Boolean, value: false},
+      _tasks: Object,
+      _model: Object,
+      _resolution: {type: Number, value: 1000},
+      _filteredByVisibility: {type: Boolean, value: false},
+      _dataRegenerated: {type: Boolean, value: false},
+      _isInitialLoad: {type: Boolean, value: true},
+      _replaceModel: {type: Boolean, value: true},
+      _hosts: {type: Array, value: []},
+      _selectedHosts: {type: Array, value: []},
+      _useNewBackend: {type: Boolean, value: false},
+      _useNewBackendSetInUrl: {type: Boolean, value: false},
+      // The rect being hovered (represents a trace event).
+      _hoverRect: {type: Object, value: null},
+      _codeLink: {type: String, value: ''},
+      _changelist: {type: String, value: ''},
+      // States tracked to allow dragging the text and canvas.
+      _canvasLeft: {type: Number, value: 0},
+      _canvasWidth: {type: Number, value: 0},
+      _canvasDrag: {type: Boolean, value: false},
+      // Store the async track's state to keep persistent per model import.
+      // Hashmap from async track name to expanded boolean.
+      _asyncTrackState: {type: Object, value: new Map()},
+      _sourceCodeServiceIsAvailable: {type: Boolean, value: false},
+      _percaleUrlPrefix: {type: String, value: ''},
+      _mpmdPipelineView: {type: Boolean, value: false},
+      _sessionPath: {type: String, value: ''},
+      _runPath: {type: String, value: ''},
+    },
+
+    ready: function() {
+      // Initiate the trace viewer app.
+      this._traceContainer = document.createElement('track-view-container');
+      this._traceContainer.id = 'track_view_container';
+
+      this._traceViewer = document.createElement('tr-ui-timeline-view');
+      this._traceViewer.track_view_container = this._traceContainer;
+      Polymer.dom(this._traceViewer).appendChild(this._traceContainer);
+
+      const superOnSelectionChange = this._traceViewer.brushingStateController.changeSelectionFromTimeline.bind(this._traceViewer.brushingStateController);
+      this._traceViewer.brushingStateController.changeSelectionFromTimeline = async (selection) => {
+        await this.onSelectionChange(selection);
+        superOnSelectionChange(selection);
+        this._updateSingleEventSubView();
+      }
+
+      // Override the default behavior for find fitler such that pressing find
+      // previous, find next which cycles through events in the search filter results
+      // will zoom and focus the event in the timeline.
+      const superFindFocusChangedTo =
+          this._traceViewer.brushingStateController.findFocusChangedTo.bind(
+              this._traceViewer.brushingStateController);
+      this._traceViewer.brushingStateController.findFocusChangedTo =
+          async (currentFocus) => {
+            await this.onSelectionChange(currentFocus);
+            superFindFocusChangedTo(currentFocus);
+            this._traceViewer.trackView.zoomToSelection();
+          };
+
+      this._traceViewer.id = 'trace-viewer';
+      this._traceViewer.viewTitle = '';
+      this._traceViewer.globalMode = false;
+
+      this._throbber = document.createElement('div');
+      this._throbber.id = 'throbber-initial';
+      this._waitMessage = document.createElement('div');
+      this._waitMessage.innerHTML =
+        "Loading this trace is taking longer likely because one-time trace " +
+        "ingestion is in progress. Please check back in a few minutes.";
+      this._waitMessage.id = 'wait-msg';
+
+      Polymer.dom(this.root).appendChild(this._traceViewer);
+      Polymer.dom(this.root).appendChild(this._throbber);
+      Polymer.dom(this.root).appendChild(this._waitMessage);
+
+      this._resolution = this._resolutionFromViewerWidth(this._traceViewer.clientWidth);
+      // Retrieve the URL of trace data.
+      var query = new URL(window.location.href);
+      // Extract the viewport range from the URL. Only used for initializing the first viewport;
+      // does not affect any filters.
+      if (query.searchParams.has('view_start') && query.searchParams.has('view_end')) {
+        // Initialize the current viewport range.
+        this.currentViewportRange = {
+          min: Number(query.searchParams.get('view_start')),
+          max: Number(query.searchParams.get('view_end')),
+        };
+      }
+      query.searchParams.forEach(function(value, key, searchParams) {
+        if (key === 'trace_data_url') {
+          this.traceDataUrl = value;
+          if (this.traceDataUrl) {
+            try {
+              traceViewerLink = new URL(window.location.origin + this.traceDataUrl);
+              this._sessionId = traceViewerLink.searchParams.get('session_id');
+              // For 1P
+              const hostsParam = traceViewerLink.searchParams.get('hosts');
+              // For OSS/3P
+              const hostParam = traceViewerLink.searchParams.get('host');
+              if (hostsParam) {
+                this._selectedHosts = hostsParam.split(',');
+              } else if (hostParam) {
+                this._selectedHosts = hostParam.split(',');
+              } else {
+                this._selectedHosts = [];
+              }
+              this._sessionPath = traceViewerLink.searchParams.get('session_path') || '';
+              this._runPath = traceViewerLink.searchParams.get('run_path') || '';
+              if (traceViewerLink.searchParams.has('new_backend')) {
+                this._useNewBackend = traceViewerLink.searchParams.get('new_backend') === 'true';
+                this._useNewBackendSetInUrl = true;
+              }
+              if (traceViewerLink.searchParams.has('mpmd_pipeline_view')) {
+                this._mpmdPipelineView = traceViewerLink.searchParams.get('mpmd_pipeline_view') === 'true';
+              }
+            } catch(err) {  // not fatal.
+              console.log('cannot find session id');
+            }
+          }
+        } else if (key === 'is_streaming') {
+          this._isStreaming = value === 'true';
+        } else if (key === 'is_oss') {
+          this._isOss = value === 'true';
+        } else if (key === 'hosts_data_url') {
+          this.hostsDataUrl = value;
+        } else if (key === 'resolution') {
+          this._resolution = Number(value);
+        } else if (key === 'source_code_service') {
+          this._sourceCodeServiceIsAvailable = value === 'true';
+        } else if (key === 'percale_url_prefix') {
+          this._percaleUrlPrefix = value;
+        }
+      }.bind(this));
+
+      if (!this.traceDataUrl) {
+        this._displayOverlay('Trace Viewer', 'Trace data URL is not provided.');
+        return null;
+      }
+
+      this._listenForViewportChanges();
+
+      this._init(this.currentViewportRange);
+      this._adjustUI();
+
+      window.addEventListener('load', function(e) {
+        element = document.getElementById('analysis');
+        // add a vertical divider as child.
+        verticalDivider = document.createElement('tr-ui-b-drag-handle');
+        element.appendChild(verticalDivider);
+        // add a event details pane as child.
+        this._eventDetails = document.createElement('div');
+        this._eventDetails.id = 'event-details';
+        this._eventDetails.style = 'display: block;';
+        element.appendChild(this._eventDetails);
+        // associate divider with event details pane.
+        verticalDivider.horizontal = false;
+        verticalDivider.target = this._eventDetails;
+      }.bind(this));
+    },
+
+    _sessionId: '',
+    _devices: null,
+    // Map cache of hlo module name, to hlo op name, to the adj nodes.
+    _hloAdjNodesMap: new Map(),
+    _selectedSingleEvent: null,
+
+
+    _convertTimeToCycles: function(e) {
+      if (this._tasks === undefined || this._tasks.length === 0) return;
+      freq = this._tasks[0].sparse_core_freq_hz;
+      if (freq === 0) return;
+      var subpane = document.getElementById("content");
+      if (!subpane) return;
+      var table = subpane.getElementsByTagName("table")[0];
+      var rows = table.rows;
+      for (var i = 0; i < rows.length; i++) {
+        var firstColumn = rows[i].cells[0];
+        if (firstColumn.textContent === "Wall Duration") {
+          if (rows[i].cells[1].textContent.includes("/")) break;  // don't append twice.
+          var cycles = e.duration * freq / 1000.0;  // duration is in milliseconds.
+          rows[i].cells[1].appendChild(
+            document.createTextNode(" / " + cycles.toFixed(2) + " cycles"));
+          break;
+        }
+      }
+    },
+
+    createCodeSearchLink: function(text) {
+      if (!text) return;
+      // source code format: file/path/to/file.bar:line_number
+      sourceLineSplit = text.split(':');
+      filePath = text.split(':')[0] || '';
+      if (sourceLineSplit.length > 1) {
+        lineNumber = text.split(':')[1] || '';
+      }
+      url = this._codeLink.replace("{filePath}", filePath).replace("{lineNumber}", lineNumber).replace("{changelist}", this._changelist);
+      const codeSearchLinkElement = document.createElement('div');
+      codeSearchLinkElement.innerHTML = `Code Search: <a href="${url}" target="_blank">${text}</a>`;
+      this._eventDetails.appendChild(codeSearchLinkElement);
+      codeSearchLinkElement.addEventListener('click', () => {
+          window.gtag && window.gtag('event', 'tv-code-search-click', {
+            'screen_name': 'trace viewer',
+            'event_category': 'click',
+            'event_label': 'code_search_link'
+          });
+        });
+    },
+
+    createStackTraceSnippetLink: function(hloModule, hloOp, opCategory, sourceFileAndLineNumber, stackTrace) {
+      if (!this._sourceCodeServiceIsAvailable) return;
+      if (!sourceFileAndLineNumber && !stackTrace) return;
+      const hloModuleKey = 'hlo_module';
+      const hloOpKey = 'hlo_op';
+      const sourceKey = 'source';
+      const stackTraceKey = 'stack_trace';
+      const sessionIdKey = 'session_id';
+      const opCategoryKey = 'op_category';
+      this.createCrossToolLink(
+          'stack_trace_page',
+          'Source Code Snippet with IR Text',
+          {
+            [hloModuleKey]: hloModule,
+            [hloOpKey]: hloOp,
+            [sourceKey]: sourceFileAndLineNumber || '',
+            [stackTraceKey]: stackTrace || '',
+            [sessionIdKey]: this._sessionId || '',
+            [opCategoryKey]: opCategory || '',
+          },
+          'Open in a new page');
+    },
+
+    createCrossToolLink: function(toolName, toolLabel, params, text) {
+      const toolLink =
+            new URL(`${window.location.origin}/${toolName}/${this._sessionId}`);
+      for (const [key, value] of Object.entries(params)) {
+        toolLink.searchParams.append(key, value);
+      }
+      const toolLinkElement = document.createElement('div');
+      toolLinkElement.innerHTML = `${toolLabel}: <a href="${toolLink.href}" target="_blank">${text}</a>`;
+      this._eventDetails.appendChild(toolLinkElement);
+      toolLinkElement.addEventListener('click', () => {
+            window.gtag && window.gtag('event', 'tv-hlo-click', {
+              'screen_name': 'trace viewer',
+              'event_category': 'click',
+              'event_label': `${toolName}_link`,
+              'event_variable': toolLink.href,
+            });
+          });
+    },
+
+    createCrossToolLinkOss: function(toolName, toolLabel, params, text) {
+      if (!this._isOss) return;
+      const toolLinkElement = document.createElement('div');
+      const toolLink = new URL(window.parent?.location?.origin);
+      toolLink.hash = 'profile';
+      toolLink.searchParams.set('tool', toolName);
+      const traceViewerLink = new URL(window.location.origin + this.traceDataUrl);
+      const currentRun = traceViewerLink.searchParams.get('run');
+      toolLink.searchParams.set('run', currentRun);
+      if (toolName === 'graph_viewer') {
+        const {hloOp, hloModule} = params;
+        toolLink.searchParams.set('node_name', hloOp);
+        toolLink.searchParams.set('module_name', hloModule !== 'default' ? hloModule : undefined);
+      }
+      if (this._sessionPath) {
+        toolLink.searchParams.set('session_path', this._sessionPath);
+      }
+      if (this._runPath) {
+        toolLink.searchParams.set('run_path', this._runPath);
+      }
+      toolLinkElement.innerHTML = `${toolLabel}: <a href="${toolLink.href}" target="_blank">${text}</a>`;
+      this._eventDetails.appendChild(toolLinkElement);
+    },
+
+    addHloGraphInfo: async function(hloOp, hloModule) {
+      const hloGraphInfoNodeElement = document.createElement('div');
+      hloGraphInfoNodeElement.innerHTML = `Context for Hlo Op Event (${hloOp}): loading...`;
+      this._eventDetails.appendChild(hloGraphInfoNodeElement);
+      const adjNodesInfo  = await this._maybeFetchAdjacentEvents(hloOp, hloModule);
+      hloGraphInfoNodeElement.innerHTML = `
+        <div style="display:flex;"><div style="width:100px;">operands:</div> <div style="width:80%;">${adjNodesInfo['operand_names'].join(',')}</div></div>
+        <div style="display:flex;"><div style="width:100px;">consumers:</div> <div style="width:80%;">${adjNodesInfo['consumer_names'].join(',')}</div></div>
+      `;
+    },
+
+    createPercaleLink: function(hloOp, host) {
+      if (!this._percaleUrlPrefix || !this._sessionId || !hloOp) return;
+      const percaleLink = new URL(`${this._percaleUrlPrefix}/llo?id=${this._sessionId}&name=${hloOp}`);
+      if (host) {
+        percaleLink.searchParams.append('host', host);
+      }
+      if (hloModule) {
+        percaleLink.searchParams.append('module', hloModule);
+      }
+      const percaleLinkElement = document.createElement('div');
+      percaleLinkElement.innerHTML = `Percale link: <a href="${percaleLink.href}" target="_blank">see percale for low level kernel details</a>`;
+      this._eventDetails.appendChild(percaleLinkElement);
+    },
+
+    // Custom on selection event handler for single event selection.
+    onSelectionChange: async function(events) {
+      if (events === undefined) return;
+      if (events.length != 1) return;
+
+      for (const event of events) {  // only loop once.
+        // Don't need to repopulate the details for the same event selection.
+        if (this._selectedSingleEvent == event) return;
+
+        await this._maybeFetchEventArgs(event);
+        if (this._eventDetails) {
+          this._eventDetails.innerHTML = '<div id="event-details" ' +
+              'style="display: block;"></div>';
+        }
+        var currentThread = event.parentContainer;
+        var currentProcess = currentThread.parent;
+        var hloOp;
+        const dataMotionLayer = ['Compute Utilization/Roofline Efficiency', 'Data motion layers utilization'].includes(event.parentContainer.name);
+        // Event is an XLA op if it is part of the XLA Ops line or in case of host XLA ops, if it
+        // has hlo_op and hlo_module in the event args. The same logic applies to Sparse Core Ops.
+        const xlaOps = ('XLA Ops' === event.parentContainer.name ||
+            'Sparse Core Ops' === event.parentContainer.name || (event.args?.hlo_op && event.args?.hlo_module));
+        if (xlaOps || dataMotionLayer) {
+          var hloOp = event.args?.hlo_op || event.title;
+          if (dataMotionLayer) {
+            hloOp = event.args?.Name;
+          }
+          var hloModule = 'default';
+          const hlo_module_name = event.args?.hlo_module;
+          const hlo_module_id = event.args?.hlo_module_id || event.args?.program_id;
+          if (hlo_module_name && hlo_module_id) {
+            hloModule = `${hlo_module_name}(${hlo_module_id})`;
+          } else if (hlo_module_name) {
+            // Less ideal case to disambiguate between modules due to missing id.
+            hloModule = hlo_module_name;
+          } else {
+            for (t in currentProcess.threads) {
+              var thread = currentProcess.threads[t];
+              if (thread.name != 'XLA Modules' && thread.name != 'Sparse Core Modules') continue;
+              // Perform a linear search for containing module, because we are not expecting too
+              // many modules per session. But binary search is possible here because the modules
+              // array seems sorted.
+              for (const module of thread.sliceGroup.slices) {
+                if (module.start <= event.start && module.start + module.duration >= event.start) {
+                  hloModule = module.title;
+                  break;
+                }
+              }
+            }
+          }
+          const graphViewText = `see hlo graph for ${hloOp} @ ${hloModule}`;
+          const opStatsText = `see hlo stats for ${hloOp} @ ${hloModule}`;
+          if (this._sessionId) {
+            // Add Graph Viewer link per event selection for session
+            const graphViewParams = {"node_name": hloOp};
+            if (hloModule != 'default') {
+              graphViewParams["module_name"] = hloModule;
+            }
+            this.createCrossToolLink("graph_viewer", "Graph Viewer", graphViewParams, graphViewText);
+            // Add Hlo Stats link per event selection
+            const opStatsParams = {
+              "hlo_op_name": hloOp,
+              "program_id": hloModule,
+            };
+            this.createCrossToolLink("hlo_stats", "Hlo Stats", opStatsParams, opStatsText);
+            // Add Roofline Model link per event selection
+            const rooflineText = `see op level analysis for ${hloOp}`;
+            this.createCrossToolLink("roofline_model", "Roofline Model", {"roofline_op_name": hloOp}, rooflineText);
+            const hostnamePrefix = currentProcess.name.split(' ')[0];
+            const host = this._selectedHosts.find(host => host.startsWith(hostnamePrefix));
+            this.createPercaleLink(hloOp, host);
+          } else {
+            // Add crosslink form trace viewer to graph viewer
+            // per event selection for tensorboard profiler
+            const params = {hloOp, hloModule};
+            this.createCrossToolLinkOss("graph_viewer", "Graph Viewer", params, graphViewText);
+          }
+          if (event.args?.source && this._codeLink) {
+            this.createCodeSearchLink(event.args?.source);
+          }
+          if (event.args?.source || event.args?.source_stack) {
+            this.createStackTraceSnippetLink(
+                hloModule,
+                hloOp,
+                event.args?.hlo_category,
+                event.args?.source,
+                event.args?.source_stack);
+          }
+        } else if ('Source code' === event.parentContainer.name && event.title && this._codeLink) {
+          this.createCodeSearchLink(event.title);
+        }
+        // For `TfrtModelRun` event, add links to the associated MLIR graphs.
+        if (this._sessionId && event.title.includes("TfrtModelRun")) {
+          // First link is for TF MLIR.
+          {
+            const graphViewLink =
+                  new URL(window.location.origin + '/graph_viewer.json');
+            graphViewLink.searchParams.append("session_id", "xsymbol");
+            graphViewLink.searchParams.append("symbol_id", event.args.tf_symbol_uid);
+            graphViewLink.searchParams.append("symbol_type", "MLIR_MODULE");
+            graphViewLink.searchParams.append("type", "pbtxt");
+            const graphViewLinkElement = document.createElement('div');
+            graphViewLinkElement.innerHTML = 'Graph Viewer:<a href="' + graphViewLink.href +
+                  '" target="_blank"> see the TF MLIR graph </a>';
+            this._eventDetails.appendChild(graphViewLinkElement);
+          }
+          // Second link is for TFRT MLIR.
+          {
+            const graphViewLink =
+                  new URL(window.location.origin + '/graph_viewer.json');
+            graphViewLink.searchParams.append("session_id", "xsymbol");
+            graphViewLink.searchParams.append("symbol_id", event.args.tfrt_symbol_uid);
+            graphViewLink.searchParams.append("symbol_type", "MLIR_MODULE");
+            graphViewLink.searchParams.append("type", "pbtxt");
+            const graphViewLinkElement = document.createElement('div');
+            graphViewLinkElement.innerHTML = 'Graph Viewer:<a href="' + graphViewLink.href +
+                  '" target="_blank"> see the TFRT MLIR graph </a>';
+            this._eventDetails.appendChild(graphViewLinkElement);
+          }
+        }
+        if (this._sessionId && currentProcess.name.includes("SparseCore")) {
+            this._convertTimeToCycles(event);
+        }
+        if (this._sessionId && 'connected_group_ids' in event.args) {
+          const traceViewerConnectedEventsLink =
+                new URL(window.location.origin + '/trace_viewer/' + this._sessionId);
+          traceViewerConnectedEventsLink.searchParams.append(
+                "selected_group_ids", event.args['connected_group_ids']);
+          this._addSelectedHostsToTraceViewerURL(traceViewerConnectedEventsLink);
+          const traceViewerConnectedEventsLinkElement = document.createElement('div');
+          traceViewerConnectedEventsLinkElement.innerHTML = 'Trace Viewer:<a href="' +
+                traceViewerConnectedEventsLink.href +
+                '" target="_blank"> see events for step/group ' +
+                event.args['group_id'] +
+                ' and other steps/groups connected to it';
+          this._eventDetails.appendChild(traceViewerConnectedEventsLinkElement);
+        } else if (this._sessionId && 'group_id' in event.args) {
+          const traceViewerStepLink =
+                new URL(window.location.origin + '/trace_viewer/' + this._sessionId);
+          traceViewerStepLink.searchParams.append("selected_group_ids", event.args['group_id']);
+          this._addSelectedHostsToTraceViewerURL(traceViewerStepLink);
+          const traceViewerStepLinkElement = document.createElement('div');
+          traceViewerStepLinkElement.innerHTML = 'Trace Viewer:<a href="' + traceViewerStepLink.href +
+                '" target="_blank"> see events ONLY for this step/group ' +
+                event.args['group_id'];
+          this._eventDetails.appendChild(traceViewerStepLinkElement);
+        }
+        // Plot the hlo graph context for the selected hlo op event.
+        if (xlaOps){
+          this.addHloGraphInfo(hloOp, hloModule, event);
+        }
+        this._selectedSingleEvent = event;
+      }
+    },
+
+    _searchAndAddTraceEvents: async function(searchText) {
+      if (this._isLoading) return;
+      this._previousSearchText = this._currentSearchText;
+      const requestURL = this._buildBaseURL();
+      requestURL.searchParams.set('replace_model', 'false');
+      requestURL.searchParams.set('resolution', 0);
+      // TODO: also populate other filter fields to scope down the search space.
+      requestURL.searchParams.set('search_prefix', searchText);
+      this._isLoading = true;
+      this._throbber.className = 'active';
+      const searchData = await new Promise(function(resolve, reject) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', requestURL);
+        xhr.onload = function() {
+          var contentType = this.getResponseHeader('Content-Type');
+          if (
+            this.status !== 200 ||
+            !contentType.startsWith('application/json')
+          ) {
+            var msg = requestURL + ' could not be loaded';
+            if (contentType.startsWith('text/plain')) {
+              msg = msg + ': ' + xhr.statusText;
+            }
+            reject(msg);
+          }
+          resolve(xhr.response);
+        };
+        xhr.onerror = function() {
+          reject(`Cannot fetch search result with uri ${requestURL}: ${xhr.statusText}`);
+        };
+        xhr.send();
+      });
+      this._isLoading = false;
+      this._throbber.className = 'inactive';
+      try {
+        await this._updateModel(JSON.parse(searchData), false);
+        await this._updateView(this._loadedRange);
+      } catch (err) {
+        console.error('Fetch search result failed:', err);
+        this._displayOverlay('Trace Viewer fetch search result failed: ', err);
+      }
+    },
+
+    _formatDuration: function(durationMs) {
+      const units = ['ps', 'ns', 'us', 'ms', 's'];
+      let i = 0;
+      let value = Math.round(durationMs * 1_000_000_000);  // to picoseconds
+      while (value >= 1000 && i < units.length - 1) {
+        value /= 1000;
+        i++;
+      }
+      return `${value.toFixed(3)} ${units[i]}`;
+    },
+
+    _addRectTooltipNode: function() {
+      const tooltipDiv = document.createElement('div');
+      tooltipDiv.setAttribute('id', 'event_tooltip');
+      tooltipDiv.setAttribute('style', `position:absolute;left:0;top:0;visibility:hidden;height:14px;font-size:12px;width:48px;padding:5px;color:black;background-color:white;z-index:10000;display:flex;align-items:center;justify-content:center;`);
+      Polymer.dom(this._traceViewer).appendChild(tooltipDiv);
+    },
+
+    // Updates the position and text of the event tooltip currently hovered,
+    // based on the location (coordinates x and y) of the target event.
+    _updateRectTooltip: function(x, y) {
+      if (this._hoverRect === null) {
+        this._hideRectTooltip();
+        return;
+      };
+      const el = document.getElementById('event_tooltip');
+      const maxTitleLength = 50;
+      let truncatedTitle = this._hoverRect.title.substring(0, maxTitleLength);
+      if (this._hoverRect.title.length > maxTitleLength) {
+        truncatedTitle += "...";
+      }
+      const text = `${truncatedTitle} [${this._formatDuration(this._hoverRect.duration)}]`;
+      el.innerText = text;
+      const xOffset = 10;
+      el.style.left=`${x + xOffset}px`;
+      el.style.top =`${y}px`;
+      el.style.visibility = 'visible';
+      el.style.width = `fit-content`;
+    },
+
+    _hideRectTooltip: function() {
+      const el = document.getElementById('event_tooltip');
+      el.style.visibility = 'hidden';
+    },
+
+    _getSearchText: function() {
+      const findController = document.querySelector('tr-ui-find-control');
+      return findController?.$?.filter?.value || '';
+    },
+
+    _unHighlightRect: function() {
+      if (this._hoverRect === null) return;
+      // Skip highlight/unhighlight if search is on
+      if (this._getSearchText().length > 0) {
+        this._hoverRect = null;
+        return;
+      }
+      this._hoverRect.selectionState = tr.model.SelectionState.NONE;
+      this._hoverRect = null;
+      const modelTrackContainer = this._traceViewer.trackView.modelTrackContainer_;
+      modelTrackContainer.viewport_.dispatchChangeEvent();
+    },
+
+    _highlightRect: function(rect) {
+      // Skip highlight/unhighlight if search is on
+      if (rect === null || this._getSearchText().length > 0) return;
+      rect.selectionState = tr.model.SelectionState.HIGHLIGHTED;
+      const modelTrackContainer = this._traceViewer.trackView.modelTrackContainer_;
+      modelTrackContainer.viewport_.dispatchChangeEvent();
+    },
+
+    _mouseOnCanvas: function(x, y, canvas) {
+      const clientRect = canvas.getBoundingClientRect();
+      const xWorld = x - clientRect.left;
+      const yWorld = y - clientRect.top;
+      return xWorld >= 0 && yWorld >=0 && xWorld <= clientRect.width && yWorld <= clientRect.height;
+    },
+
+    // This function tries to find a rect given location (x, y) from the sourceRects data set,
+    // and execute the callback function on the found rect.
+    // Note that We are expecting up to one rect matched given a mouse location, as there's no rects overlapping in trace viewer
+    // - posX, posY: current x, y coordination of the mouse.
+    // - sourceRects: the rects (each represent a event) to search the rect for. The rect should itself contains location information.
+    // - callback: the callback function to be executed upon rect if matched.
+    _findRectAndExecute: function(posX, posY, sourceRects, callback) {
+      const y = posY;
+      const x = posX;
+      // Convert to worldspace (relative to the model track canvas area).
+      const canv = this._traceViewer.trackView.modelTrackContainer_.canvas;
+      // Since the events seek is along the track row (where the rects are formed), only xWorld info is needed.
+      const xWorld = x - canv.getBoundingClientRect().left;
+
+      // Assert on valid mouse location for events seeking.
+      if (!this._mouseOnCanvas(x, y, canv)) {
+        this._hideRectTooltip();
+        return;
+      }
+
+      // Figure out what has been focused
+      const pixelRatio = window.devicePixelRatio || 1;
+      const modelTrack = this._traceViewer.trackView.modelTrack_;
+      const dt = modelTrack.viewport.currentDisplayTransform;
+      const viewPixWidthWorld = dt.xViewVectorToWorld(1);
+      // wx: start time marker of event on the ruler scale.
+      const wx = dt.xViewToWorld(xWorld * pixelRatio);
+      const rectWidth = 3 * viewPixWidthWorld;
+
+      // Iterate and execute the callback function on the potential hit event.
+      tr.b.iterateOverIntersectingIntervals(sourceRects,
+          function(x) { return x.start; },
+          function(x) { return x.duration + rectWidth; },
+          wx, wx,
+          callback.bind(this));
+    },
+
+    _onHoverRect: function(e) {
+      // Always reset the highlight when mouse moves.
+      // New highlight will be setup in the onHoverCallback if any rect is hit.
+      this._unHighlightRect();
+
+      const onHoverCallback = (rect) => {
+        // No-Op for mouse action within the same event rect.
+        if (this._hoverRect === rect) {
+          return;
+        }
+        // Update _hoverRect with new and valid rect.
+        if (rect?.title && rect.title !== '') {
+          this._hoverRect = rect;
+          this._highlightRect(rect);
+        }
+      };
+      // Find and operate on the rect that the mouse is hovering on.
+      this._findRectAndExecute(e.clientX, e.clientY, e.rects, onHoverCallback);
+
+      // Always update tooltip positioning with mouse movement.
+      this._updateRectTooltip(e.clientX, e.clientY);
+    },
+
+    _updateModeSelectorBehavior: function() {
+      const modeSelector = document.querySelector('tr-ui-b-mouse-mode-selector');
+      document.addEventListener('mousemove', (e) => {
+        const mouseEvent = new tr.b.Event('recthover', true);
+        mouseEvent.clientX = e.clientX;
+        mouseEvent.clientY = e.clientY;
+        mouseEvent.rects = e.target.rects || [];
+        modeSelector?.dispatchEvent(mouseEvent);
+      });
+      this._addRectTooltipNode();
+      modeSelector?.addEventListener('recthover', this._onHoverRect.bind(this));
+    },
+
+    _timer: null,
+    _previousSearchText : '',
+    _currentSearchText : '',
+
+    _callSearchLater: function(controller, handler, args) {
+      clearTimeout(this._timer);
+      this._timer = setTimeout(() => {
+        this._callSearchNow(controller, handler, args);
+      }, 1000); // 1 second
+    },
+
+    _callSearchNow: async function(controller, handler, args) {
+      clearTimeout(this._timer);
+      this._currentSearchText = controller.$.filter.value;
+      if(this._currentSearchText.length == 0 ||
+          this._previousSearchText == this._currentSearchText) return;
+
+      // Do server side search.
+      await this._searchAndAddTraceEvents(this._currentSearchText);
+      // Update the highlight and hint after search is done (more events appended).
+      handler.apply(controller, args);
+    },
+
+    // Change the behavior of the search box to always fetch full trace
+    // search results from the backend before executing frontend search logic.
+    // This is done by either doing full search on enter key press, or
+    // debouncing the search logic to only execute after a 1 second delay.
+    _updateSearchBehavior: function() {
+      const findController = document.querySelector('tr-ui-find-control');
+      const originalSearchBarKeyDown = findController.filterKeyDown;
+      const originalSearchBarTextChange = findController.filterTextChanged;
+      let lastFilterText = '';
+      findController.filterKeyDown = (keyEvent) => {
+        if (keyEvent.keyCode === 13) {
+          this._callSearchNow(findController, originalSearchBarTextChange, [keyEvent]);
+        }
+      };
+      findController.filterTextChanged = (keyEvent) => {
+        this._callSearchLater(findController, originalSearchBarTextChange, []);
+      };
+    },
+
+    _updateSingleEventSubView() {
+      const stackFrame = document.querySelector('tr-ui-a-stack-frame');
+      if (stackFrame) {
+        // Sub view will be recreated for each click,
+        // so this check and early return won't prevent
+        // from the content being refreshed for different events selected.
+        if (stackFrame.querySelector('button.collapsible')) {
+          return; // Exit if already set up
+        }
+        const child = stackFrame.children[0];
+        stackFrame.removeChild(child);
+        const stack_frame_button = document.createElement('button');
+        stack_frame_button.classList.add('collapsible');
+        stack_frame_button.textContent = 'Hide Stack Frame';
+        const stack_frame_content = document.createElement('div');
+        stack_frame_content.classList.add('collapsible-content');
+        stack_frame_content.style.display = 'block';
+        stack_frame_button.classList.add('active');
+        // Add click event listener to the button
+        stack_frame_button.addEventListener("click", function() {
+          this.classList.toggle("active");
+          var content = this.nextElementSibling;
+          if (content.style.display === "block") {
+            content.style.display = "none";
+            this.textContent = 'View Stack Frame'; // Change text when content is hidden
+          } else {
+            content.style.display = "block";
+            this.textContent = 'Hide Stack Frame'; // Change text when content is visible
+          }
+        });
+
+        stack_frame_content.appendChild(child);
+        stackFrame.appendChild(stack_frame_button);
+        stackFrame.appendChild(stack_frame_content);
+      }
+    },
+
+    _maybeFetchAdjacentEvents: async function(nodeName, moduleName) {
+      if (!this._hloAdjNodesMap.has(moduleName)) {
+        this._hloAdjNodesMap.set(moduleName, new Map());
+      }
+      if (this._hloAdjNodesMap.get(moduleName).has(nodeName)) return this._hloAdjNodesMap.get(moduleName).get(nodeName);
+
+      let requestURL;
+      if (this._sessionId) {
+        requestURL = new URL(`/graph_viewer.json?session_id=${this._sessionId}`, window.location.origin);
+        requestURL.searchParams.set('node_name', nodeName);
+        requestURL.searchParams.set('module_name', moduleName);
+      } else {
+        requestURL = new URL(`/data/plugin/profile/data`, window.location?.origin);
+        requestURL.hash = 'profile';
+        requestURL.searchParams.set('tag', 'graph_viewer');
+        const traceViewerLink = new URL(window.location.origin + this.traceDataUrl);
+        const currentRun = traceViewerLink.searchParams.get('run');
+        requestURL.searchParams.set('run', currentRun);
+        requestURL.searchParams.set('node_name', nodeName);
+        requestURL.searchParams.set('module_name', moduleName);
+      }
+      requestURL.searchParams.set('type', 'adj_nodes');
+      const jsonString = await new Promise(function(resolve, reject) {
+          var xhr = new XMLHttpRequest();
+          xhr.open('GET', requestURL);
+          xhr.onload = function() {
+            var contentType = this.getResponseHeader('Content-Type');
+            if (this.status !== 200 || !contentType.startsWith('text/plain')) {
+              var msg = requestURL + ' could not be loaded.';
+              msg = msg + ': ' + xhr.statusText;
+              reject(msg);
+            }
+            resolve(xhr.response);
+          };
+          xhr.onerror = function() {
+            reject(`Cannot fetch graph dot with uri ${requestURL}: ${xhr.statusText}`);
+          };
+          xhr.send();
+        });
+      this._hloAdjNodesMap.get(moduleName).set(nodeName,JSON.parse(jsonString));
+      return this._hloAdjNodesMap.get(moduleName).get(nodeName);
+    },
+
+    _maybeFetchEventArgs: async function(event) {
+      if (!('uid' in event.args)) return;
+      const requestURL = this._buildBaseURL();
+      requestURL.searchParams.set('replace_model', false);
+      requestURL.searchParams.set('event_name', event.title);
+      requestURL.searchParams.set('start_time_ms', event.start);
+      requestURL.searchParams.set('duration_ms', event.duration);
+      requestURL.searchParams.set('unique_id',event.args['uid']);
+      // Extract hostname from process container. e.g. "mach01 /device:TPU:0 (pid3)" ==> "mach01"
+      // Use prefix to make hostname with space work.
+      const hostnamePrefix = event.parentContainer.parent.name.split(' ')[0];
+      const hostname = this._selectedHosts.find(host => host.startsWith(hostnamePrefix));
+      if (!hostname) {
+        console.error('No matching hostname found when fetching event args for: ', event);
+        return;
+      }
+      requestURL.searchParams.set('hosts', hostname);
+      this._isLoading = true;
+      this._throbber.className = 'active';
+      const fetchData = await new Promise(function(resolve, reject) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', requestURL);
+        xhr.onload = function() {
+          var contentType = this.getResponseHeader('Content-Type');
+          if (this.status !== 200 || !contentType.startsWith('application/json')) {
+            var msg = requestURL + ' could not be loaded.';
+            if (contentType.startsWith('text/plain')) {
+              msg = msg + ': ' + xhr.statusText;
+            }
+            reject(msg);
+          }
+          resolve(xhr.response);
+        };
+        xhr.onerror = function() {
+          reject(`Cannot fetch event metadata with uri ${requestURL}: ${xhr.statusText}`);
+        };
+        xhr.send();
+      });
+      this._isLoading = false;
+      this._throbber.className = 'inactive';
+      const data = JSON.parse(fetchData);
+      if (event instanceof tr.model.ThreadSlice &&
+          data.traceEvents[data.traceEvents.length - 1].ph == "X") {
+        // Overwrite the event args in the ThreadSlice.
+        const fullEvent = data.traceEvents[data.traceEvents.length - 1];
+        event.args = fullEvent.args;
+        let stackFrameName = data.stackFrames[1]?.name;
+        if (stackFrameName) {
+          if (stackFrameName.startsWith('@@')) {
+            stackFrameName = stackFrameName.substr(2);
+          }
+          event.startStackFrame =
+            new tr.model.StackFrame(/* parentFrame */ undefined, "g1",
+                                    stackFrameName, 13);
+        }
+      } else if (event instanceof tr.model.AsyncSlice &&
+                 data.traceEvents[data.traceEvents.length - 2].ph == "b") {
+        // Overwrite the event args in the AsyncSlice.
+        const beginEvent = data.traceEvents[data.traceEvents.length - 2];
+        event.args = beginEvent.args;
+        const stackFrameName = data.stackFrames[1]?.name;
+        if (stackFrameName) {
+          event.startStackFrame =
+            new tr.model.StackFrame(/* parentFrame */ undefined, "g1",
+                                    stackFrameName.substr(2), 13);
+        }
+      } else {
+        console.log("failed to fetch event args for event: ", event);
+      }
+    },
+
+    _createDetailFilter: function() {
+      const detailsSelector = document.createElement('tr-ui-b-dropdown');
+      const flowEventsDropdown = document.getElementById('flow_event_filter_dropdown');
+      detailsSelector.setAttribute('id', 'details_selector');
+      detailsSelector.setAttribute('label', 'Details');
+      detailsSelector.style.display = 'none';
+      Polymer.dom(this._traceViewer.rightControls).insertBefore(detailsSelector, flowEventsDropdown);
+    },
+
+
+    // This function is called when generating trace viewer links given hosts selection
+    _addSelectedHostsToTraceViewerURL: function(url) {
+      if (this._selectedHosts.length > 0) {
+        url.searchParams.set("hosts", this._selectedHosts.join(','));
+      }
+    },
+
+    _perfettoButtonOnclickCallback: function() {
+      const sessionPerfettoUrl = new URL(`/perfetto/${this._sessionId}`, window.location.href);
+      const relatedParams = ['host', 'hosts', 'host_index', 'trace_filter_config'];
+      for (const param of relatedParams) {
+        const value = this._buildBaseURL().searchParams.get(param);
+        if (value) {
+          sessionPerfettoUrl.searchParams.set(param, value);
+        }
+      }
+      window.open(sessionPerfettoUrl.toString());
+    },
+
+    _createOverflowMenu: function() {
+      const dropdown = document.createElement('tr-ui-b-dropdown');
+      dropdown.style.cursor = 'pointer';
+      dropdown.querySelector('button').innerHTML = '&#8942;';
+      dropdown.setAttribute('name', 'overflow_menu');
+      dropdown.setAttribute('id', 'overflow_menu');
+      const dialog = dropdown.querySelector('dialog');
+      dialog.classList.add('right-controls-dialog');
+      const button = dropdown.querySelector('button');
+      button.setAttribute('style', 'height:36px;border:none;background:none;margin-left:5px;');
+      Polymer.dom(this._traceViewer.rightControls).appendChild(dropdown);
+
+      const dropdownItemStyle = 'border:none;border-bottom:#dadce0 solid 0.5px;height:fit-content;padding:5px 5px;';
+      this._reArrangeHelperButton(dropdown, dropdownItemStyle);
+      this._reArrangeMetadataButton(dropdown, dropdownItemStyle);
+      this._createPerfettoButton(dropdown, dropdownItemStyle);
+      this._createSidePanelToggle(dropdown, dropdownItemStyle);
+      this._createViewConsoleToggle(dropdown, dropdownItemStyle);
+    },
+
+    _domToggleCallback: function(id) {
+      const dom = document.getElementById(id);
+      if (dom.style.display == 'none' || !dom.style.display) {
+        dom.style.display = 'inherit';
+      } else {
+        dom.style.display = 'none';
+      }
+    },
+
+    _createViewConsoleToggle: function(overflowMenuDropdown, style) {
+      const consoleToggleButton = document.createElement('tr-ui-b-toolbar-button');
+      consoleToggleButton.innerHTML = 'Toggle View Console';
+      consoleToggleButton.setAttribute('id', 'view_console_toggle');
+      consoleToggleButton.setAttribute('style', style);
+      consoleToggleButton.addEventListener('click', () => this._domToggleCallback('view_console_button'));
+      Polymer.dom(overflowMenuDropdown).appendChild(consoleToggleButton);
+    },
+
+    _createSidePanelToggle: function(overflowMenuDropdown, style) {
+      const sidePanelToggleButton = document.createElement('tr-ui-b-toolbar-button');
+      sidePanelToggleButton.innerHTML = 'Toggle Side Panel';
+      sidePanelToggleButton.setAttribute('id', 'side_panel_toggle');
+      sidePanelToggleButton.setAttribute('style', style);
+      sidePanelToggleButton.addEventListener('click', () => this._domToggleCallback('side_panel_container'));
+      Polymer.dom(overflowMenuDropdown).appendChild( sidePanelToggleButton);
+    },
+
+    _reArrangeMetadataButton: function(overflowMenuDropdown, style) {
+      const metadataButton = document.getElementById("view_metadata_button");
+      metadataButton.innerHTML = 'Trace Metadata';
+      // Close overflow menu when bring up the overlay of metadata
+      metadataButton.addEventListener('click', () => overflowMenuDropdown.close());
+      metadataButton.setAttribute('style', style);
+      Polymer.dom(overflowMenuDropdown).appendChild(metadataButton);
+    },
+
+    _reArrangeHelperButton: function(overflowMenuDropdown, style) {
+      const helpButton = document.getElementById('view_help_button');
+      helpButton.innerHTML = 'Key Shortcuts';
+      // Close overflow menu when bring up the overlay of the help guide
+      helpButton.addEventListener('click', () => overflowMenuDropdown.close());
+      helpButton.setAttribute('style', style);
+      Polymer.dom(overflowMenuDropdown).appendChild(helpButton);
+    },
+
+    _createPerfettoButton: function(dropdown, style) {
+      if (!this._isOss) {
+        const button = document.createElement('tr-ui-b-toolbar-button');
+        button.innerHTML = 'Perfetto View';
+        button.setAttribute('id', 'perfetto');
+        button.setAttribute('style', style);
+        button.addEventListener('click', this._perfettoButtonOnclickCallback.bind(this));
+        Polymer.dom(dropdown).appendChild(button);
+      }
+    },
+
+    _draggedProcessTrack: null,
+    _updateProcessHeader: function() {
+      const processNameEls = document.getElementsByClassName('process-track-name');
+      const processTrackHeaders = document.getElementsByClassName('process-track-header');
+
+      // Enable drag & drop for processTracks
+      for (let i = 0; i < processTrackHeaders.length; ++i) {
+        // Add a draggable handle to each process track header.
+        const draggingEl = tr.ui.b.createSpan();
+        Polymer.dom(draggingEl).classList.add('process-track-drag-handle');
+        draggingEl.textContent = '☰';
+        Polymer.dom(processTrackHeaders[i]).appendChild(draggingEl);
+        draggingEl.draggable = true;
+
+        // Overwrite the click event and prevent event propogation to enable drag and drop
+        draggingEl.addEventListener('mousedown', (e) => {
+          e.stopPropagation();
+        });
+        draggingEl.addEventListener('click', (e) => {
+          e.stopPropagation();
+        });
+        draggingEl.addEventListener('mousemove', (e) => {
+          e.stopPropagation();
+        });
+
+        draggingEl.addEventListener('dragstart', (e) => {
+          e.dataTransfer.effectAllowed = 'move'; // Present the drag and drop icon correctly
+          this._draggedProcessTrack = e.currentTarget.parentNode.parentNode;
+          this._draggedProcessTrack.classList.add('dragging');
+        });
+
+        draggingEl.addEventListener('dragend', (e) => {
+          this._draggedProcessTrack.classList.remove('dragging');
+          this._draggedProcessTrack = null;
+        });
+
+        // Move the dragged process track as it's dragged over other processes
+        const dropTargetHeader = processTrackHeaders[i];
+        dropTargetHeader.addEventListener('dragover', (e) => {
+          // Default behavior involves dragging the icon back to its previous position, so we
+          // prevent that behavior.
+          e.preventDefault();
+          const dropTarget = dropTargetHeader.parentNode;
+          const modelTrack = this._draggedProcessTrack?.parentNode;
+          const getProcessTrackIndex = (processTrack) => {
+              const processTrackList = Array.from(modelTrack.children);
+              return processTrackList.indexOf(processTrack);
+          };
+
+          const fromIndex = getProcessTrackIndex(this._draggedProcessTrack);
+          const toIndex = getProcessTrackIndex(dropTarget);
+
+          if(fromIndex === -1 || toIndex === -1 || fromIndex === toIndex)
+          {
+            return;
+          }
+
+          const children = Array.from(this._draggedProcessTrack.childNodes);
+          modelTrack.removeChild(this._draggedProcessTrack);
+
+          children.forEach(child => {
+            this._draggedProcessTrack.appendChild(child);
+          });
+
+          if (fromIndex > toIndex) {
+            modelTrack.insertBefore(this._draggedProcessTrack, dropTarget);
+          } else {
+            modelTrack.insertBefore(this._draggedProcessTrack, dropTarget.nextSibling);
+          }
+
+          for(let i = 0; i < modelTrack.children.length; ++i)
+          {
+            const isExpanded = modelTrack.children[i].expanded;
+            modelTrack.children[i].expanded = false;
+            modelTrack.children[i].expanded = isExpanded;
+          }
+        });
+      }
+
+      // Enable text selection for processTracks: overwrite the click event with noop and prevent event propogatin.
+      for (let i = 0; i < processNameEls.length; ++i) {
+        processNameEls[i].addEventListener('mousedown', (e) => {
+          e.stopPropagation();
+        });
+        processNameEls[i].addEventListener('click', (e) => {
+          e.stopPropagation();
+        });
+        processNameEls[i].addEventListener('mousemove', (e) => {
+          e.stopPropagation();
+        });
+      }
+    },
+
+    _memorizeAsyncTrackState: function() {
+      const asyncTracks = document.getElementsByClassName('async-slice-group-track');
+      for(let i = 0; i < asyncTracks.length; ++i) {
+        const name = asyncTracks[i].heading || '';
+        const isExpanded = !!asyncTracks[i].expanded;
+        this._asyncTrackState.set(name, isExpanded);
+      }
+    },
+
+    _restoreAsyncTrackState: function() {
+      const asyncTracks = document.getElementsByClassName('async-slice-group-track');
+      for(let i = 0; i < asyncTracks.length; ++i) {
+        const name = asyncTracks[i].heading || '';
+        if (name && this._asyncTrackState.has(name)) {
+          asyncTracks[i].expanded = this._asyncTrackState.get(name);
+        }
+      }
+    },
+
+    _addDragEventListeners: function() {
+      // These are all the left side panel process headers (e.g., XLA Ops, Framework Ops, etc.)
+      const processes = document.getElementsByTagName('tr-ui-b-heading');
+      for (let i = 0; i < processes.length; ++i) {
+        processes[i].addEventListener('mousedown', (e) => {
+          // Start the dragging event if the mouse is within 50px of the left side panel.
+          if (Math.abs(e.x - this._canvasLeft) < 50) {
+            this._canvasDrag = true;
+          }
+          e.stopPropagation();
+        });
+        processes[i].addEventListener('mousemove', (e) => {
+          if (this._canvasDrag) {
+            var start_x = e.x + 5;
+            var width = this._canvasWidth + this._canvasLeft - start_x;
+            const processes_ = document.getElementsByTagName('tr-ui-b-heading');
+            for (var i = 0; i < processes_.length; ++i) {
+              processes_[i].style.width = + start_x + 'px';
+            }
+            // There are 2 canvases: One displays the ruler at the top (0..30s etc.), the other
+            // displays the trace.
+            const canvases = document.getElementsByClassName('drawing-container-canvas');
+            for (var i = 0; i < canvases.length; ++i) {
+              canvases[i].style.left = start_x + 'px';
+              canvases[i].style.width = + width + 'px';
+            }
+            this._canvasLeft = start_x;
+            this._canvasWidth = width;
+          }
+          e.stopPropagation();
+        });
+        processes[i].addEventListener('mouseup', (e) => {
+          this._canvasDrag = false;
+          e.stopPropagation();
+          this._onViewportChange();
+        });
+      }
+    },
+
+    // Expand or collapse all processes thread tracks
+    _expandOrCollapseAll: function(shouldExpand) {
+      const processes = document.getElementsByClassName('process-track-base');
+      for(let i = 0; i < processes.length; ++i)
+      {
+        processes[i].expanded = shouldExpand;
+      }
+    },
+
+    _addExpandAndCollapseAllButtons: function() {
+      //Add text bar next to buttons
+      const textBar = document.createElement('div');
+      textBar.textContent = 'Processes:';
+      textBar.setAttribute('id', 'expand_collapse_all_text_bar');
+
+      var expandAllButton = document.createElement('tr-ui-b-toolbar-button');
+      expandAllButton.textContent = 'Expand All';
+
+      var collapseAllButton = document.createElement('tr-ui-b-toolbar-button');
+      collapseAllButton.textContent = 'Collapse All';
+
+      expandAllButton.setAttribute('id', 'expand_all_button');
+      collapseAllButton.setAttribute('id', 'collapse_all_button');
+
+      // Add event listener to buttons
+      expandAllButton.addEventListener('click', () => this._expandOrCollapseAll(true));
+      collapseAllButton.addEventListener('click', () => this._expandOrCollapseAll(false));
+      // Append buttons to the DOM (inside the same parent element)
+      this._traceViewer.leftControls.appendChild(textBar);
+      this._traceViewer.leftControls.appendChild(expandAllButton);
+      this._traceViewer.leftControls.appendChild(collapseAllButton);
+    },
+
+    // Overwrite and fine tune the inherited catapult/tracing UI
+    _adjustUI: function() {
+      // 1. Adjust styles of the leftControl and its children
+      this._traceViewer.leftControls.style.marginLeft = '2px';
+      // Bring search bar to left
+      const searchBar = document.getElementById('view_find_control');
+      Polymer.dom(this._traceViewer.leftControls).appendChild(searchBar);
+      const searchInput = document.getElementById('filter');
+
+      this._addExpandAndCollapseAllButtons();
+
+      searchInput.placeholder = 'Find Events...';
+
+      // 2. Adjust styles of the rightControl and its children
+      this._traceViewer.rightControls.style.marginRight = '2px';
+      this._createOverflowMenu();
+      const rightControlsDropdownIds = ['details_selector', 'flow_event_filter_dropdown'];
+      // Details and flow events filter creation requires data preprocessing, delay 1s to ensure the dom is created.
+      rightControlsDropdownIds.forEach(id => {
+        const dropdown = document.getElementById(id);
+        if (dropdown) {
+          const dialog = dropdown.querySelector('dialog');
+          dialog.classList.add('right-controls-dialog');
+          const button = dropdown.querySelector('button');
+          button.classList.add('right-controls-button');
+          // Details requires data preprocessing, so we delay the style adjustment until the data is ready.
+          if (id == 'flow_event_filter_dropdown') {
+            dropdown.style.display = 'unset';
+            dialog.setAttribute('style', 'padding:5px;')
+          }
+        }
+      });
+      const rightControlsButtonIds = ['view_console_button'];
+      rightControlsButtonIds.forEach(id => {
+        const button = document.getElementById(id);
+        button.classList.add('right-controls-button');
+      });
+
+      // 3. Update general styles
+      const buttons = document.getElementsByTagName('button');
+      for (let i = 0; i < buttons.length; ++i) {
+        const button = buttons[i];
+        button.style.cursor = 'pointer';
+      }
+    },
+
+    _init: async function(initialViewportRange) {
+      if (this._isStreaming) {
+        // Need to create detail filter in init since it contributes to the baseUrl building.
+        this._createDetailFilter();
+        this._updateSearchBehavior();
+      }
+      let initialRequestedRange = null;
+      if (initialViewportRange) {
+        initialRequestedRange = this._calcFetchRange(initialViewportRange);
+      }
+      this._loadTrace(initialRequestedRange, /* replaceModel= */ true);
+    },
+
+    // Call with `show` = true to show the "please wait" message. Call with false to hide it.
+    _showWaitMessage(show) {
+      this._waitMessage.style.display = show ? "flex" : "none";
+    },
+
+    _loadTrace: async function(requestedRange, replaceModel) {
+      this._replaceModel = replaceModel;
+      const startTime = performance.now();
+      this._throbber.className = 'active';
+      const showWaitMsgLater = tf_component_traceviewer.debounce(
+          this._showWaitMessage.bind(this), 20000);  // 20 seconds
+      showWaitMsgLater(true);
+      this._isLoading = true;
+      if (!this._isStreaming) {
+        await this._loadNonStreamingTrace();
+      } else {
+        await this._loadStreamingTrace(requestedRange, replaceModel);
+      }
+      this._isLoading = false;
+      this._throbber.className = 'inactive';
+      showWaitMsgLater(false);  // Necessary to cancel the timer.
+      this._showWaitMessage(false);  // Hide immediately instead of waiting 30 seconds.
+      const endTime = performance.now();
+      const duration = endTime - startTime;
+      if(this._isInitialLoad) {
+        // measure the timing since browser start loading
+        window.parent.gtag && window.parent.gtag('event', 'timing_complete', {
+          'name': 'load',
+          'value': performance.now(),
+          'event_category': 'JS Dependency',
+          'event_label': `trace_viewer_${this._isStreaming ? 'streaming' : 'nonstreaming'}`,
+        });
+        this._isInitialLoad = false;
+        this._throbber.id = 'throbber';
+      } else {
+         // measure time consuming for page reloading when streaming
+         window.parent.gtag && window.parent.gtag('event', 'timing_complete', {
+          'name': 'load',
+          'value': duration,
+          'event_category': 'data',
+          'event_label': 'trace_viewer_reloading',
+        });
+      }
+      if (!this._isOss) {
+        this._insertRenderCompleteSignal();
+      }
+      this._updateModeSelectorBehavior();
+      this._updateProcessHeader();
+      this._addDragEventListeners();
+    },
+
+    _loadNonStreamingTrace: async function() {
+      // Send HTTP request to get the trace data.
+      var req = new XMLHttpRequest();
+      req.open('GET', this.traceDataUrl, true);
+
+      // Promisify and await this to make the loading trace synchronized
+      await new Promise(resolve => {
+        req.onreadystatechange = (event) => {
+          if (req.readyState !== 4) {
+            return;
+          }
+          window.setTimeout(() => {
+            if (req.status === 200) {
+              this.set('_traceData', req.responseText);
+            } else {
+              this._displayOverlay(req.status, 'Failed to fetch data');
+            }
+            resolve();
+          }, 0);
+        };
+        req.send(null);
+      });
+    },
+
+    _reloadingDisabled() {
+      return (this._resolution === 0) || !this._filteredByVisibility;
+    },
+
+    // Something has changed, so consider reloading the data:
+    //   - if we have zoomed in enough to need more detail
+    //   - if we have scrolled too close to missing data regions
+    // We ensure there's only ever one request in flight.
+    _maybeLoad: function() {
+      if (this._isLoading || this._reloadingDisabled()) return;
+      // We have several ranges of interest:
+      //             [viewport]           - what's on-screen
+      //         [----preserve----]       - issue loads to keep this full of data
+      //     [---------fetch----------]   - fetch this much data with each load
+      // [-----------full bounds--------] - the whole profile
+      var viewport = this._trackViewRange(this._traceViewer.trackView)
+      var fetch = this._calcFetchRange(viewport);
+      var preserve = this._calcPreserveRange(viewport);
+      var zoomFactor =
+        tf_component_traceviewer.length(this._loadedRange) /
+        tf_component_traceviewer.length(fetch);
+      if (
+        !tf_component_traceviewer.within(preserve, this._loadedRange) ||
+        zoomFactor > tf_component_traceviewer.ZOOM_RATIO
+      ) {
+        this._loadTrace(fetch, /*replaceModel=*/ false);
+      }
+    },
+
+    _loadStreamingTrace: async function(requestedRange, replaceModel) {
+      var success = true;
+      let startUpdateModel;
+      let startUpdateView;
+
+      try {
+        const data = await this._loadJSON(requestedRange)
+        if (!this._isOss) {
+          this._addInitialResponseDataLatency(performance.now());
+          this._addDataResponseSize(data.length);
+        }
+        startUpdateModel = performance.now();
+        const jsonData = JSON.parse(data);
+        this._codeLink = jsonData['codeLink'];
+        if (!this._model /* first load */) {
+          this._collapseBigProcessTracks(jsonData);
+        }
+        this._memorizeAsyncTrackState();
+        this._updateModel(jsonData, replaceModel);
+        if (!this._isOss) {
+          this._addUpdateModelLatency(performance.now() - startUpdateModel);
+        }
+        startUpdateView = performance.now();
+        await this._updateView(requestedRange);
+        this._restoreAsyncTrackState();
+        if (!this._isOss) {
+          this._addUpdateViewLatency(performance.now() - startUpdateView);
+        }
+      } catch (err) {
+        console.error('Error load streaming trace:', err);
+        this._displayOverlay('Trace Viewer', err);
+      }
+    },
+
+    // Collapse the process if it has more than 20 threads.
+    _collapseBigProcessTracks: function(jsonData) {
+      let traceViewerTraceModelSettings = JSON.parse(localStorage.getItem('trace-viewertrace_model_settings')) || {"value": {}};
+      for(const traceEvent of jsonData['traceEvents']) {
+        if (traceEvent['name'] === 'process_name') {
+          if (traceEvent['thread_count'] !== undefined && traceEvent['thread_count'] > 20) {
+            // Collapse the process only if preference is not set.
+            const processName = "processes."+traceEvent['args']['name'];
+            if (traceViewerTraceModelSettings['value'][processName] === undefined) {
+              traceViewerTraceModelSettings['value'][processName] = {'expanded': false};
+            }
+          }
+        }
+      }
+      localStorage.setItem('trace-viewertrace_model_settings', JSON.stringify(traceViewerTraceModelSettings));
+    },
+
+    // Loads a time window (the whole trace if requestedRange is null).
+    // Returns a promise for the JSON event data.
+    _loadJSON: async function(requestedRange) {
+      // Set up an XMLHTTPRequest to the JSON endpoint, populating range and
+      // resolution if appropriate.
+      var requestURL = this._buildBaseURL();
+      var ZOOM_RATIO = tf_component_traceviewer.ZOOM_RATIO;
+      if (requestURL.searchParams.has('selected_group_ids')) {
+        requestURL.searchParams.set('resolution', 0);
+      } else if (!requestURL.searchParams.has('resolution')) {
+        requestURL.searchParams.set('resolution', this._resolution * ZOOM_RATIO);
+      }
+      if (requestedRange != null) {
+        requestURL.searchParams.set('start_time_ms', requestedRange.min);
+        requestURL.searchParams.set('end_time_ms', requestedRange.max);
+      }
+
+      return new Promise(function(resolve, reject) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', requestURL);
+        xhr.onload = function() {
+          var contentType = this.getResponseHeader('Content-Type');
+          if (
+            this.status !== 200 ||
+            !contentType.startsWith('application/json')
+          ) {
+            var msg = requestURL + ' could not be loaded';
+            if (contentType.startsWith('text/plain')) {
+              msg = msg + ': ' + xhr.statusText;
+            }
+            reject(msg);
+          }
+          resolve(xhr.response);
+        };
+        xhr.onerror = function() {
+          reject(requestURL + 'could not be loaded: ' + xhr.statusText);
+        };
+        xhr.send();
+      });
+    },
+
+    _getEventHashKey: function(event) {
+      /* uniqueness of an event between tr.model refresh/reset are determinted by
+      1. uniqueness of host_id, backend encode host id as part of "pid".
+      2. uniqueness of event id within a host. event timestamp provide the main differerentiator,
+         however itself can not guarantee the uniqueness, backend will add an optional field "z"
+         to tie-break the situation.
+      3. Note: metadata events (describing process/threads) don't have a timestamp field. They are
+         hashed to a single key value, this is okay, because we don't need to refresh them after
+         initial load.
+      */
+      let key = event["pid"].toString();
+      key += "$";
+      key += event["ts"] || 0;
+      if ("z" in event) key += "$" + event["z"];
+      return key;
+    },
+
+    _maybeUpdateEventArguments: function(event) {
+      if (!event["args"] || Object.keys(event["args"]).length === 0) return;
+      const pid = event["pid"];
+      const tid = event["tid"];
+      const tsMs = event["ts"] / 1000.0;
+
+      const process = this._model.processes[pid];
+      if (!process) return;
+      const thread = process.threads[tid];
+      if (!thread) return;
+
+      // Find the slice in memory with matching start time (with epsilon tolerance)
+      for (const slice of thread.sliceGroup.slices) {
+        if (Math.abs(slice.start - tsMs) < 0.001) {
+          if (!slice.args) slice.args = {};
+          for (const key in event["args"]) {
+            slice.args[key] = event["args"][key];
+          }
+          break;
+        }
+      }
+    },
+
+    // Decodes the JSON trace and specifically exclude counter events,
+    // removes all events that were loaded before
+    // and serializes to JSON again.
+    _filterKnownTraceEvents: function(traceEvents) {
+      if (this._loadedTraceEvents.size == 0) {
+        traceEvents.forEach(event => this._loadedTraceEvents.add(this._getEventHashKey(event)));
+        return traceEvents;
+      } else {
+        let filteredTraceEvents = [];
+        traceEvents.forEach(function (event) {
+          const key = this._getEventHashKey(event);
+          if (!this._loadedTraceEvents.has(key)) {
+            this._loadedTraceEvents.add(key);
+            filteredTraceEvents.push(event);
+          } else {
+            // Duplicate detected: the event is already loaded on the timeline.
+            // Merge the newly parsed metadata arguments into the existing slice!
+            this._maybeUpdateEventArguments(event);
+          }
+        }, this);
+        return filteredTraceEvents;
+      }
+    },
+
+    // Updates the model with data returned by the JSON endpoint.
+    // If replaceModel is true, the data set is completely replaced; otherwise,
+    // the new data is merged with the old data.
+    // Returns a void promise. Data is expected to be JSON object.
+    _updateModel: function(jsonData, replaceModel) {
+      if (!this._model /* first load */ || replaceModel) {
+        // Only give no events alert for first load or replace load
+        if (!jsonData['returnedEventsSize']) {
+          this._displayOverlay('Trace Viewer', 'No trace events data returned.');
+        }
+        if (jsonData['showCounterMessage'].length > 0) {
+          this._displayOverlay('Counters: ', jsonData['showCounterMessage']);
+        }
+        this._dirty = true;
+        this._model = new tr.Model();
+        this._loadedTraceEvents = new Set();
+        this._asyncTrackState = new Map();
+        this._filteredByVisibility = jsonData['filteredByVisibility'];
+        const fullTimespan = jsonData['fullTimespan'];
+        this._fullBounds = {min: fullTimespan[0], max: fullTimespan[1]};
+        this._tasks = jsonData['tasks'];
+        if (this._tasks && this._tasks.length > 0)
+          this._changelist = this._tasks[0]['changelist'];
+      } else {
+        // Delete fields to prevent traceviewer from accumulating them.
+        delete jsonData['metadata'];
+        delete jsonData['displayTimeUnit'];
+        delete jsonData['tasks'];
+        delete jsonData['filteredByVisibility'];
+        delete jsonData['returnedEventsSize'];
+        delete jsonData['stackFrames'];
+      }
+
+      const detailsSelector = document.getElementById('details_selector');
+      if (!jsonData['details'] || !jsonData['details'].length > 0) {
+        // Hide the details selector if there are no details.
+        detailsSelector.style.display = 'none';
+      } else {
+        // Populate and show "details" selector if there are some details
+        const detailsDialog = detailsSelector.getElementsByTagName('dialog')[0];
+        jsonData['details'].forEach(detail => {
+          let checkbox = detailsDialog.querySelector('#' + detail.name);
+          if (checkbox) {
+            checkbox.checked = detail.value;
+            return;
+          }
+          const checkboxDiv = document.createElement('div');
+          checkboxDiv.setAttribute('id', `details-row`);
+          checkboxDiv.setAttribute('style', 'display:flex;align-items:center;cursor:pointer;padding:5px;');
+          checkbox = document.createElement('input');
+          checkbox.setAttribute('type', 'checkbox');
+          checkbox.setAttribute('id', detail.name);
+          checkbox.setAttribute('name', detail.name);
+          checkbox.style.cursor = 'pointer';
+          checkbox.checked = detail.value;
+          checkbox.addEventListener('change', () => {
+            this._loadTrace(null, /* replaceModel= */ true);  // reload data.
+          });
+          checkboxDiv.appendChild(checkbox);
+          const checkboxLabel = document.createElement('label');
+          checkboxLabel.setAttribute('for', detail.name);
+          checkboxLabel.style.textTransform = 'capitalize';
+          checkboxLabel.style.cursor = 'pointer';
+          checkboxLabel.innerText = detail.name.replace(/_/g, ' ');
+          checkboxDiv.appendChild(checkboxLabel);
+          detailsDialog.appendChild(checkboxDiv);
+        });
+        detailsSelector.style.display = 'flex';
+        delete jsonData['details'];
+      }
+      let otherEvents = [];
+      let counterEvents = [];
+      // Only counter events have entries.
+      const isCounterEvent = (event) => !!event.entries;
+      jsonData.traceEvents.forEach(event => {
+        if (isCounterEvent(event)) {
+          counterEvents.push(event);
+        } else {
+          otherEvents.push(event);
+        }
+      });
+      otherEvents = this._filterKnownTraceEvents(otherEvents);
+      // We intentionally bypass filtering for counter events to prevent a potential
+      // stalling of the UI ,see https://issues.chromium.org/issues/42201829.
+      // A large counter event can generate a hash key that exceeds the maximum safe
+      // value for a number, which throws a RangeError.
+      const ungroupedCounterEvents = counterEvents.flatMap(event => {
+        const argName = event.event_stats;
+        return event.entries.map(entry => ({
+            pid: event.pid,
+            name: event.name,
+            ph: event.ph,
+            ts: entry[0],
+            args: {
+              [argName]: entry[1],
+            },
+          }));
+      });
+      jsonData.traceEvents = [...otherEvents, ...ungroupedCounterEvents];
+      var opt = new tr.importer.ImportOptions();
+      opt.shiftWorldToZero = false;
+      if (jsonData.traceEvents.length > 0) {
+        new tr.importer.Import(this._model, opt).importTraces([jsonData]);
+        this._dirty = true;
+      }
+
+      this._devices = {};
+      const processList = [];
+      for (const pid in this._model.processes) {
+        this._devices[pid] = this._model.processes[pid].name;
+        processList.push(`${this._model.processes[pid].name} (pid: ${pid})`);
+      }
+      window.parent.postMessage({'type': 'processes-list','data': processList,}, '*');
+    },
+
+    // Updates the view based on the current model.
+    _updateView: async function(requestedRange) {
+      if (requestedRange == null) {
+        this._loadedRange = tf_component_traceviewer.expand(
+          this._fullBounds,
+          tf_component_traceviewer.FETCH_RATIO
+        );
+      } else {
+        this._loadedRange = requestedRange;
+      }
+      if (!this._dirty) {
+        return;
+      }
+      this._dirty = false;
+      // TraceViewer queues up a model to be built, waits for being attached to the DOM, and then
+      // builds the model. The builtPromise attribute doesn't resolve until the model is built.
+      this._traceViewer.model = this._model;
+      await this._traceViewer.builtPromise;
+    },
+
+    // Dummy node inserted to enable webdriver detect render complete signal
+    // in the selenium test (trace viewer web perf test)
+    _insertRenderCompleteSignal: function() {
+      const node = parent.document.getElementById('page-start-to-render-completed-latency');
+      node.value = performance.now();
+      const div = parent.document.createElement('div');
+      div.setAttribute('id', 'render-completed');
+      div.setAttribute('style', 'display: none;');
+      const tv = parent.document.getElementsByTagName('trace-viewer')[0];
+      tv.appendChild(div);
+    },
+
+    _addDataResponseSize: function(size) {
+      const node = parent.document.getElementById('initial-data-response-size');
+      node.value = size;
+    },
+
+    _addInitialResponseDataLatency: function(latency) {
+      const node = parent.document.getElementById('page-start-to-data-load-latency');
+      node.value = latency;
+    },
+
+    _addUpdateModelLatency: function(latency) {
+      const node = parent.document.getElementById('update-model-latency');
+      node.value = latency;
+    },
+
+    _addUpdateViewLatency: function(latency) {
+      const node = parent.document.getElementById('update-view-latency');
+      node.value = latency;
+    },
+
+    _addProcessGroupCouterLatency: function(latency) {
+      const node = parent.document.getElementById('process-group-counter-latency');
+      node.value = latency;
+    },
+
+    // Access the {min, max} range of a trackView.
+    _trackViewRange: function(trackView) {
+      return this._calcViewportRange(trackView.viewport.currentDisplayTransform, trackView.viewWidth_);
+    },
+
+    _calcViewportRange: function(displayTransform, viewWidth) {
+      const pixelRatio = window.devicePixelRatio || 1;
+      const devicePixelWidth = pixelRatio * viewWidth;
+      return {
+        min: displayTransform.xViewToWorld(0),
+        max: displayTransform.xViewToWorld(devicePixelWidth),
+      };
+    },
+
+    _calcFetchRange: function(viewportRange) {
+      var FETCH_RATIO = tf_component_traceviewer.FETCH_RATIO;
+      var fetch = tf_component_traceviewer.expand(viewportRange, FETCH_RATIO);
+      fetch = tf_component_traceviewer.intersect(fetch, this._getFilterRange());
+      return fetch;
+    },
+
+    _calcPreserveRange: function(viewportRange) {
+      var PRESERVE_RATIO = tf_component_traceviewer.PRESERVE_RATIO;
+      var preserve = tf_component_traceviewer.expand(viewportRange, PRESERVE_RATIO);
+      preserve = tf_component_traceviewer.intersect(preserve, this._getFilterRange());
+      return preserve;
+    },
+
+    _getFilterRange: function() {
+      const range = {min: Number.MIN_VALUE, max: Number.MAX_VALUE};
+      if (this.traceDataUrl) {
+        const url = new URL(this.traceDataUrl, window.location.origin);
+        const sp = url.searchParams;
+        if (sp.has('start_time_ms')) {
+          range.min = Number(sp.get('start_time_ms'));
+        }
+        if (sp.has('end_time_ms')) {
+          range.max = Number(sp.get('end_time_ms'));
+        }
+      }
+      return range;
+    },
+
+    // Returns the resolution (in number of events) given the width of the
+    // trace viewer (in pixels).
+    _resolutionFromViewerWidth(viewerWidth) {
+      const pixelRatio = window.devicePixelRatio || 1;
+      const minEventWidth = 2 * pixelRatio;
+
+      // Use the actual heading width from the DOM if available, otherwise fallback to the constant.
+      // this._traceViewer.trackView.modelTrackContainer_.canvas.offsetLeft gives the exact
+      // horizontal offset of the timeline canvas, effectively representing the heading width.
+      let headingWidth = tr.ui.b.constants.HEADING_WIDTH;
+      if (this._traceViewer && this._traceViewer.trackView &&
+          this._traceViewer.trackView.modelTrackContainer_ &&
+          this._traceViewer.trackView.modelTrackContainer_.canvas) {
+        headingWidth = this._traceViewer.trackView.modelTrackContainer_.canvas.offsetLeft;
+      }
+
+      // Check if subtracting the heading width would result in a negative or zero width.
+      // This handles cases where the viewer is hidden (width 0) or very narrow.
+      // We return the resolution based on the full viewerWidth to avoid negative values
+      // and to provide a small positive resolution (instead of 0) for narrow windows.
+      if (viewerWidth - headingWidth <= 0) {
+        return Math.round((viewerWidth * pixelRatio) / minEventWidth);
+      }
+
+      viewerWidth -= headingWidth;  // substract row header
+      viewerWidth *= pixelRatio;  // adjust pixel ratio
+      return Math.round(viewerWidth / minEventWidth);
+    },
+
+    _updateHostsParamToBaseUrl: function(requestURL) {
+      if (this._selectedHosts.length) {
+        requestURL.searchParams.set('hosts', this._selectedHosts.join(','));
+      } else {
+        requestURL.searchParams.set('hosts', 'none');
+      }
+    },
+
+    // Builds a base URL for fetching json data. The URL will be assembled with
+    // all filtering URL parameters, except resolution and range.
+    _buildBaseURL: function() {
+      const requestURL = new URL(this.traceDataUrl, window.location.href);
+      this._updateHostsParamToBaseUrl(requestURL);
+      const detailsSelector = document.getElementById("details_selector");
+      const detailsDialog = detailsSelector.getElementsByTagName('dialog')[0];
+      const checkboxDivs = detailsDialog.getElementsByTagName('div');
+      for (let i = 0; i < checkboxDivs.length; ++i) {
+        const checkbox = checkboxDivs[i].getElementsByTagName('input')[0];
+        requestURL.searchParams.set(checkbox.name, checkbox.checked);
+      }
+      if (requestURL.searchParams.has('use_saved_result')) {
+        if (this._dataRegenerated) {
+          requestURL.searchParams.delete('use_saved_result');
+        } else {
+          this._dataRegenerated = true;
+        }
+      }
+      if (this._mpmdPipelineView) {
+        requestURL.searchParams.set('mpmd_pipeline_view', this._mpmdPipelineView);
+      }
+      requestURL.searchParams.set('replace_model', this._replaceModel);
+      requestURL.searchParams.set('new_backend', this._useNewBackend);
+      return requestURL;
+    },
+
+    _traceDataChanged: function(data) {
+      if (!data) {
+        this._displayOverlay('Trace Viewer', 'No trace to display...');
+        return;
+      }
+      // Feed the trace data into the trace viewer app.
+      this._traceModel = new tr.Model();
+      var i = new tr.importer.Import(this._traceModel);
+      var p = i.importTracesWithProgressDialog([data]);
+      p.then(() => {
+        this._traceViewer.model = this._traceModel;
+        this._traceViewer.viewTitle = 'Trace View';
+      }).catch((err) => {
+        this._displayOverlay(
+          'Import error',
+          tr.b.normalizeException(err).message
+        );
+      });
+    },
+
+    _displayOverlay: function(title, content) {
+      var overlay = new tr.ui.b.Overlay();
+      overlay.textContent = content;
+      overlay.title = title;
+      overlay.visible = true;
+    },
+
+    /**
+     * Initialize the viewport to the currentViewportRange if provided.
+     * Implementation note: this accesses internal state objects of the TrackView and the low-level
+     * canvas element to construct the initial DisplayTransform.
+     */
+    _initViewport: function() {
+      if (!this.currentViewportRange) return;
+      const displayTransform = new tr.ui.TimelineDisplayTransform();
+      this._canvasWidth = this._traceViewer.trackView.modelTrackContainer_.canvas.width;
+      this._canvasLeft = this._traceViewer.trackView.modelTrackContainer_.canvas.offsetLeft;
+      displayTransform.xSetWorldBounds(this.currentViewportRange.min, this.currentViewportRange.max, this._traceViewer.trackView.modelTrackContainer_.canvas.width);
+      this._traceViewer.trackView.viewport.setDisplayTransformImmediately(displayTransform);
+    },
+
+    _onViewportChanged: function() {
+      // Update the current viewport range so future viewport initialization uses the latest viewport.
+      this.currentViewportRange = this._trackViewRange(this._traceViewer.trackView);
+      // Emit viewport changed event that includes the current viewport range. Parent components can
+      // persist the current viewport range and pass back down to initialize the viewport.
+      this.dispatchEvent(new CustomEvent('viewport-changed', {detail: { range: this.currentViewportRange }}));
+      if (this._isStreaming) {
+        this._maybeLoad();
+      }
+    },
+
+    /**
+     * Listen for viewport changes and debounce the onViewportChanged callback.
+     * This is to avoid the onViewportChanged callback being called unnecessarily when the user
+     * navigating the traces.
+     * NOTE: this does not currently listen for scroll events.
+     */
+    _listenForViewportChanges: function() {
+      const _trackViewChanged = this._trackViewChanged.bind(this);
+      const _debouncedOnViewportChanged = tf_component_traceviewer.debounce(this._onViewportChanged.bind(this));
+      const superOnViewportChanged_ = this._traceViewer.onViewportChanged_.bind(this._traceViewer);
+      let prevTrackView = this._traceViewer.trackView;
+      this._traceViewer.onViewportChanged_ = (...args) => {
+        superOnViewportChanged_(...args);
+
+        if (this._traceViewer.trackView != undefined) {
+          _debouncedOnViewportChanged();
+          if (this._traceViewer.trackView !== prevTrackView) {
+            prevTrackView = this._traceViewer.trackView;
+            _trackViewChanged(this._traceViewer.trackView);
+          }
+        }
+      };
+      // if called after trackView already created, then reset listener
+      if (this._traceViewer.trackView != undefined) {
+        this._traceViewer.trackView.viewport.removeEventListener('change', superOnViewportChanged_);
+        this._traceViewer.trackView.viewport.addEventListener('change', this._traceViewer.onViewportChanged_);
+      }
+    },
+
+    /**
+     * Handle a new TrackView instance. This should include any initialization
+     * that needs to be done when a new TrackView is created such as: event listeners, viewport
+     * initialization, etc.
+     */
+    _trackViewChanged: function(newTrackView) {
+      const superSetInitialViewport_ = newTrackView.setInitialViewport_.bind(newTrackView);
+      newTrackView.setInitialViewport_ = () => {
+        superSetInitialViewport_();
+        this._initViewport();
+      };
+    },
+  });
+</script>

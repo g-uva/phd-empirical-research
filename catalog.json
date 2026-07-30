@@ -1,6 +1,6 @@
 {
   "$schema": "./schemas/research-catalogue.schema.json",
-  "catalogue_version": "0.2.0",
+  "catalogue_version": "0.3.0",
   "project": {
     "id": "project:phd-research",
     "title": "PhD Research Papers and Reproducibility Artifacts"
@@ -13,6 +13,18 @@
     {
       "id": "paper:neutrino",
       "path": "papers/neutrino/metadata/paper.json"
+    },
+    {
+      "id": "paper:xprof",
+      "path": "papers/xprof/metadata/paper.json"
+    },
+    {
+      "id": "paper:egpu",
+      "path": "papers/egpu/metadata/paper.json"
+    },
+    {
+      "id": "paper:einfer",
+      "path": "papers/einfer/metadata/paper.json"
     }
   ],
   "artifacts": [
@@ -23,6 +35,18 @@
     {
       "id": "artifact:neutrino",
       "path": "papers/neutrino/metadata/artifact.json"
+    },
+    {
+      "id": "artifact:xprof",
+      "path": "papers/xprof/metadata/artifact.json"
+    },
+    {
+      "id": "artifact:egpu",
+      "path": "papers/egpu/metadata/artifact.json"
+    },
+    {
+      "id": "artifact:einfer",
+      "path": "papers/einfer/metadata/artifact.json"
     }
   ]
 }

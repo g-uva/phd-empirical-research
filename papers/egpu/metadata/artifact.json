@@ -1,0 +1,68 @@
+{
+  "id": "artifact:egpu",
+  "type": "research-artifact",
+  "name": "eGPU",
+  "version": null,
+  "status": "available-unvalidated",
+  "artifact_available": true,
+  "supports_paper": "paper:egpu",
+  "source_path": "../artifact",
+  "repository": {
+    "url": "https://github.com/eunomia-bpf/eGPU",
+    "revision": "166c175bdc6c654fe115a261b0aa00c3aaf092f9",
+    "tracking": "Files are tracked directly by the catalogue; upstream Git history is not embedded."
+  },
+  "original_source_snapshots": [
+    {
+      "path": "papers/egpu/original/egpu-166c175bdc6c.zip",
+      "revision": "166c175bdc6c654fe115a261b0aa00c3aaf092f9",
+      "sha256": "0f0ad3d442b368e26a4170b865846250551f0e8905b0917c8f29e38fb06a61fe"
+    }
+  ],
+  "components": [
+    {"name": "GPU attachment and PTX instrumentation", "path": "../artifact/attach/nv_attach_impl"},
+    {"name": "eBPF runtime and VM", "path": "../artifact/runtime"},
+    {"name": "Examples and benchmarks", "path": "../artifact/example"},
+    {"name": "Paper plotting artifact", "path": "../artifact/artifact"},
+    {"name": "Experiment catalogue", "path": "../artifact/experiments/index.json"}
+  ],
+  "provenance_path": "provenance.json",
+  "software": ["software:egpu", "software:cuda", "software:ebpf"],
+  "datasets": [],
+  "experiments": [
+    "experiment:egpu-exp-0001", "experiment:egpu-exp-0002",
+    "experiment:egpu-exp-0003", "experiment:egpu-exp-0004",
+    "experiment:egpu-exp-0005"
+  ],
+  "environments": ["NVIDIA CUDA GPU", "Privileged GPU container", "DAS-6 SLURM GPU allocation"],
+  "reproducibility": {
+    "documentation_available": true,
+    "automated_setup": true,
+    "containerised": true,
+    "tests_available": true,
+    "sample_data_available": false,
+    "expected_outputs_documented": true,
+    "licence_available": true,
+    "citation_metadata_available": true
+  },
+  "execution": {
+    "entry_points": ["Makefile", "attach/nv_attach_impl/examples", "artifact/graph.py"],
+    "requirements": ["Dockerfile", "CMakeLists.txt", "Makefile"],
+    "commands": ["make release", "python3 artifact/graph.py"]
+  },
+  "external_repositories": [
+    {"id": "dependency:egpu-ebpf-verifier", "url": "https://github.com/vbpf/ebpf-verifier", "revision": "fd85b8a6ac2c0cb5621d9c1f38368089d616b8b9"},
+    {"id": "dependency:egpu-catch2", "url": "https://github.com/catchorg/Catch2.git", "revision": "6e79e682b726f524310d55dec8ddac4e9c52fb5f"},
+    {"id": "dependency:egpu-argparse", "url": "https://github.com/p-ranav/argparse.git", "revision": "69dabd88a8e6680b1a1a18397eb3e165e4019ce6"},
+    {"id": "dependency:egpu-bpftool", "url": "https://github.com/libbpf/bpftool", "revision": "784216403e89e9767833be3705bb8be0873eb52a"},
+    {"id": "dependency:egpu-spdlog", "url": "https://github.com/gabime/spdlog", "revision": "48bcf39a661a13be22666ac64db8a7f886f2637e"},
+    {"id": "dependency:egpu-ubpf", "url": "https://github.com/iovisor/ubpf", "revision": "39872ad471c206051407d89ab8ed62d9ba0d7310"},
+    {"id": "dependency:egpu-llvmbpf", "url": "https://github.com/eunomia-bpf/llvmbpf", "revision": "486e7b172da9fd318286b6d92be4d0ec23e95bc7"}
+  ],
+  "metadata_gaps": [
+    "The mutable upstream container tag has no recorded digest.",
+    "Raw measurements and full commands behind the hard-coded plot values are absent.",
+    "The large bundled MNIST input is preserved only in the original ZIP and omitted from the flattened artifact.",
+    "DAS-6 container privileges, CUDA modules, GPU compatibility, and SLURM wrappers remain unvalidated."
+  ]
+}

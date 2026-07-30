@@ -1,0 +1,88 @@
+/* Copyright 2020 The TensorFlow Authors. All Rights Reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+==============================================================================*/
+#include "xprof/convert/preprocess_single_host_xplane.h"
+
+#include <cstdint>
+#include <vector>
+
+#include "absl/strings/match.h"
+#include "xla/tsl/profiler/utils/group_events.h"
+#include "xla/tsl/profiler/utils/preprocess_xplane.h"
+#include "xla/tsl/profiler/utils/xplane_schema.h"
+#include "xla/tsl/profiler/utils/xplane_utils.h"
+#include "tsl/platform/fingerprint.h"
+#include "xprof/utils/derived_timeline.h"
+#include "xprof/utils/xplane_hlo_fixer.h"
+
+namespace tensorflow {
+namespace profiler {
+
+using tsl::profiler::kTpuPlanePrefix;
+
+void PreprocessSingleHostXSpace(
+    XSpace* space, bool step_grouping, bool derived_timeline,
+    tsl::profiler::GroupMetadataMap* group_metadata_map) {
+  xprof::FixHloMetadataInXSpace(space);
+
+  // We use a stable hash of the hostname as a unique host identifier for flow
+  // events. This prevents ID collisions in multi-host profiles.
+  int32_t host_id =
+      space->hostnames().empty()
+          ? 0
+          : static_cast<int32_t>(tsl::Fingerprint32(space->hostnames(0)));
+
+  if (step_grouping && !tsl::profiler::IsXSpaceGrouped(*space)) {
+    // Grouping (i.e. marking step number) events in the XSpace.
+    std::vector<XPlane*> device_traces;
+    bool isTpu = false;
+    for (XPlane& plane : *space->mutable_planes()) {
+      bool is_device = tsl::profiler::IsDevicePlane(plane);
+      if (is_device) {
+        device_traces.push_back(&plane);
+      }
+      // Preprocess XPlane to convert stats to Traceme2 semantics
+      tsl::profiler::PreprocessXPlane(&plane);
+
+      // Synthesize flow events from correlation IDs and TraceMe metadata.
+      tsl::profiler::AddFlowsToXplane(host_id, /*is_host_plane=*/!is_device,
+                                     /*connect_traceme=*/true, &plane);
+
+      if (!isTpu && absl::StartsWith(plane.name(), kTpuPlanePrefix)) {
+        isTpu = true;
+      }
+    }
+
+    tsl::profiler::EventForest event_forest;
+    if (isTpu) {
+      // group TPU events
+      GroupTpuEventsOSS(space, device_traces, &event_forest);
+    } else {
+      // group GPU events
+      tsl::profiler::GroupTfEvents(space, &event_forest);
+    }
+
+    if (derived_timeline) {
+      // Generated miscellaneous derived time lines for device planes.
+      GenerateDerivedTimeLines(event_forest.GetGroupMetadataMap(), space);
+    }
+
+    if (group_metadata_map != nullptr) {
+      *group_metadata_map = event_forest.GetGroupMetadataMap();
+    }
+  }
+}
+
+}  // namespace profiler
+}  // namespace tensorflow

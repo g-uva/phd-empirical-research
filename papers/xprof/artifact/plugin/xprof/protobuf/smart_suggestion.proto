@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package tensorflow.profiler;
+
+message SmartSuggestion {
+  // The name of the rule that generated this suggestion.
+  string rule_name = 1;
+  // The detailed suggestion text to display to the user.
+  string suggestion_text = 2;
+}
+
+message SmartSuggestionReport {
+  repeated SmartSuggestion suggestions = 1;
+}

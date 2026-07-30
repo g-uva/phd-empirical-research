@@ -1,0 +1,11 @@
+.row {
+  display: flex;
+}
+
+.row ::ng-deep .control {
+  width: 200px;
+}
+
+.flex-space {
+  flex: 0;
+}

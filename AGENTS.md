@@ -41,6 +41,9 @@ unknown or conflicting information in `metadata_gaps`.
 2. Pin the exact revision used. Do not archive a moving branch name alone.
 3. Preserve a deterministic ZIP with `git archive` when redistribution is
    appropriate, recording SHA-256, scope, revision, and creation notes.
+   If no official artifact exists, create no placeholder archive: mark the
+   artifact unavailable, keep an empty experiment index, and record a dated
+   availability-review reminder.
 4. Inspect licence and citation files. If licence text is absent or statements
    conflict, mark licence status unresolved.
 5. Flatten imported code into `artifact/`; move a nested `.git` directory to a
@@ -91,7 +94,7 @@ silently rewrite hashes.
 - [ ] Artifact source flattened and tracked
 - [ ] No nested `.git` directory or Gitlink
 - [ ] Canonical upstream URL and pinned revision recorded
-- [ ] Original ZIP(s) and SHA-256 recorded
+- [ ] Original ZIP(s) and SHA-256 recorded, or unavailable status and review date recorded
 - [ ] Licence and citation status verified or marked unresolved
 - [ ] Artifact installation and reproduction instructions written
 - [ ] Paper and artifact registered in `catalog.json`

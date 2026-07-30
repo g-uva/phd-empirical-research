@@ -1,0 +1,20 @@
+/** CSS for a side control component. */
+
+@use 'frontend/app/styles/common';
+
+.item-container {
+  padding: 20px 20px 0;
+}
+
+.mat-subheading-2 {
+  margin-bottom: 0;
+}
+
+.flex-space {
+  flex: 1;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+}

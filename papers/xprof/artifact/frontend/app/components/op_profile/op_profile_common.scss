@@ -1,0 +1,172 @@
+/** Common CSS for an op profile component. */
+
+@use 'frontend/app/styles/common';
+
+mat-sidenav-container {
+  background-color: #fff;
+}
+
+mat-sidenav {
+  background: transparent;
+  width: 340px;
+  @include common.border-right-gray;
+}
+
+.container {
+  padding: 20px;
+}
+
+.description {
+  font-size: 16px;
+  font-weight: lighter;
+  line-height: 1.6;
+}
+
+.control-container {
+  display: flex;
+  align-items: center;
+  margin-top: 32px;
+}
+
+.control {
+  margin-right: 40px;
+}
+
+.ops-control {
+  margin-right: 80px;
+  text-align: left;
+}
+
+.control-title {
+  color: common.$content-secondary-color;
+  margin-bottom: 5px;
+}
+
+.ops-control-title {
+  color: common.$content-secondary-color;
+  margin: -20px 0 -24px;
+}
+
+.children-count-input {
+  width: 100px;
+}
+
+.tooltip-icon-container {
+  position: relative;
+}
+
+.tooltip-icon {
+  color: #e8710a;
+  font-size: 25px;
+  vertical-align: bottom;
+  cursor: pointer;
+}
+
+// set left margin of 16px to match leading span for each cell (for aria-label)
+.time-header,
+.wasted-header,
+.hbmFraction-header,
+.name-header,
+.provenance-header,
+.utilization-hader,
+.hbmUtilization-header,
+.utilization-header,
+.hbmUtilization-header {
+  margin-left: 16px;
+}
+
+.time-header,
+.wasted-header,
+.hbmFraction-header,
+.name-header,
+.provenance-header,
+.utilization-hader,
+.hbmUtilization-header,
+.utilization-header,
+.hbmUtilization-header,
+.time,
+.wasted,
+.hbmFraction,
+.name,
+.provenance,
+.utilization,
+.hbmUtilization,
+.utilization,
+.hbmUtilization {
+  line-height: 20px;
+  width: 6%;
+  min-width: 60px;
+  text-align: center;
+}
+
+.time,
+.wasted,
+.hbmFraction,
+.name,
+.provenance,
+.utilization,
+.hbmUtilization {
+  font-size: smaller;
+}
+
+.wasted,
+.wasted-header {
+  width: 8%;
+}
+
+.name-header,
+.name {
+  display: inline-block;
+  width: 30%;
+  padding-left: 2em;
+  // Set word-break rule to make the arrow stick with text on narrow screen
+  word-break: break-all;
+}
+
+.name,
+.provenance {
+  text-align: left;
+}
+
+.provenance-header,
+.provenance {
+  width: 20%;
+}
+
+.utilization-header,
+.utilization,
+.hbmUtilization-header,
+.hbmUtilization {
+  width: 60px;
+}
+
+.utilization-header,
+.hbmUtilization-header {
+  width: 76px; // 60px + circle 16px
+}
+
+.flame-color-circle,
+.hbm-flame-color-circle {
+  margin: 10px 20px 10px 10px;
+  width: 16px;
+  height: 16px;
+  border-radius: 8px;
+  text-align: left;
+}
+
+.disclosure {
+  display: inline-block;
+  width: 1em;
+}
+
+:host(op-profile),
+:host(op-profile-base) {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+op-profile-base,
+mat-sidenav-container {
+  flex: 1;
+}

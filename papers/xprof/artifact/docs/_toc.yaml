@@ -1,0 +1,79 @@
+# Copyright 2025 The OpenXLA Authors.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+toc:
+- heading: XProf developer guide
+- title: Introduction
+  path: /xprof
+- title: Terminology
+  path: /xprof/terminology
+- title: Events
+  path: /xprof/events
+- title: Tools Documentation
+  section:
+  - title: Overview Page
+    path: /xprof/overview_page
+  - title: Trace Viewer
+    path: /xprof/trace_viewer
+  - title: Graph Viewer
+    path: /xprof/graph_viewer
+  - title: HLO Op Profile
+    path: /xprof/hlo_op_profile
+  - title: GPU Kernel Stats
+    path: /xprof/gpu_kernel_stats
+  - title: Memory Profile
+    path: /xprof/memory_profile
+  - title: Memory Viewer
+    path: /xprof/memory_viewer
+  - title: Roofline Model
+    path: /xprof/roofline_model
+  - title: Framework Op Stats
+    path: /xprof/framework_op_stats
+  - title: HLO Op Stats
+    path: /xprof/hlo_op_stats
+  - title: Megascale Viewer
+    path: /xprof/megascale_viewer
+  - title: Utilization Viewer
+    path: /xprof/utilization_viewer
+  - title: Perf Counters
+    path: /xprof/perf_counters
+- title: Guides
+  section:
+  - title: XProf Demo
+    path: /xprof/xprof_demo
+  - title: Capturing profiles
+    path: /xprof/capturing_profiles
+  - title: Custom Call Profiling
+    path: /xprof/custom_call_profiling
+  - title: Tracking Tensor Lifetimes and Identifying Memory Leaks
+    path: /xprof/memory_leaks
+  - title: XProf Kernel User Guide
+    path: /xprof/kernel-profiling
+- title: Framework-specific profiling
+  section:
+  - title: JAX
+    path: /xprof/jax_profiling
+  - title: JAX on GPUs
+    path: /xprof/jax_gpu_profiling
+  - title: JAX Advanced Options
+    path: /xprof/advanced_profiler_options
+  - title: PyTorch/XLA
+    path: /xprof/pytorch_xla_profiling
+  - title: Tensorflow
+    path: /xprof/tensorflow_profiling
+- title: Deployment
+  section:
+  - title: Docker Deployment
+    path: /xprof/docker_deployment
+  - title: Kubernetes Deployment
+    path: /xprof/kubernetes_deployment

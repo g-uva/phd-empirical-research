@@ -1,0 +1,60 @@
+{
+  "id": "paper:xprof",
+  "type": "research-paper",
+  "title": "XProf: An Open, Scalable and Extensible Profiling System for the Modern ML Stack",
+  "short_name": "XProf",
+  "status": "published",
+  "version": "MLSys 2026",
+  "publication": {
+    "venue": "venue:mlsys",
+    "year": 2026,
+    "doi": null,
+    "url": null
+  },
+  "authors": [
+    "person:robert-hundt", "person:naveen-kumar", "person:jose-baiocchi-paredes",
+    "person:scott-goodson", "person:clive-verghese", "person:prasanna-rengasamy",
+    "person:kelvin-le", "person:jiya-zhang", "person:charles-alaras",
+    "person:yin-zhang", "person:kan-cai", "person:jiten-thakkar",
+    "person:sai-ganesh-bandiatmakuri", "person:yogesh-sy",
+    "person:aniruddha-n-udipi", "person:vikas-aggarwal"
+  ],
+  "abstract": null,
+  "research_questions": [],
+  "contributions": [
+    "An open profiling system spanning the modern machine-learning stack.",
+    "Scalable and extensible processing and visualization of multi-device profiles."
+  ],
+  "classification": {
+    "research_functions": ["measurement-telemetry", "workload-characterisation", "benchmarking-evaluation"],
+    "technical_categories": ["measurement-and-telemetry", "gpu-and-accelerator-systems", "benchmarking"],
+    "system_layers": ["application", "framework", "runtime", "operator", "accelerator"],
+    "resource_types": ["cpu", "gpu", "accelerator", "memory", "time"],
+    "workload_types": ["ai-training", "ai-inference", "benchmark"],
+    "infrastructure_contexts": ["bare-metal", "cloud", "distributed", "heterogeneous"],
+    "telemetry_sources": ["software-instrumentation", "application-log", "custom-profiler"],
+    "methodologies": ["controlled-experiment", "benchmark", "production-deployment", "comparative-evaluation"],
+    "sustainability_dimensions": ["hardware-utilisation", "resource-efficiency"]
+  },
+  "classification_evidence": [
+    {
+      "source_file": "papers/xprof/paper/2026-xprof-mlsys.pdf",
+      "description": "The title and manuscript metadata identify a scalable profiling system for the modern ML stack."
+    },
+    {
+      "source_file": "papers/xprof/artifact/UPSTREAM_README.md",
+      "description": "The implementation documents multi-device trace, memory, graph, and distributed profile processing."
+    }
+  ],
+  "keywords": ["machine-learning profiling", "XLA", "GPU", "TPU", "distributed profiling"],
+  "artifact": "artifact:xprof",
+  "source_path": "../paper",
+  "metadata_gaps": [
+    "A DOI and canonical proceedings URL have not been recorded.",
+    "The abstract and explicit paper-result reproduction matrix have not been transcribed."
+  ],
+  "evidence": {
+    "source_file": "papers/xprof/artifact/UPSTREAM_README.md",
+    "description": "The upstream citation supplies the paper title, authors, venue, and year."
+  }
+}

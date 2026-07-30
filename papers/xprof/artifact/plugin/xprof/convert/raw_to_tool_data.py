@@ -1,0 +1,260 @@
+# Copyright 2020 The TensorFlow Authors. All Rights Reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+# ==============================================================================
+"""For conversion of raw files to tool data.
+
+Usage:
+    data = xspace_to_tool_data(xplane, tool, params)
+    data = tool_proto_to_tool_data(tool_proto, tool, params)
+"""
+
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+
+from collections.abc import Callable, Mapping, Sequence
+import logging
+from typing import Any
+
+from xprof.convert import csv_writer
+from xprof.convert import trace_events_json
+from xprof.protobuf import (
+    trace_events_old_pb2,
+)
+from xprof.convert import _pywrap_profiler_plugin
+
+
+logger = logging.getLogger('tensorboard')
+
+
+def process_raw_trace(raw_trace: bytes) -> str:
+  """Processes raw trace data and returns the UI data."""
+  trace = trace_events_old_pb2.Trace()
+  trace.ParseFromString(raw_trace)
+  return ''.join(trace_events_json.TraceEventsJsonStream(trace))
+
+
+def xspace_to_tools_data_from_byte_string(
+    xspace_byte_list: Sequence[bytes],
+    filenames: Sequence[str],
+    tool: str,
+    params: Mapping[str, Any],
+) -> tuple[Any, str]:
+  """Helper function for getting an XSpace tool from a bytes string.
+
+  Args:
+    xspace_byte_list: A list of byte strings read from a XSpace proto file.
+    filenames: Names of the read files.
+    tool: A string of tool name.
+    params: user input parameters.
+
+  Returns:
+    Returns a string of tool data.
+  """
+
+  def xspace_wrapper_func(
+      xspace_arg: Sequence[bytes],
+      tool_arg: str,
+      options: Mapping[str, Any],
+  ) -> tuple[Any, bool]:
+    return _pywrap_profiler_plugin.xspace_to_tools_data_from_byte_string(
+        xspace_arg, filenames, tool_arg, options
+    )
+
+  return xspace_to_tool_data(
+      xspace_byte_list, tool, params, xspace_wrapper_func
+  )
+
+
+def xspace_to_tool_names(xspace_paths: Sequence[Any]) -> list[str]:
+  """Converts XSpace to all the available tool names.
+
+  Args:
+    xspace_paths: A list of XSpace paths.
+
+  Returns:
+    Returns a list of tool names.
+  """
+  raw_data, success = _pywrap_profiler_plugin.xspace_to_tools_data(
+      xspace_paths, 'tool_names'
+  )
+  if success:
+    return raw_data.decode().split(',')
+  return []
+
+
+def xspace_to_tool_data(
+    xspace_paths: Sequence[Any],
+    tool: str,
+    params: Mapping[str, Any],
+    xspace_wrapper_func: Callable[..., tuple[Any, bool]] | None = None,
+) -> tuple[Any, str]:
+  """Converts XSpace to tool data string.
+
+  Args:
+    xspace_paths: A list of XSpace paths.
+    tool: A string of tool name.
+    params: user input parameters.
+    xspace_wrapper_func: A callable that takes a list of strings and a tool and
+      returns the raw data. If failed, raw data contains the error message.
+
+  Returns:
+    Returns a string of tool data and the content type for the response.
+  """
+  if xspace_wrapper_func is None:
+    xspace_wrapper_func = _pywrap_profiler_plugin.xspace_to_tools_data
+  if tool.endswith('^'):
+    old_tool = tool
+    tool = tool[:-1]  # Remove the trailing '^'
+    logger.warning(
+        'Received old tool format: %s; mapped to new format: %s', old_tool, tool
+    )
+  data = None
+  content_type = 'application/json'
+  options = {}
+  options['use_saved_result'] = params.get('use_saved_result', True)
+  if tool == 'trace_viewer':
+    options = dict(params.get('trace_viewer_options', {}))
+    options['use_saved_result'] = params.get('use_saved_result', True)
+    raw_data, success = xspace_wrapper_func(xspace_paths, tool, options)
+    if success:
+      if options.get('format') == 'pb':
+        data = raw_data
+        content_type = 'application/octet-stream'
+      else:
+        data = process_raw_trace(raw_data)
+  elif tool == 'trace_viewer@':
+    options = dict(params.get('trace_viewer_options', {}))
+    options['use_saved_result'] = params.get('use_saved_result', True)
+    options['hosts'] = params.get('hosts', [])
+    raw_data, success = xspace_wrapper_func(xspace_paths, tool, options)
+    if success:
+      data = raw_data
+      if options.get('format') == 'pb':
+        content_type = 'application/octet-stream'
+  elif tool == 'overview_page':
+    json_data, success = xspace_wrapper_func(xspace_paths, tool, options)
+    if success:
+      data = json_data
+  elif tool == 'input_pipeline_analyzer':
+    json_data, success = xspace_wrapper_func(xspace_paths, tool, options)
+    if success:
+      data = json_data
+  elif tool == 'framework_op_stats':
+    json_data, success = xspace_wrapper_func(xspace_paths, tool, options)
+    if success:
+      data = json_data
+    # Try legacy tool name: Handle backward compatibility with lower TF version
+  elif tool == 'kernel_stats':
+    json_data, success = xspace_wrapper_func(xspace_paths, tool, options)
+    if success:
+      data = json_data
+  elif tool == 'memory_profile':
+    # Memory profile handles one host at a time.
+    assert len(xspace_paths) == 1
+    raw_data, success = xspace_wrapper_func(xspace_paths, tool, options)
+    if success:
+      data = raw_data
+  elif tool == 'pod_viewer':
+    raw_data, success = xspace_wrapper_func(xspace_paths, tool, options)
+    if success:
+      data = raw_data
+  elif tool == 'op_profile':
+    options['group_by'] = params.get('group_by', 'program')
+    raw_data, success = xspace_wrapper_func(xspace_paths, tool, options)
+    if success:
+      data = raw_data
+  elif tool == 'hlo_op_profile':
+    options['group_by'] = params.get('group_by', 'program')
+    raw_data, success = xspace_wrapper_func(xspace_paths, tool, options)
+    if success:
+      data = raw_data
+  elif tool == 'hlo_stats':
+    json_data, success = xspace_wrapper_func(xspace_paths, tool, options)
+    if success:
+      data = json_data
+  elif tool == 'roofline_model':
+    json_data, success = xspace_wrapper_func(xspace_paths, tool, options)
+    if success:
+      data = json_data
+  elif tool == 'graph_viewer':
+    download_hlo_types = ['pb', 'pbtxt', 'json', 'short_txt', 'long_txt']
+    graph_html_type = 'graph'
+    options = dict(params.get('graph_viewer_options', {}))
+    options['use_saved_result'] = params.get('use_saved_result', True)
+    raw_data, success = xspace_wrapper_func(xspace_paths, tool, options)
+    if success:
+      data = raw_data
+      content_type = 'text/plain'
+      data_type = options.get('type', '')
+      if data_type in download_hlo_types:
+        content_type = 'application/octet-stream'
+      if data_type == graph_html_type:
+        content_type = 'text/html'
+    else:
+      # TODO(tf-profiler) Handle errors for other tools as well,
+      # to pass along the error message to client
+      if isinstance(raw_data, bytes):
+        raw_data = raw_data.decode('utf-8')
+      raise ValueError(raw_data)
+  elif tool == 'memory_viewer':
+    view_memory_allocation_timeline = params.get(
+        'view_memory_allocation_timeline', False
+    )
+    options = {
+        'module_name': params.get('module_name'),
+        'program_id': params.get('program_id'),
+        'view_memory_allocation_timeline': view_memory_allocation_timeline,
+        'memory_space': params.get('memory_space', ''),
+    }
+    raw_data, success = xspace_wrapper_func(xspace_paths, tool, options)
+    if success:
+      data = raw_data
+      if view_memory_allocation_timeline:
+        content_type = 'text/html'
+  elif tool == 'megascale_stats':
+    options = {
+        'host_name': params.get('host'),
+        'perfetto': params.get('perfetto', False),
+    }
+    json_data, success = xspace_wrapper_func(xspace_paths, tool, options)
+    if success:
+      data = json_data
+      if options['perfetto']:
+        content_type = 'application/octet-stream'
+  elif tool == 'inference_profile':
+    json_data, success = xspace_wrapper_func(xspace_paths, tool, options)
+    if success:
+      data = json_data
+  elif tool == 'perf_counters':
+    json_data, success = xspace_wrapper_func(xspace_paths, tool, options)
+    if success:
+      data = json_data
+  elif tool == 'utilization_viewer':
+    json_data, success = xspace_wrapper_func(xspace_paths, tool, options)
+    if success:
+      data = json_data
+  elif tool == 'smart_suggestion':
+    options['refresh_suggestion'] = params.get('refresh_suggestion', False)
+    json_data, success = xspace_wrapper_func(xspace_paths, tool, options)
+    if success:
+      data = json_data
+  else:
+    logger.warning('%s is not a known xplane tool', tool)
+  return data, content_type
+
+
+def json_to_csv_string(json_data: Any) -> str:
+  """Converts internal profile JSON format to a CSV string."""
+  return csv_writer.json_to_csv_string(json_data)

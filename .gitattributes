@@ -1,0 +1,17 @@
+*.pdf binary
+*.png binary
+*.zip binary
+*.ipynb text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.py text eol=lf
+
+# Preserve pinned upstream source verbatim; validate catalogue-authored files.
+papers/xprof/artifact/** -whitespace
+papers/egpu/artifact/** -whitespace
+papers/xprof/artifact/README.md whitespace
+papers/xprof/artifact/REPRODUCING.md whitespace
+papers/xprof/artifact/experiments/** whitespace
+papers/egpu/artifact/README.md whitespace
+papers/egpu/artifact/REPRODUCING.md whitespace
+papers/egpu/artifact/experiments/** whitespace

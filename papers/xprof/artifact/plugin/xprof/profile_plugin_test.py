@@ -1,0 +1,1206 @@
+# -*- coding: utf-8 -*-
+# Copyright 2017 The TensorFlow Authors. All Rights Reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+# ==============================================================================
+"""Tests for the Profile plugin."""
+
+# pylint: disable=missing-function-docstring
+
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+
+import atexit
+import concurrent.futures
+import dataclasses
+import gzip
+import inspect
+import json
+import logging
+import os
+import shutil
+import tempfile
+from unittest import mock
+
+from absl.testing import absltest
+from absl.testing import parameterized
+from etils import epath
+from werkzeug import test as werkzeug_test
+from werkzeug import wrappers
+
+from xprof import profile_io
+from xprof import profile_plugin
+from xprof import profile_plugin_test_utils as utils
+from xprof import version
+from xprof.convert import raw_to_tool_data as convert
+from xprof.protobuf import trace_events_pb2
+from xprof.standalone.tensorboard_shim import plugin_asset_util
+from xprof.standalone.tensorboard_shim import plugin_event_multiplexer
+
+
+RUN_TO_TOOLS = {
+    'foo': ['trace_viewer', 'trace_viewer@'],
+    'bar': ['unsupported'],
+    'baz': ['overview_page', 'op_profile', 'trace_viewer', 'trace_viewer@'],
+    'qux': [
+        'overview_page',
+        'input_pipeline_analyzer',
+        'trace_viewer',
+        'trace_viewer@',
+    ],
+    'abc': ['xplane'],
+    'empty': [],
+}
+
+RUN_TO_HOSTS = {
+    'foo': ['host0', 'host1'],
+    'bar': ['host1'],
+    'baz': ['host2'],
+    'qux': [None],
+    'abc': ['host1', 'host2'],
+    'empty': [],
+}
+
+EXPECTED_TRACE_DATA = dict(
+    displayTimeUnit='ns',
+    metadata={'highres-ticks': True},
+    traceEvents=[
+        dict(ph='M', pid=0, name='process_name', args=dict(name='foo')),
+        dict(ph='M', pid=0, name='process_sort_index', args=dict(sort_index=0)),
+        dict(),
+    ],
+)
+
+# Suffix for the empty eventfile to write. Should be kept in sync with TF
+# profiler kProfileEmptySuffix constant defined in:
+#   tensorflow/core/profiler/rpc/client/capture_profile.cc.
+EVENT_FILE_SUFFIX = '.profile-empty'
+
+
+@dataclasses.dataclass
+class MockBlob:
+
+  def __init__(self, name):
+    self.name = name
+
+  def __repr__(self):
+    return f'MockBlob(name={self.name!r})'
+
+
+# TODO(muditgokhale): Add support for xplane test generation.
+def generate_testdata(logdir):
+  plugin_logdir = plugin_asset_util.PluginDirectory(
+      logdir, profile_plugin.ProfilePlugin.plugin_name
+  )
+  os.makedirs(plugin_logdir)
+  for run in RUN_TO_TOOLS:
+    run_dir = os.path.join(plugin_logdir, run)
+    os.mkdir(run_dir)
+    for tool in RUN_TO_TOOLS[run]:
+      if (
+          tool not in profile_plugin.XPLANE_TOOLS
+          and tool not in profile_plugin.HLO_TOOLS
+          and tool not in profile_plugin.TOOLS
+      ):
+        continue
+      for host in RUN_TO_HOSTS[run]:
+        filename = profile_plugin.make_filename(host, tool)
+        tool_file = os.path.join(run_dir, filename)
+        if tool in ('trace_viewer', 'trace_viewer@'):
+          trace = trace_events_pb2.Trace()
+          trace.devices[0].name = run
+          data = trace.SerializeToString()
+        else:
+          data = tool.encode('utf-8')
+        with open(tool_file, 'wb') as f:
+          f.write(data)
+  with open(os.path.join(plugin_logdir, 'noise'), 'w') as f:
+    f.write('Not a dir, not a run.')
+
+
+def write_empty_event_file(logdir):
+  os.makedirs(logdir, exist_ok=True)
+  open(os.path.join(logdir, 'events.out.tfevents.profile-empty'), 'a').close()
+
+
+class ProfilePluginTest(absltest.TestCase):
+
+  def setUp(self):
+    super().setUp()
+    self._temp_dir = None
+    self.logdir = self.get_temp_dir()
+    self.multiplexer = plugin_event_multiplexer.EventMultiplexer()
+    self.multiplexer.AddRunsFromDirectory(self.logdir)
+    self.plugin = utils.create_profile_plugin(self.logdir, self.multiplexer)
+
+  def get_temp_dir(self):
+    """Return a temporary directory for tests to use."""
+    if not self._temp_dir:
+      # If the test is running on Forge, use the TEST_UNDECLARED_OUTPUTS_DIR
+      # environment variable to store the temporary directory for Sponge.
+      if os.environ.get('TEST_UNDECLARED_OUTPUTS_DIR'):
+        temp_dir = tempfile.mkdtemp(
+            dir=os.environ['TEST_UNDECLARED_OUTPUTS_DIR']
+        )
+      else:
+        frame = inspect.stack()[-1]
+        filename = frame.filename
+        base_filename = os.path.basename(filename)
+        temp_dir_prefix = os.path.join(
+            tempfile.gettempdir(), base_filename.removesuffix('.py')
+        )
+        temp_dir = tempfile.mkdtemp(prefix=temp_dir_prefix)
+
+      def delete_temp_dir(dirname=temp_dir):
+        try:
+          shutil.rmtree(dirname)
+        except OSError as e:
+          logging.error('Error removing %s: %s', dirname, e)
+
+      atexit.register(delete_temp_dir)
+
+      self._temp_dir = temp_dir
+
+    return self._temp_dir
+
+  def _set_up_side_effect(self):  # pylint: disable=g-unreachable-test-method
+    # Fail if we call PluginDirectory with a non-normalized logdir path, since
+    # that won't work on GCS, as a regression test for b/235606632.
+    original_plugin_directory = plugin_asset_util.PluginDirectory
+    plugin_directory_patcher = mock.patch.object(
+        plugin_asset_util, 'PluginDirectory'
+    )
+    mock_plugin_directory = plugin_directory_patcher.start()
+    self.addCleanup(plugin_directory_patcher.stop)
+
+    def plugin_directory_spy(logdir, plugin_name):
+      if os.path.normpath(logdir) != logdir:
+        self.fail(
+            'PluginDirectory called with a non-normalized logdir path: %r'
+            % logdir
+        )
+      return original_plugin_directory(logdir, plugin_name)
+
+    mock_plugin_directory.side_effect = plugin_directory_spy
+
+  def testRuns_logdirWithoutEventFile(self):
+    generate_testdata(self.logdir)
+    self.multiplexer.Reload()
+    all_runs = list(self.plugin.generate_runs())
+    self.assertSetEqual(frozenset(all_runs), frozenset(RUN_TO_HOSTS.keys()))
+
+    self.assertEmpty(list(self.plugin.run_tools_imp('bar')))
+    self.assertEmpty(list(self.plugin.run_tools_imp('empty')))
+
+  def testRuns_logdirWithEventFIle(self):
+    write_empty_event_file(self.logdir)
+    generate_testdata(self.logdir)
+    self.multiplexer.Reload()
+    all_runs = self.plugin.generate_runs()
+    self.assertSetEqual(frozenset(all_runs), frozenset(RUN_TO_HOSTS.keys()))
+
+  def testRuns_withSubdirectories(self):
+    subdir_a = os.path.join(self.logdir, 'a')
+    subdir_b = os.path.join(self.logdir, 'b')
+    subdir_b_c = os.path.join(subdir_b, 'c')
+    generate_testdata(self.logdir)
+    generate_testdata(subdir_a)
+    generate_testdata(subdir_b)
+    generate_testdata(subdir_b_c)
+    write_empty_event_file(self.logdir)
+    write_empty_event_file(subdir_a)
+    # Skip writing an event file for subdir_b, so that we can test that it is
+    # included in the runs regardless of tfevents file presence.
+    write_empty_event_file(subdir_b_c)
+    self.multiplexer.AddRunsFromDirectory(self.logdir)
+    self.multiplexer.Reload()
+    all_runs = list(self.plugin.generate_runs())
+    # Expect runs for the logdir root, 'a', and 'b/c' but not for 'b'
+    # because it doesn't contain a tfevents file.
+    expected = set(RUN_TO_TOOLS.keys())
+    expected.update(set('a/' + run for run in RUN_TO_TOOLS.keys()))
+    expected.update(set('b/' + run for run in RUN_TO_TOOLS.keys()))
+    expected.update(set('b/c/' + run for run in RUN_TO_TOOLS.keys()))
+    self.assertSetEqual(frozenset(all_runs), expected)
+
+  def testRuns_withoutEvents(self):
+    generate_testdata(self.logdir)
+    self.multiplexer.AddRunsFromDirectory(self.logdir)
+    self.multiplexer.Reload()
+    all_runs = list(self.plugin.generate_runs())
+    expected = set(RUN_TO_TOOLS.keys())
+    self.assertSetEqual(frozenset(all_runs), expected)
+
+  def testRuns_withNestedRuns(self):
+    subdir_date = os.path.join(self.logdir, '2024-12-19')
+    subdir_train = os.path.join(subdir_date, 'train')
+    subdir_validation = os.path.join(subdir_date, 'validation')
+    # Write the plugin directory for the subdir_date directory.
+    generate_testdata(subdir_date)
+    # Write events files for the subdir_train and subdir_validation directories.
+    write_empty_event_file(subdir_train)
+    write_empty_event_file(subdir_validation)
+    self.multiplexer.AddRunsFromDirectory(self.logdir)
+    self.multiplexer.Reload()
+    all_runs = list(self.plugin.generate_runs())
+    # Expect runs for the subdir_date because it contains the plugin directory
+    # and is the parent directory of the subdir_train and subdir_validation
+    # directories.
+    expected = set(set('2024-12-19/' + run for run in RUN_TO_TOOLS.keys()))
+    self.assertSetEqual(frozenset(all_runs), expected)
+
+  def testHosts(self):
+    generate_testdata(self.logdir)
+    subdir_a = os.path.join(self.logdir, 'a')
+    generate_testdata(subdir_a)
+    write_empty_event_file(subdir_a)
+    self.multiplexer.AddRunsFromDirectory(self.logdir)
+    self.multiplexer.Reload()
+    expected_hosts_abc = [{'hostname': 'host1'}, {'hostname': 'host2'}]
+    expected_all_hosts_only = [{'hostname': 'ALL_HOSTS'}]
+    hosts_q = self.plugin.host_impl('qux', 'framework_op_stats')
+    self.assertEmpty(hosts_q)
+    hosts_abc_tf_stats = self.plugin.host_impl('abc', 'framework_op_stats')
+    self.assertListEqual(
+        expected_all_hosts_only + expected_hosts_abc, hosts_abc_tf_stats
+    )
+    # TraceViewer and MemoryProfile does not support all hosts.
+    hosts_abc_trace_viewer = self.plugin.host_impl('abc', 'trace_viewer')
+    self.assertListEqual(expected_hosts_abc, hosts_abc_trace_viewer)
+    hosts_abc_memory_profile = self.plugin.host_impl('abc', 'memory_profile')
+    self.assertListEqual(expected_hosts_abc, hosts_abc_memory_profile)
+    # OverviewPage supports all hosts only.
+    hosts_abc_overview_page = self.plugin.host_impl('abc', 'overview_page')
+    self.assertListEqual(expected_all_hosts_only, hosts_abc_overview_page)
+    # PodViewer supports all hosts only.
+    hosts_abc_pod_viewer = self.plugin.host_impl('abc', 'pod_viewer')
+    self.assertListEqual(expected_all_hosts_only, hosts_abc_pod_viewer)
+
+  def testParseFilename_Riegeli(self):
+    # Test standard .pb file
+    host, tool = profile_plugin._parse_filename('host0.xplane.pb')
+    self.assertEqual(host, 'host0')
+    self.assertEqual(tool, 'xplane')
+
+    # Test new .riegeli file
+    host, tool = profile_plugin._parse_filename('host1.xplane.riegeli')
+    self.assertEqual(host, 'host1')
+    self.assertEqual(tool, 'xplane')
+
+    # Test file without host
+    host, tool = profile_plugin._parse_filename('xplane.pb')
+    self.assertIsNone(host)
+    self.assertEqual(tool, 'xplane')
+
+  def testData(self):
+    generate_testdata(self.logdir)
+    subdir_a = os.path.join(self.logdir, 'a')
+    generate_testdata(subdir_a)
+    write_empty_event_file(subdir_a)
+    self.multiplexer.AddRunsFromDirectory(self.logdir)
+    self.multiplexer.Reload()
+
+    # Invalid tool/run/host.
+    data, _, _ = self.plugin.data_impl(
+        utils.make_data_request(
+            utils.DataRequestOptions(
+                run='foo', tool='invalid_tool', host='host0'
+            )
+        )
+    )
+    self.assertIsNone(data)
+    data, _, _ = self.plugin.data_impl(
+        utils.make_data_request(
+            utils.DataRequestOptions(
+                run='foo', tool='memory_viewer', host='host0'
+            )
+        )
+    )
+    self.assertIsNone(data)
+    with self.assertRaises(FileNotFoundError):
+      self.plugin.data_impl(
+          utils.make_data_request(
+              utils.DataRequestOptions(
+                  run='foo', tool='trace_viewer', host='invalid_host'
+              )
+          )
+      )
+    data, _, _ = self.plugin.data_impl(
+        utils.make_data_request(
+            utils.DataRequestOptions(
+                run='bar', tool='unsupported', host='host1'
+            )
+        )
+    )
+    self.assertIsNone(data)
+    with self.assertRaises(FileNotFoundError):
+      self.plugin.data_impl(
+          utils.make_data_request(
+              utils.DataRequestOptions(
+                  run='bar', tool='trace_viewer', host='host0'
+              )
+          )
+      )
+    with self.assertRaises(FileNotFoundError):
+      self.plugin.data_impl(
+          utils.make_data_request(
+              utils.DataRequestOptions(
+                  run='qux', tool='trace_viewer', host='host'
+              )
+          )
+      )
+    with self.assertRaises(FileNotFoundError):
+      self.plugin.data_impl(
+          utils.make_data_request(
+              utils.DataRequestOptions(
+                  run='empty', tool='trace_viewer', host=''
+              )
+          )
+      )
+    with self.assertRaises(FileNotFoundError):
+      self.plugin.data_impl(
+          utils.make_data_request(
+              utils.DataRequestOptions(
+                  run='a/foo', tool='trace_viewer', host='invalid_host'
+              )
+          )
+      )
+
+  def testDataNamesOnly_HappyPath(self):
+    data, content_type, _ = self.plugin.data_impl(
+        utils.make_data_request(
+            utils.DataRequestOptions(
+                tool='perf_counters', names_only='1', device_type='v7x'
+            )
+        )
+    )
+    self.assertEqual(content_type, 'application/json')
+    names = json.loads(data)
+    self.assertIsInstance(names, list)
+    self.assertNotEmpty(names)
+    self.assertIn('name', names[0])
+    self.assertIn('val', names[0])
+
+  def testDataNamesOnly_MissingDeviceType(self):
+    with self.assertRaisesRegex(ValueError, 'device_type is required'):
+      self.plugin.data_impl(
+          utils.make_data_request(
+              utils.DataRequestOptions(tool='perf_counters', names_only='1')
+          )
+      )
+
+  def testDataNamesOnly_FileNotFoundFallback(self):
+    with mock.patch.object(
+        profile_plugin.counter_extractor, 'get_all_counters'
+    ) as mock_get_counters:
+      mock_get_counters.side_effect = FileNotFoundError(
+          'Simulated missing file'
+      )
+      data, content_type, _ = self.plugin.data_impl(
+          utils.make_data_request(
+              utils.DataRequestOptions(
+                  tool='perf_counters', names_only='1', device_type='v7x'
+              )
+          )
+      )
+      self.assertEqual(content_type, 'application/json')
+      names = json.loads(data)
+      self.assertEqual(names, [])
+
+  def testDataWithCache(self):
+    generate_testdata(self.logdir)
+    self.multiplexer.AddRunsFromDirectory(self.logdir)
+    self.multiplexer.Reload()
+    run_dir = os.path.join(
+        plugin_asset_util.PluginDirectory(
+            self.logdir, profile_plugin.ProfilePlugin.plugin_name
+        ),
+        'baz',
+    )
+    cache_version_file_path = os.path.join(
+        run_dir, profile_plugin.CACHE_VERSION_FILE
+    )
+
+    # Check if the cache_version.txt file doesn't exists.
+    self.assertFalse(os.path.exists(cache_version_file_path))
+
+    # Check if first run generates a cache file.
+    _, _, _ = self.plugin.data_impl(
+        utils.make_data_request(
+            utils.DataRequestOptions(
+                run='baz', tool='overview_page', host='host2'
+            )
+        )
+    )
+    self.assertTrue(os.path.exists(cache_version_file_path))
+    with open(cache_version_file_path, 'r') as f:
+      self.assertEqual(f.read(), version.__version__)
+    cache_file_first_run_timestamp = os.path.getmtime(cache_version_file_path)
+
+    # Check if the second run generates a cache file.
+    _, _, _ = self.plugin.data_impl(
+        utils.make_data_request(
+            utils.DataRequestOptions(
+                run='baz', tool='overview_page', host='host2'
+            )
+        )
+    )
+    self.assertTrue(os.path.exists(cache_version_file_path))
+    with open(cache_version_file_path, 'r') as f:
+      self.assertEqual(f.read(), version.__version__)
+    self.assertEqual(
+        cache_file_first_run_timestamp,
+        os.path.getmtime(cache_version_file_path),
+    )
+
+    # Check if the use_saved_result=False generates a cache file.
+    _, _, _ = self.plugin.data_impl(
+        utils.make_data_request(
+            utils.DataRequestOptions(
+                run='baz',
+                tool='overview_page',
+                host='host2',
+                use_saved_result='False',
+            )
+        )
+    )
+    self.assertTrue(os.path.exists(cache_version_file_path))
+    with open(cache_version_file_path, 'r') as f:
+      self.assertEqual(f.read(), version.__version__)
+    self.assertLess(
+        cache_file_first_run_timestamp,
+        os.path.getmtime(cache_version_file_path),
+    )
+
+    # Overwrite the cache_version.txt file with an old version.
+    with open(cache_version_file_path, 'w') as f:
+      f.write('1.0.0')
+    _, _, _ = self.plugin.data_impl(
+        utils.make_data_request(
+            utils.DataRequestOptions(
+                run='baz', tool='overview_page', host='host2'
+            )
+        )
+    )
+    self.assertTrue(os.path.exists(cache_version_file_path))
+    with open(cache_version_file_path, 'r') as f:
+      self.assertEqual(f.read(), version.__version__)
+
+  @mock.patch.object(convert, 'xspace_to_tool_data', autospec=True)
+  def testDataImplTraceViewerOptions(self, mock_xspace_to_tool_data):
+    generate_testdata(self.logdir)
+    self.multiplexer.AddRunsFromDirectory(self.logdir)
+    self.multiplexer.Reload()
+    # Mock the return value to avoid errors during the call
+    mock_xspace_to_tool_data.return_value = ('mocked_data', 'application/json')
+    # Create a plugin instance with the mocked dependency injected.
+    plugin = utils.create_profile_plugin(
+        self.logdir,
+        self.multiplexer,
+        xspace_to_tool_data_fn=mock_xspace_to_tool_data,
+    )
+    run_dir = os.path.join(
+        plugin_asset_util.PluginDirectory(
+            self.logdir, profile_plugin.ProfilePlugin.plugin_name
+        ),
+        'foo',
+    )
+    expected_asset_path = os.path.join(
+        run_dir,
+        profile_plugin.make_filename('host1', 'trace_viewer@'),
+    )
+    expected_params = {
+        'graph_viewer_options': {
+            'node_name': None,
+            'module_name': None,
+            'program_id': None,
+            'graph_width': 3,
+            'show_metadata': 0,
+            'merge_fusion': 0,
+            'format': None,
+            'type': None,
+        },
+        'tqx': None,
+        'perfetto': False,
+        'host': 'host1',
+        'module_name': None,
+        'program_id': None,
+        'use_saved_result': False,
+        'memory_space': '0',
+        'trace_viewer_options': {
+            'resolution': '10000',
+            'full_dma': True,
+            'enable_legacy_dcn': False,
+            'start_time_ms': '100',
+            'end_time_ms': '200',
+            'search_metadata': False,
+        },
+        'hosts': ['host1'],
+    }
+
+    _, _, _ = plugin.data_impl(
+        utils.make_data_request(
+            utils.DataRequestOptions(
+                run='foo',
+                tool='trace_viewer@',
+                host='host1',
+                full_dma='true',
+                resolution='10000',
+                start_time_ms='100',
+                end_time_ms='200',
+                search_metadata='false',
+            )
+        )
+    )
+
+    mock_xspace_to_tool_data.assert_called_once_with(
+        [mock.ANY], 'trace_viewer@', expected_params
+    )
+    args, _ = mock_xspace_to_tool_data.call_args
+    actual_path_list = args[0]
+    self.assertLen(actual_path_list, 1)
+    self.assertEqual(str(actual_path_list[0]), expected_asset_path)
+
+  def test_data_impl_trace_viewer_format_pb_returns_octet_stream(self):
+    mock_xspace_to_tool_data = self.enter_context(
+        mock.patch.object(convert, 'xspace_to_tool_data', autospec=True)
+    )
+    generate_testdata(self.logdir)
+    self.multiplexer.AddRunsFromDirectory(self.logdir)
+    self.multiplexer.Reload()
+    mock_xspace_to_tool_data.return_value = (
+        'mocked_data',
+        'application/octet-stream',
+    )
+    plugin = utils.create_profile_plugin(
+        self.logdir,
+        self.multiplexer,
+        xspace_to_tool_data_fn=mock_xspace_to_tool_data,
+    )
+
+    _, content_type, _ = plugin.data_impl(
+        utils.make_data_request(
+            utils.DataRequestOptions(
+                run='foo',
+                tool='trace_viewer',
+                host='host1',
+                format='pb',
+            )
+        )
+    )
+
+    self.assertEqual(content_type, 'application/octet-stream')
+    mock_xspace_to_tool_data.assert_called_once()
+    args, _ = mock_xspace_to_tool_data.call_args
+    self.assertEqual(args[2]['trace_viewer_options']['format'], 'pb')
+
+  def test_data_impl_trace_viewer_streaming_pb_returns_octet_stream(self):
+    mock_xspace_to_tool_data = self.enter_context(
+        mock.patch.object(convert, 'xspace_to_tool_data', autospec=True)
+    )
+    generate_testdata(self.logdir)
+    self.multiplexer.AddRunsFromDirectory(self.logdir)
+    self.multiplexer.Reload()
+    mock_xspace_to_tool_data.return_value = (
+        'mocked_data',
+        'application/octet-stream',
+    )
+    plugin = utils.create_profile_plugin(
+        self.logdir,
+        self.multiplexer,
+        xspace_to_tool_data_fn=mock_xspace_to_tool_data,
+    )
+
+    _, content_type, _ = plugin.data_impl(
+        utils.make_data_request(
+            utils.DataRequestOptions(
+                run='foo',
+                tool='trace_viewer@',
+                host='host1',
+                format='pb',
+            )
+        )
+    )
+
+    self.assertEqual(content_type, 'application/octet-stream')
+    mock_xspace_to_tool_data.assert_called_once()
+    args, _ = mock_xspace_to_tool_data.call_args
+    self.assertEqual(args[2]['trace_viewer_options']['format'], 'pb')
+
+  def test_data_impl_trace_viewer_event_name_fallback_to_json(self):
+    mock_xspace_to_tool_data = self.enter_context(
+        mock.patch.object(convert, 'xspace_to_tool_data', autospec=True)
+    )
+    generate_testdata(self.logdir)
+    self.multiplexer.AddRunsFromDirectory(self.logdir)
+    self.multiplexer.Reload()
+    mock_xspace_to_tool_data.return_value = (
+        'mocked_data',
+        'application/json',
+    )
+    plugin = utils.create_profile_plugin(
+        self.logdir,
+        self.multiplexer,
+        xspace_to_tool_data_fn=mock_xspace_to_tool_data,
+    )
+
+    req = utils.make_data_request(
+        utils.DataRequestOptions(
+            run='foo',
+            tool='trace_viewer',
+            host='host1',
+            format='pb',
+            event_name='mock_event',
+        )
+    )
+
+    _, content_type, _ = plugin.data_impl(req)
+
+    self.assertEqual(content_type, 'application/json')
+    mock_xspace_to_tool_data.assert_called_once()
+    args, _ = mock_xspace_to_tool_data.call_args
+    self.assertEqual(args[2]['trace_viewer_options']['format'], 'json')
+
+  def testActive(self):
+
+    def wait_for_thread():
+      with self.plugin._is_active_lock:
+        pass
+
+    # Launch thread to check if active.
+    self.plugin.is_active()
+    wait_for_thread()
+    # Should be false since there's no data yet.
+    self.assertFalse(self.plugin.is_active())
+    wait_for_thread()
+    generate_testdata(self.logdir)
+    self.multiplexer.Reload()
+    # Launch a new thread to check if active.
+    self.plugin.is_active()
+    wait_for_thread()
+    # Now that there's data, this should be active.
+    self.assertTrue(self.plugin.is_active())
+
+  def testActive_subdirectoryOnly(self):
+
+    def wait_for_thread():
+      with self.plugin._is_active_lock:
+        pass
+
+    # Launch thread to check if active.
+    self.plugin.is_active()
+    wait_for_thread()
+    # Should be false since there's no data yet.
+    self.assertFalse(self.plugin.is_active())
+    wait_for_thread()
+    subdir_a = os.path.join(self.logdir, 'a')
+    generate_testdata(subdir_a)
+    write_empty_event_file(subdir_a)
+    self.multiplexer.AddRunsFromDirectory(self.logdir)
+    self.multiplexer.Reload()
+    # Launch a new thread to check if active.
+    self.plugin.is_active()
+    wait_for_thread()
+    # Now that there's data, this should be active.
+    self.assertTrue(self.plugin.is_active())
+
+  def test_generate_runs_no_logdir(self):
+    self.plugin.logdir = None
+    runs = list(self.plugin.generate_runs())
+    self.assertEmpty(runs)
+
+  def test_runs_impl_with_session(self):
+    session_path = os.path.join(self.logdir, 'session_run')
+    os.mkdir(session_path)
+    with open(os.path.join(session_path, 'host.xplane.pb'), 'w') as f:
+      f.write('dummy xplane data')
+    request = utils.make_data_request(
+        utils.DataRequestOptions(session_path=session_path)
+    )
+    runs = self.plugin.runs_imp(request)
+    self.assertListEqual(['session_run'], runs)
+
+  def test_runs_impl_with_run_path(self):
+    run_path = os.path.join(self.logdir, 'base')
+    os.mkdir(run_path)
+    run1_path = os.path.join(run_path, 'run1')
+    os.mkdir(run1_path)
+    with open(os.path.join(run1_path, 'host.xplane.pb'), 'w') as f:
+      f.write('dummy xplane data')
+    request = utils.make_data_request(
+        utils.DataRequestOptions(run_path=run_path)
+    )
+    runs = self.plugin.runs_imp(request)
+    self.assertListEqual(['run1'], runs)
+
+  @mock.patch.object(profile_io, 'storage', autospec=True)
+  def test_session_dir_by_run_name_from_request_gcs_session_path(
+      self, mock_storage
+  ):
+    profile_io.get_storage_client.cache_clear()
+    mock_client = mock_storage.Client.return_value
+    blobs = [MockBlob('run1/host0.xplane.pb')]
+    iterator = mock.MagicMock()
+    iterator.__iter__.return_value = iter(blobs)
+    iterator.prefixes = set()
+    mock_client.list_blobs.return_value = iterator
+
+    request = utils.make_data_request(
+        utils.DataRequestOptions(session_path='gs://bucket/run1')
+    )
+    run_map = self.plugin._session_dir_by_run_name_from_request(request)
+    self.assertEqual({'run1': 'gs://bucket/run1'}, run_map)
+
+  @mock.patch.object(profile_io, 'storage', autospec=True)
+  def test_session_dir_by_run_name_from_request_gcs_run_path(
+      self, mock_storage
+  ):
+    profile_io.get_storage_client.cache_clear()
+    mock_client = mock_storage.Client.return_value
+
+    def list_blobs_side_effect(_, prefix, delimiter):
+      iterator = mock.MagicMock()
+      if not prefix:
+        iterator.__iter__.return_value = iter([])
+        iterator.prefixes = {f'run1{delimiter}', f'run2{delimiter}'}
+        return iterator
+      elif prefix == f'run1{delimiter}':
+        iterator.__iter__.return_value = iter(
+            [MockBlob(f'run1{delimiter}host0.xplane.pb')]
+        )
+        iterator.prefixes = set()
+        return iterator
+      elif prefix == f'run2{delimiter}':
+        iterator.__iter__.return_value = iter([])
+        iterator.prefixes = set()
+        return iterator
+      else:
+        iterator.__iter__.return_value = iter([])
+        iterator.prefixes = set()
+        return iterator
+
+    mock_client.list_blobs.side_effect = list_blobs_side_effect
+
+    request = utils.make_data_request(
+        utils.DataRequestOptions(run_path='gs://bucket/')
+    )
+    run_map = self.plugin._session_dir_by_run_name_from_request(request)
+    self.assertEqual({'run1': 'gs://bucket/run1/'}, run_map)
+
+  @mock.patch.object(profile_io, 'storage', autospec=True)
+  def test_hosts_gcs(self, mock_storage):
+    profile_io.get_storage_client.cache_clear()
+    mock_client = mock_storage.Client.return_value
+    blobs = [
+        MockBlob('run1/host0.xplane.pb'),
+        MockBlob('run1/host1.xplane.pb'),
+    ]
+    iterator = mock.MagicMock()
+    iterator.__iter__.return_value = iter(blobs)
+    iterator.prefixes = set()
+    mock_client.list_blobs.return_value = iterator
+    self.plugin._run_to_profile_run_dir['gcs_run'] = 'gs://bucket/run1'
+
+    hosts = self.plugin.host_impl('gcs_run', 'trace_viewer@')
+    self.assertEqual(
+        [{'hostname': 'host0'}, {'hostname': 'host1'}],
+        hosts,
+    )
+
+  @mock.patch.object(profile_plugin, 'ToolsCache', autospec=True)
+  @mock.patch.object(profile_io, 'storage', autospec=True)
+  def test_run_tools_imp_gcs(self, mock_storage, mock_tools_cache):
+    mock_tools_cache.return_value.load.return_value = None
+    profile_io.get_storage_client.cache_clear()
+    mock_client = mock_storage.Client.return_value
+    blobs = [MockBlob('run1/host0.xplane.pb')]
+    iterator = mock.MagicMock()
+    iterator.__iter__.return_value = iter(blobs)
+    iterator.prefixes = set()
+    mock_client.list_blobs.return_value = iterator
+    self.plugin._run_to_profile_run_dir['gcs_run'] = 'gs://bucket/run1'
+    with mock.patch.object(
+        convert, 'xspace_to_tool_names', return_value={'overview_page'}
+    ):
+      tools = self.plugin.run_tools_imp('gcs_run')
+      self.assertIn('overview_page', tools)
+
+
+class GenerateCacheTaskTest(absltest.TestCase):
+
+  def setUp(self):
+    super().setUp()
+    self.logdir = self.create_tempdir().full_path
+    self.multiplexer = plugin_event_multiplexer.EventMultiplexer()
+    self.multiplexer.AddRunsFromDirectory(self.logdir)
+    self.mock_xspace_to_tool_data = self.enter_context(
+        mock.patch.object(
+            convert, 'xspace_to_tool_data', autospec=True, spec_set=True
+        )
+    )
+    self.mock_write_cache_version_file = self.enter_context(
+        mock.patch.object(
+            profile_plugin.ProfilePlugin,
+            '_write_cache_version_file',
+            autospec=True,
+            spec_set=True,
+        )
+    )
+    self.plugin = utils.create_profile_plugin(
+        self.logdir,
+        self.multiplexer,
+        xspace_to_tool_data_fn=self.mock_xspace_to_tool_data,
+    )
+
+  def test_generate_cache_task_generates_cache(self):
+    session_path = self.create_tempdir().full_path
+    asset_paths = [
+        os.path.join(session_path, 'host1.xplane.pb'),
+    ]
+    epath.Path(asset_paths[0]).touch()
+    tool_list = ['overview_page', 'trace_viewer@']
+    params = {'session_path': session_path}
+    self.mock_xspace_to_tool_data.return_value = ('data', 'application/json')
+
+    self.plugin._generate_cache_task(
+        asset_paths=asset_paths,
+        tool_list=tool_list,
+        params=params,
+        session_path=session_path,
+    )
+
+    self.mock_write_cache_version_file.assert_called_once_with(
+        self.plugin, session_path
+    )
+    expected_calls = [
+        mock.call(mock.ANY, 'overview_page', mock.ANY),
+        mock.call(mock.ANY, 'trace_viewer@', mock.ANY),
+    ]
+    self.assertLen(
+        expected_calls,
+        self.mock_xspace_to_tool_data.call_count,
+    )
+    self.mock_xspace_to_tool_data.assert_has_calls(
+        expected_calls, any_order=True
+    )
+
+  def test_generate_cache_task_continues_on_tool_error(self):
+    session_path = self.create_tempdir().full_path
+    asset_paths = [
+        os.path.join(session_path, 'host1.xplane.pb'),
+    ]
+    epath.Path(asset_paths[0]).touch()
+    tool_list = ['overview_page', 'trace_viewer@']
+    params = {'session_path': session_path}
+    # Simulate an error for the first tool, 'overview_page'
+    self.mock_xspace_to_tool_data.side_effect = [
+        ValueError('Failed to generate overview'),
+        ('trace_data', 'application/json'),
+    ]
+
+    self.plugin._generate_cache_task(
+        asset_paths=asset_paths,
+        tool_list=tool_list,
+        params=params,
+        session_path=session_path,
+    )
+
+    self.mock_write_cache_version_file.assert_called_once_with(
+        self.plugin, session_path
+    )
+    self.assertEqual(
+        2,
+        self.mock_xspace_to_tool_data.call_count,
+        msg='Expect 2 calls despite the first one failing',
+    )
+    self.mock_xspace_to_tool_data.assert_has_calls([
+        mock.call(mock.ANY, 'overview_page', mock.ANY),
+        mock.call(mock.ANY, 'trace_viewer@', mock.ANY),
+    ])
+
+
+def _get_response_data(response: wrappers.Response) -> bytes:
+  try:
+    return gzip.decompress(response.get_data())
+  except OSError:
+    return response.get_data()
+
+
+class GenerateCacheImplTest(parameterized.TestCase):
+
+  def setUp(self):
+    super().setUp()
+    self.logdir = self.create_tempdir().full_path
+    self.multiplexer = plugin_event_multiplexer.EventMultiplexer()
+    self.multiplexer.AddRunsFromDirectory(self.logdir)
+
+    # Patch dependencies
+    self.mock_xspace_to_tool_data = self.enter_context(
+        mock.patch.object(
+            convert, 'xspace_to_tool_data', autospec=True, spec_set=True
+        )
+    )
+    self.mock_write_cache_version_file = self.enter_context(
+        mock.patch.object(
+            profile_plugin.ProfilePlugin,
+            '_write_cache_version_file',
+            autospec=True,
+            spec_set=True,
+        )
+    )
+    self.mock_runs_imp = self.enter_context(
+        mock.patch.object(
+            profile_plugin.ProfilePlugin,
+            'runs_imp',
+            autospec=True,
+            spec_set=True,
+        )
+    )
+    self.mock_run_tools_imp = self.enter_context(
+        mock.patch.object(
+            profile_plugin.ProfilePlugin,
+            'run_tools_imp',
+            autospec=True,
+            spec_set=True,
+        )
+    )
+    self.mock_executor = mock.create_autospec(
+        concurrent.futures.ThreadPoolExecutor, instance=True, spec_set=True
+    )
+    self.mock_submit = self.mock_executor.submit
+
+    # Instance of the plugin to test
+    self.plugin = utils.create_profile_plugin(
+        self.logdir,
+        self.multiplexer,
+        xspace_to_tool_data_fn=self.mock_xspace_to_tool_data,
+        cache_generation_executor=self.mock_executor,
+    )
+
+    # Default mock behaviors
+    self.mock_runs_imp.return_value = ['test_run']
+    self.mock_run_tools_imp.return_value = ['overview_page', 'trace_viewer@']
+
+  def test_generate_cache_rejects_get_request(self):
+    request = wrappers.Request.from_values(method='GET')
+
+    response = self.plugin._generate_cache_impl(request)
+
+    self.assertEqual(response.status_code, 405)
+
+  def test_generate_cache_fails_if_session_path_missing(self):
+    request = wrappers.Request.from_values(method='POST', query_string='')
+
+    response = self.plugin._generate_cache_impl(request)
+
+    self.assertEqual(response.status_code, 400)
+    self.assertIn(
+        b'Missing "session_path" parameter', _get_response_data(response)
+    )
+
+  def test_generate_cache_fails_if_no_xplane_files_found(self):
+    session_path = self.create_tempdir().full_path
+    request = wrappers.Request.from_values(
+        method='POST', query_string=f'session_path={session_path}'
+    )
+
+    response = self.plugin._generate_cache_impl(request)
+
+    self.assertEqual(response.status_code, 404)
+    self.assertIn(
+        b'No XPlane files found', _get_response_data(response)
+    )
+
+  @parameterized.named_parameters(
+      dict(
+          testcase_name='no_runs',
+          runs_imp_return=[],
+          expected_message=(
+              b'Expected exactly one run for the provided session_path, but'
+              b' found 0: [].'
+          ),
+      ),
+      dict(
+          testcase_name='multiple_runs',
+          runs_imp_return=['run1', 'run2'],
+          expected_message=(
+              b'Expected exactly one run for the provided session_path, but'
+              b" found 2: ['run1', 'run2']."
+          ),
+      ),
+  )
+  def test_generate_cache_fails_if_runs_is_not_one(
+      self, runs_imp_return, expected_message
+  ):
+    session_path = self.create_tempdir().full_path
+    epath.Path(session_path, 'host1.xplane.pb').touch()
+    self.mock_runs_imp.return_value = runs_imp_return
+    request = wrappers.Request.from_values(
+        method='POST', query_string=f'session_path={session_path}'
+    )
+
+    response = self.plugin._generate_cache_impl(request)
+
+    self.assertEqual(response.status_code, 400)
+    self.assertIn(expected_message, _get_response_data(response))
+
+  def test_generate_cache_fails_if_no_valid_tools_to_cache(self):
+    session_path = self.create_tempdir().full_path
+    epath.Path(session_path, 'host1.xplane.pb').touch()
+    self.mock_run_tools_imp.return_value = ['unsupported_tool']
+    request = wrappers.Request.from_values(
+        method='POST',
+        query_string=f'session_path={session_path}&tools=unsupported_tool',
+    )
+
+    response = self.plugin._generate_cache_impl(request)
+
+    self.assertEqual(response.status_code, 400)
+    self.assertIn(
+        b'No valid XPlane tools', _get_response_data(response)
+    )
+
+  def test_generate_cache_fails_on_thread_pool_error(self):
+    session_path = self.create_tempdir().full_path
+    epath.Path(session_path, 'host1.xplane.pb').touch()
+    self.mock_submit.side_effect = RuntimeError('Pool closed')
+    request = wrappers.Request.from_values(
+        method='POST', query_string=f'session_path={session_path}'
+    )
+
+    response = self.plugin._generate_cache_impl(request)
+
+    self.assertEqual(response.status_code, 500)
+    self.assertIn(
+        b'Failed to schedule task', _get_response_data(response)
+    )
+
+  @parameterized.named_parameters(
+      dict(
+          testcase_name='complex_host_and_run',
+          run_param='my/run/123',
+          tag_param='roofline_model',
+          host_param='worker-pool-1-x2y3',
+          expected_filename='roofline_model_my_run_123_x2y3.csv',
+      ),
+      dict(
+          testcase_name='simple_host_and_run',
+          run_param='clean_run',
+          tag_param='trace_viewer',
+          host_param='localhost',
+          expected_filename='trace_viewer_clean_run_localhost.csv',
+      ),
+  )
+  @mock.patch.object(
+      convert, 'json_to_csv_string', return_value='col1\nval1', autospec=True
+  )
+  def testDataCsvRoute_ContentDisposition(
+      self,
+      _,
+      run_param,
+      tag_param,
+      host_param,
+      expected_filename,
+  ):
+    """Tests that the CSV download route sets the correct filename."""
+    self.plugin.data_impl = mock.create_autospec(
+        self.plugin.data_impl, return_value=({}, 'application/json', None)
+    )
+
+    server = werkzeug_test.Client(self.plugin.data_csv_route, wrappers.Response)
+    response = server.get(f'?run={run_param}&tag={tag_param}&host={host_param}')
+
+    self.assertEqual(response.status_code, 200)
+    self.assertEqual(response.headers.get('Content-Type'), 'text/csv')
+
+    self.assertIn(
+        f'filename="{expected_filename}"',
+        response.headers.get('Content-Disposition', ''),
+    )
+
+  def test_generate_cache_fails_on_os_error(self):
+    """Verifies that an OSError during file listing returns a 500 status code."""
+    session_path = self.create_tempdir().full_path
+    request = wrappers.Request.from_values(
+        method='POST', query_string=f'session_path={session_path}'
+    )
+
+    with mock.patch.object(
+        self.plugin,
+        '_get_xplane_basenames',
+        side_effect=OSError('Disk error'),
+        autospec=True,
+    ):
+      response = self.plugin._generate_cache_impl(request)
+
+    self.assertEqual(response.status_code, 500)
+    self.assertIn(b'Error listing files', _get_response_data(response))
+
+  @parameterized.named_parameters(
+      dict(
+          testcase_name='default_tools',
+          tools_param=None,
+          available_tools=['overview_page', 'trace_viewer@'],
+          expected_submitted_tools=['overview_page', 'trace_viewer@'],
+      ),
+      dict(
+          testcase_name='whitespace_tools',
+          tools_param=' overview_page , trace_viewer@ ',
+          available_tools=['overview_page', 'trace_viewer@'],
+          expected_submitted_tools=['overview_page', 'trace_viewer@'],
+      ),
+      dict(
+          testcase_name='unavailable_tools_are_skipped',
+          tools_param='overview_page,trace_viewer@,graph_viewer',
+          available_tools=['overview_page', 'graph_viewer'],
+          expected_submitted_tools=['overview_page', 'graph_viewer'],
+      ),
+      dict(
+          testcase_name='specific_tools_are_submitted',
+          tools_param='overview_page',
+          available_tools=[
+              'overview_page',
+              'trace_viewer@',
+              'input_pipeline_analyzer',
+          ],
+          expected_submitted_tools=['overview_page'],
+      ),
+  )
+  def test_generate_cache_impl_submits_correct_tools(
+      self,
+      tools_param: str | None,
+      available_tools: list[str],
+      expected_submitted_tools: list[str],
+  ):
+    session_path = self.create_tempdir().full_path
+    epath.Path(session_path, 'host1.xplane.pb').touch()
+    self.mock_run_tools_imp.return_value = available_tools
+    query = f'session_path={session_path}'
+    if tools_param:
+      query += f'&tools={tools_param}'
+    request = wrappers.Request.from_values(method='POST', query_string=query)
+
+    response = self.plugin._generate_cache_impl(request)
+
+    self.assertEqual(response.status_code, 202)
+    response_data = json.loads(_get_response_data(response))
+    self.assertEqual(response_data['status'], 'ACCEPTED')
+    self.mock_submit.assert_called_once()
+    _, kwargs = self.mock_submit.call_args
+    self.assertEqual(kwargs['session_path'], session_path)
+    self.assertCountEqual(kwargs['tool_list'], expected_submitted_tools)
+
+
+if __name__ == '__main__':
+  absltest.main()

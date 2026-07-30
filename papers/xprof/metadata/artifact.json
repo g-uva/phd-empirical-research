@@ -1,0 +1,54 @@
+{
+  "id": "artifact:xprof",
+  "type": "research-artifact",
+  "name": "XProf",
+  "version": null,
+  "status": "available-unvalidated",
+  "artifact_available": true,
+  "supports_paper": "paper:xprof",
+  "source_path": "../artifact",
+  "repository": {
+    "url": "https://github.com/openxla/xprof",
+    "revision": "713b05f09e30bce895af985cf4846f3274a1e558",
+    "tracking": "Files are tracked directly by the catalogue; upstream Git history is not embedded."
+  },
+  "original_source_snapshots": [
+    {
+      "path": "papers/xprof/original/xprof-713b05f09e30.zip",
+      "revision": "713b05f09e30bce895af985cf4846f3274a1e558",
+      "sha256": "45726f5dae9ddb5dca7c2f141a13b673336b464b23584de50def04956c208564"
+    }
+  ],
+  "components": [
+    {"name": "XProf server and processing", "path": "../artifact/xprof"},
+    {"name": "TensorBoard profile plugin", "path": "../artifact/plugin"},
+    {"name": "Documentation and demos", "path": "../artifact/docs"},
+    {"name": "Experiment catalogue", "path": "../artifact/experiments/index.json"}
+  ],
+  "provenance_path": "provenance.json",
+  "software": ["software:xprof"],
+  "datasets": ["dataset:xprof-profile"],
+  "experiments": ["experiment:xprof-exp-0001"],
+  "environments": ["Python/Bazel local server", "Distributed profile processing", "DAS-6 CPU/GPU allocation"],
+  "reproducibility": {
+    "documentation_available": true,
+    "automated_setup": false,
+    "containerised": false,
+    "tests_available": true,
+    "sample_data_available": true,
+    "expected_outputs_documented": true,
+    "licence_available": true,
+    "citation_metadata_available": true
+  },
+  "execution": {
+    "entry_points": ["install_and_run.py", "plugin", "xprof"],
+    "requirements": ["requirements.in", "requirements_lock_3_12.txt", "WORKSPACE"],
+    "commands": ["bazel run --config=public_cache plugin:build_pip_package", "xprof --logdir=/path/to/profile-data --port=6006"]
+  },
+  "external_repositories": [],
+  "metadata_gaps": [
+    "No paper-specific raw evaluation dataset or complete result-reproduction script was identified.",
+    "Large upstream XPlane demo/test inputs are preserved only in the original ZIP and omitted from the flattened artifact.",
+    "DAS-6 modules, SLURM wrappers, profile inputs, and distributed port policy remain unvalidated."
+  ]
+}

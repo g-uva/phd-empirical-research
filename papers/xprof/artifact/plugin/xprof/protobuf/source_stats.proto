@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package tensorflow.profiler;
+
+message SourceStats {
+  message Metric {
+    // Total number of executions.
+    uint64 occurrences = 1;
+    // The total execution time for all HLO operations generated from the
+    // associated source line, excluding the time spent in any descendant
+    // operations.
+    uint64 self_time_ps = 2;
+    // The total execution time for all HLO operations generated from the
+    // associated source line, including the time spent in any descendant
+    // operations.
+    uint64 time_ps = 3;
+    // The total number of FLOPS for all the HLO operations generated from the
+    // associated source line, including the FLOPS in any descendant operations.
+    uint64 flops = 4 [deprecated = true];
+    double flops_v2 = 6;
+
+    // The average FLOPS utilization for all HLO operations generated from the
+    // associated source line, including the FLOPS of any descendant operations.
+    double flops_utilization = 5;
+  }
+
+  message FileMetrics {
+    // Metrics for different lines in the file. The key is the line number
+    // in the file. Not all lines are guaranteed to be present. `-1` means the
+    // line number is unknown or unavailable.
+    map<int32, Metric> line_number_to_metric = 1;
+  }
+
+  // A map from file name to metrics of that file. The key is the same as
+  // `tensorflow.profiler.SourceInfo.file_name`. An empty string means the file
+  // name is unknown or unavailable.
+  map<string, FileMetrics> file_name_to_metrics = 1;
+}

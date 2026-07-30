@@ -1,0 +1,38 @@
+{
+  "id": "exp-0001",
+  "uid": "ceecee8d",
+  "title": "GPU workload latency comparison",
+  "status": "draft",
+  "parent": null,
+  "created": null,
+  "last_modified": null,
+  "objective": "Reproduce native, profiler, and eGPU latency distributions.",
+  "description": "Pre-registered from artifact/graph.py; only hard-coded summary values are currently present.",
+  "git_commit": null,
+  "paper_sections": [],
+  "datasets": [],
+  "software_components": [
+    "software:egpu",
+    "software:cuda"
+  ],
+  "configuration_files": [
+    "artifact/graph.py"
+  ],
+  "configuration_entities": [],
+  "execution_commands": [
+    "python3 artifact/graph.py"
+  ],
+  "expected_outputs": [
+    "latency_comparison.pdf",
+    "Raw latency measurements and variance"
+  ],
+  "actual_outputs": [],
+  "result_entities": [],
+  "notes": [
+    "Running the plotting script alone is not scientific reproduction."
+  ],
+  "metadata_gaps": [
+    "Workload, GPU, tool versions, repetitions, and raw data are unknown."
+  ],
+  "content_hash": "f0cbdb40f478e3340742d719384b2073074b7bffe91dba2f42c0f3c0f6deb689"
+}

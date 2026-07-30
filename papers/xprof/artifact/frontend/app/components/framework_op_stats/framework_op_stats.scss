@@ -1,0 +1,41 @@
+/** CSS for a tensorflow stats component. */
+
+@use 'frontend/app/styles/common';
+
+:host {
+  display: block;
+}
+
+.section-container {
+  padding: 20px;
+}
+
+.header-content {
+  font-style: italic;
+}
+
+.row {
+  display: flex;
+}
+
+.flex-space {
+  flex: 1;
+}
+
+.mat-mdc-raised-button {
+  @include common.box-shadow-none;
+  @include common.border-black;
+  border-radius: 0;
+  color: common.$button-focus-color;
+}
+
+model-properties {
+  min-width: 550px;
+}
+
+.pie-chart {
+  width: 450px;
+  height: fit-content;
+  margin: 8px 8px 8px 0;
+}
+

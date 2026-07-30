@@ -1,0 +1,53 @@
+{
+  "id": "paper:einfer",
+  "type": "research-paper",
+  "title": "eInfer: Unlocking Fine-Grained Tracing for Distributed LLM Inference with eBPF",
+  "short_name": "eInfer",
+  "status": "published",
+  "version": "eBPF '25",
+  "publication": {
+    "venue": "venue:ebpf-workshop",
+    "year": 2025,
+    "doi": "10.1145/3748355.3748372",
+    "url": "https://doi.org/10.1145/3748355.3748372"
+  },
+  "authors": [
+    "person:kexin-chu", "person:jianchang-su", "person:yifan-zhang",
+    "person:chenxingyu-zhao", "person:yiwei-yang", "person:yusheng-zheng",
+    "person:shengkai-lin", "person:shizhen-zhao", "person:wei-zhang"
+  ],
+  "abstract": null,
+  "research_questions": [],
+  "contributions": [
+    "Fine-grained eBPF tracing for distributed LLM inference.",
+    "Cross-layer observability of distributed inference execution."
+  ],
+  "classification": {
+    "research_functions": ["measurement-telemetry", "workload-characterisation", "benchmarking-evaluation"],
+    "technical_categories": ["measurement-and-telemetry", "ai-serving-and-inference", "distributed-and-federated-systems"],
+    "system_layers": ["application", "model", "runtime", "operator", "os-kernel", "cluster"],
+    "resource_types": ["cpu", "gpu", "accelerator", "memory", "network", "time"],
+    "workload_types": ["ai-inference", "llm-serving", "benchmark"],
+    "infrastructure_contexts": ["bare-metal", "distributed", "heterogeneous"],
+    "telemetry_sources": ["software-instrumentation", "ebpf", "custom-profiler"],
+    "methodologies": ["controlled-experiment", "benchmark", "testbed", "comparative-evaluation"],
+    "sustainability_dimensions": ["hardware-utilisation"]
+  },
+  "classification_evidence": [
+    {
+      "source_file": "papers/einfer/paper/2025-einfer.pdf",
+      "description": "The title, keywords, DOI metadata, and manuscript describe eBPF tracing for distributed LLM inference."
+    }
+  ],
+  "keywords": ["eBPF", "distributed LLM inference", "fine-grained tracing", "GPU observability"],
+  "artifact": "artifact:einfer",
+  "source_path": "../paper",
+  "metadata_gaps": [
+    "No official public source repository or artifact has been identified.",
+    "The abstract and experiment matrix have not been transcribed."
+  ],
+  "evidence": {
+    "source_file": "papers/einfer/paper/2025-einfer.pdf",
+    "description": "PDF and Crossref metadata provide the title, authors, venue, publication date, and DOI."
+  }
+}

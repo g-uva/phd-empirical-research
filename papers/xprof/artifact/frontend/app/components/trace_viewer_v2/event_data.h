@@ -1,0 +1,61 @@
+#ifndef THIRD_PARTY_XPROF_FRONTEND_APP_COMPONENTS_TRACE_VIEWER_V2_EVENT_DATA_H_
+#define THIRD_PARTY_XPROF_FRONTEND_APP_COMPONENTS_TRACE_VIEWER_V2_EVENT_DATA_H_
+
+#include <any>
+#include <string>
+
+#include "absl/container/flat_hash_map.h"
+#include "absl/strings/string_view.h"
+
+namespace traceviewer {
+
+// A generic dictionary type for event data, using std::any to hold
+// heterogeneous value types. This is used to construct event payloads that are
+// later converted to JavaScript objects.
+using EventData = absl::flat_hash_map<std::string, std::any>;
+
+// Constants used for defining event names and data keys for interop with
+// JavaScript.
+
+// Following constants are used for event selected event.
+inline constexpr absl::string_view kEventSelected = "eventselected";
+inline constexpr absl::string_view kEventsSelected = "events_selected";
+inline constexpr absl::string_view kEventsSelectedData = "events_selected_data";
+
+inline constexpr absl::string_view kEventSelectedIndex = "eventIndex";
+inline constexpr absl::string_view kEventSelectedName = "name";
+inline constexpr absl::string_view kEventSelectedStart = "startUs";
+inline constexpr absl::string_view kEventSelectedDuration = "durationUs";
+inline constexpr absl::string_view kEventSelectedStartFormatted =
+    "startUsFormatted";
+inline constexpr absl::string_view kEventSelectedDurationFormatted =
+    "durationUsFormatted";
+inline constexpr absl::string_view kEventSelectedPid = "pid";
+inline constexpr absl::string_view kEventSelectedUid = "uid";
+inline constexpr absl::string_view kEventSelectedHloModuleName =
+    "hloModuleName";
+inline constexpr absl::string_view kEventSelectedHloOpName = "hloOpName";
+
+// Constants for fetch data event.
+inline constexpr absl::string_view kFetchData = "fetch_data";
+
+inline constexpr absl::string_view kFetchDataStart = "start_time_ms";
+inline constexpr absl::string_view kFetchDataEnd = "end_time_ms";
+
+// Constants for search events event.
+inline constexpr absl::string_view kSearchEvents = "search_events";
+inline constexpr absl::string_view kSearchEventsQuery = "events_query";
+
+// Constants for viewport changed event.
+inline constexpr absl::string_view kViewportChanged = "viewport-changed";
+inline constexpr absl::string_view kViewportChangedRange = "range";
+inline constexpr absl::string_view kViewportChangedMin = "min_ms";
+inline constexpr absl::string_view kViewportChangedMax = "max_ms";
+
+// Constants for mouse mode changed event.
+inline constexpr absl::string_view kMouseModeChanged = "mouse_mode_changed";
+inline constexpr absl::string_view kMouseModeKey = "mouseMode";
+
+}  // namespace traceviewer
+
+#endif  // THIRD_PARTY_XPROF_FRONTEND_APP_COMPONENTS_TRACE_VIEWER_V2_EVENT_DATA_H_

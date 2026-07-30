@@ -1,0 +1,169 @@
+# Copyright 2020 The TensorFlow Authors. All Rights Reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+# ==============================================================================
+"""Testing utilities for the Profile plugin."""
+
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+
+import concurrent.futures
+import dataclasses
+from typing import Any, Callable, Sequence
+
+from etils import epath
+from werkzeug import wrappers
+
+from xprof import profile_plugin
+from xprof import version
+from xprof.convert import raw_to_tool_data as convert
+from xprof.standalone.tensorboard_shim import base_plugin
+from xprof.standalone.tensorboard_shim import data_provider
+from xprof.standalone.tensorboard_shim import plugin_event_multiplexer
+
+
+class _FakeFlags(object):
+
+  def __init__(self, logdir, master_tpu_unsecure_channel=''):
+    self.logdir = logdir
+    self.master_tpu_unsecure_channel = master_tpu_unsecure_channel
+
+
+def create_profile_plugin(
+    logdir,
+    multiplexer=None,
+    master_tpu_unsecure_channel='',
+    *,
+    epath_module: Any = epath,
+    xspace_to_tool_data_fn: Callable[
+        [Sequence[epath.Path], str, dict[str, Any]],
+        tuple[bytes | str | None, str],
+    ] = convert.xspace_to_tool_data,
+    version_module: Any = version,
+    cache_generation_executor: concurrent.futures.Executor | None = None,
+):
+  """Instantiates ProfilePlugin with data from the specified directory.
+
+  Args:
+    logdir: Directory containing TensorBoard data.
+    multiplexer: A TensorBoard plugin_event_multiplexer.EventMultiplexer
+    master_tpu_unsecure_channel: Master TPU address for streaming trace viewer.
+    epath_module: The epath module to use.
+    xspace_to_tool_data_fn: Function to convert xspace to tool data.
+    version_module: The version module to use.
+    cache_generation_executor: Executor for async cache generation.
+
+  Returns:
+    An instance of ProfilePlugin.
+  """
+  if not multiplexer:
+    multiplexer = plugin_event_multiplexer.EventMultiplexer()
+    multiplexer.AddRunsFromDirectory(logdir)
+
+  context = base_plugin.TBContext(
+      logdir=logdir,
+      multiplexer=multiplexer,
+      data_provider=data_provider.MultiplexerDataProvider(multiplexer, logdir),
+      flags=_FakeFlags(logdir, master_tpu_unsecure_channel),
+  )
+  return profile_plugin.ProfilePlugin(
+      context,
+      epath_module=epath_module,
+      xspace_to_tool_data_fn=xspace_to_tool_data_fn,
+      version_module=version_module,
+      cache_generation_executor=cache_generation_executor,
+  )
+
+
+@dataclasses.dataclass(frozen=True, kw_only=True)
+class DataRequestOptions:
+  """Options for creating a data request.
+
+  Attributes:
+    run: Front-end run name.
+    tool: ProfilePlugin tool, e.g., 'trace_viewer'.
+    host: Host that generated the profile data, e.g., 'localhost'.
+    use_saved_result: Whether to use cache.
+    full_dma: Whether to show full DMA events.
+    resolution: Trace resolution.
+    start_time_ms: Start time in milliseconds.
+    end_time_ms: End time in milliseconds.
+    session_path: Path to a single session.
+    run_path: Path to a directory containing multiple sessions.
+    search_metadata: Whether to search event metadata.
+    format: Data format, e.g., 'pb'.
+    event_name: Name of the event to select.
+    names_only: Whether to only return counter names instead of full data.
+    device_type: Device type for perf counter names, e.g., 'v7x'.
+  """
+
+  run: str | None = None
+  tool: str | None = None
+  host: str | None = None
+  use_saved_result: bool | None = None
+  full_dma: bool | None = None
+  resolution: int | None = None
+  start_time_ms: int | None = None
+  end_time_ms: int | None = None
+  session_path: str | None = None
+  run_path: str | None = None
+  search_metadata: str | None = None
+  format: str | None = None
+  event_name: str | None = None
+  names_only: str | None = None
+  device_type: str | None = None
+
+
+def make_data_request(options: DataRequestOptions) -> wrappers.Request:
+  """Creates a werkzeug.Request to pass as argument to ProfilePlugin.data_impl.
+
+  Args:
+    options: DataRequestOptions object.
+
+  Returns:
+    A werkzeug.Request to pass to ProfilePlugin.data_impl.
+  """
+  req = wrappers.Request({})
+  req.args = {}
+  if options.run:
+    req.args['run'] = options.run
+  if options.tool:
+    req.args['tag'] = options.tool
+  if options.host:
+    req.args['host'] = options.host
+  if options.use_saved_result is not None:
+    req.args['use_saved_result'] = options.use_saved_result
+  if options.full_dma is not None:
+    req.args['full_dma'] = options.full_dma
+  if options.resolution is not None:
+    req.args['resolution'] = options.resolution
+  if options.start_time_ms is not None:
+    req.args['start_time_ms'] = options.start_time_ms
+  if options.end_time_ms is not None:
+    req.args['end_time_ms'] = options.end_time_ms
+  if options.session_path:
+    req.args['session_path'] = options.session_path
+  if options.run_path:
+    req.args['run_path'] = options.run_path
+  if options.search_metadata is not None:
+    req.args['search_metadata'] = options.search_metadata
+  if options.format is not None:
+    req.args['format'] = options.format
+  if options.event_name is not None:
+    req.args['event_name'] = options.event_name
+  if options.names_only is not None:
+    req.args['names_only'] = options.names_only
+  if options.device_type:
+    req.args['device_type'] = options.device_type
+  return req

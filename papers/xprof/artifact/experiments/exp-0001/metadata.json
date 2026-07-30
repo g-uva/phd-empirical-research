@@ -1,0 +1,39 @@
+{
+  "id": "exp-0001",
+  "uid": "7ffc6ff9",
+  "title": "XProf installation and demo-profile smoke test",
+  "status": "draft",
+  "parent": null,
+  "created": null,
+  "last_modified": null,
+  "objective": "Build XProf and validate its core views against a checked-in or newly captured profile.",
+  "description": "Pre-registered from upstream instructions; not executed in this workspace.",
+  "git_commit": null,
+  "paper_sections": [],
+  "datasets": [
+    "dataset:xprof-profile"
+  ],
+  "software_components": [
+    "software:xprof"
+  ],
+  "configuration_files": [],
+  "configuration_entities": [],
+  "execution_commands": [
+    "xprof --logdir=/path/to/profile-data --port=6006"
+  ],
+  "expected_outputs": [
+    "Working XProf server",
+    "Overview",
+    "Trace viewer",
+    "Memory profile"
+  ],
+  "actual_outputs": [],
+  "result_entities": [],
+  "notes": [
+    "Paper-scale evaluation inputs and commands are not present in the upstream repository."
+  ],
+  "metadata_gaps": [
+    "DAS-6 environment, profile input, hardware, versions, and exact invocation remain unrecorded."
+  ],
+  "content_hash": "053393cab79180ae4f5a9a02f5dcafc2a4d16241c280d18937509196f2836a93"
+}

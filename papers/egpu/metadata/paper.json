@@ -1,0 +1,50 @@
+{
+  "id": "paper:egpu",
+  "type": "research-paper",
+  "title": "eGPU: Extending eBPF Programmability and Observability to GPUs",
+  "short_name": "eGPU",
+  "status": "published",
+  "version": "HCDS 2025",
+  "publication": {
+    "venue": "venue:hcds",
+    "year": 2025,
+    "doi": "10.1145/3723851.3726984",
+    "url": "https://doi.org/10.1145/3723851.3726984"
+  },
+  "authors": ["person:yiwei-yang", "person:tong-yu", "person:yusheng-zheng", "person:andrew-quinn"],
+  "abstract": null,
+  "research_questions": [],
+  "contributions": [
+    "Runtime translation and injection of eBPF instrumentation into GPU kernels.",
+    "Shared programmability and observability mechanisms spanning CPU and GPU execution."
+  ],
+  "classification": {
+    "research_functions": ["measurement-telemetry", "workload-characterisation", "benchmarking-evaluation"],
+    "technical_categories": ["measurement-and-telemetry", "gpu-and-accelerator-systems", "benchmarking"],
+    "system_layers": ["runtime", "accelerator-kernel", "accelerator", "device-driver", "os-kernel"],
+    "resource_types": ["cpu", "gpu", "accelerator", "memory", "time"],
+    "workload_types": ["benchmark"],
+    "infrastructure_contexts": ["bare-metal", "heterogeneous"],
+    "telemetry_sources": ["software-instrumentation", "ebpf", "custom-profiler"],
+    "methodologies": ["controlled-experiment", "benchmark", "testbed", "comparative-evaluation"],
+    "sustainability_dimensions": ["hardware-utilisation"]
+  },
+  "classification_evidence": [
+    {
+      "source_file": "papers/egpu/paper/2025-egpu-hcds.pdf",
+      "description": "The paper title, DOI metadata, and evaluation describe eBPF programmability and observability on GPUs."
+    },
+    {
+      "source_file": "papers/egpu/artifact/UPSTREAM_README.md",
+      "description": "The artifact documents eBPF-to-PTX translation, dynamic instrumentation, and GPU benchmarks."
+    }
+  ],
+  "keywords": ["eBPF", "GPU observability", "PTX", "dynamic instrumentation"],
+  "artifact": "artifact:egpu",
+  "source_path": "../paper",
+  "metadata_gaps": ["The abstract and exact mapping from artifact plots to paper figures have not been transcribed."],
+  "evidence": {
+    "source_file": "papers/egpu/paper/2025-egpu-hcds.pdf",
+    "description": "PDF and Crossref metadata provide the title, authors, venue, year, and DOI."
+  }
+}

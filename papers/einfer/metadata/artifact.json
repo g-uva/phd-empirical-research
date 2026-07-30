@@ -1,0 +1,46 @@
+{
+  "id": "artifact:einfer",
+  "type": "research-artifact-placeholder",
+  "name": "eInfer",
+  "version": null,
+  "status": "unavailable",
+  "artifact_available": false,
+  "availability_review_due": "2026-09-08",
+  "supports_paper": "paper:einfer",
+  "source_path": "../artifact",
+  "repository": {
+    "url": null,
+    "revision": null,
+    "tracking": "No upstream repository is available."
+  },
+  "original_source_snapshots": [],
+  "components": [
+    {"name": "Availability documentation", "path": "../artifact/README.md"},
+    {"name": "Empty experiment catalogue", "path": "../artifact/experiments/index.json"}
+  ],
+  "provenance_path": "provenance.json",
+  "software": ["software:einfer"],
+  "datasets": [],
+  "experiments": [],
+  "environments": [],
+  "reproducibility": {
+    "documentation_available": false,
+    "automated_setup": false,
+    "containerised": false,
+    "tests_available": false,
+    "sample_data_available": false,
+    "expected_outputs_documented": false,
+    "licence_available": false,
+    "citation_metadata_available": true
+  },
+  "execution": {
+    "entry_points": [],
+    "requirements": [],
+    "commands": []
+  },
+  "external_repositories": [],
+  "metadata_gaps": [
+    "Official source URL, revision, licence, installation, dependencies, workloads, and outputs are unavailable.",
+    "Recheck official availability on 2026-09-08."
+  ]
+}

@@ -11,3 +11,26 @@ venv/
 .env
 .DS_Store
 
+papers/neutrino/artifact/evaluation/
+
+# Large upstream inputs remain recoverable from checksummed original ZIPs
+papers/xprof/artifact/**/*.xplane.pb
+papers/xprof/artifact/docs/images/
+papers/egpu/artifact/example/train/data/
+papers/egpu/artifact/example/goroutine/go-server-http/main
+papers/egpu/artifact/example/cudamem-capture/cudamem_capture
+papers/egpu/artifact/example/mix-schedule-mnist/mix_schedule_gpu
+papers/egpu/artifact/daemon/assets/placeholder
+papers/egpu/artifact/third_party/vmlinux/
+
+# Generated build outputs inside catalogue artifacts
+papers/xprof/artifact/**/build/
+papers/xprof/artifact/**/build-*/
+papers/xprof/artifact/**/*.o
+papers/xprof/artifact/**/*.so
+papers/xprof/artifact/**/*.a
+papers/egpu/artifact/**/build/
+papers/egpu/artifact/**/build-*/
+papers/egpu/artifact/**/*.o
+papers/egpu/artifact/**/*.so
+papers/egpu/artifact/**/*.a

@@ -1,0 +1,115 @@
+# load("//third_party/bazel_rules/rules_cc/cc:cc_binary.bzl", "cc_binary")
+# load("//third_party/bazel_rules/rules_cc/cc:cc_library.bzl", "cc_library")
+load("@rules_python//python:defs.bzl", "py_library")
+load("@rules_python//python:py_test.bzl", "py_test")
+load("@xla//xla/tsl:tsl.bzl", pytype_extension = "tsl_pybind_extension_opensource")
+load("//plugin/xprof/build_utils:strict.default.bzl", "py_strict_test")
+
+package(default_visibility = ["//visibility:public"])
+
+config_setting(
+    name = "dbg_build",
+    values = {"compilation_mode": "dbg"},
+)
+
+cc_binary(
+    name = "profiler_plugin_c_api.so",
+    srcs = [
+        "profile_data_c_api.cc",
+        "profile_data_c_api.h",
+        "profiler_plugin_c_api.cc",
+        "profiler_plugin_c_api.h",
+    ],
+    copts = [
+        "-fno-strict-aliasing",
+        "-fvisibility=hidden",  # Prevent exposing all symbols
+    ] + select({
+        ":dbg_build": ["-g"],
+        "//conditions:default": [],
+    }) + select({
+        "//:embedded_features_enabled": ["-DEMBEDDED_FEATURES_ENABLED"],
+        "//conditions:default": [],
+    }),
+    linkopts = select({
+        "@xla//xla/tsl:windows": [
+            "/OPT:REF",  # Remove unused functions and data
+            "/OPT:ICF",  # Merge identical functions
+            "/DEBUG:NONE",  # Strip all symbols
+        ],
+        "@xla//xla/tsl:macos": [
+            "-Wl,-dead_strip",  # Remove unreferenced symbols
+            "-Wl,-S",  # Strip all symbols
+        ],
+        "//conditions:default": [
+            "-Wl,--exclude-libs,ALL",  # Prevent exposing symbols from dependencies
+            "-Wl,--gc-sections",  # Garbage collect any unused sections
+            "-Wl,--icf=all",  # Merge identical functions
+            "-Wl,--strip-all",  # Strip all symbols
+        ],
+    }),
+    linkshared = True,
+    deps = [
+        ":profiler_plugin_impl",
+        "@com_google_absl//absl/status",
+        "@com_google_absl//absl/status:statusor",
+        "@com_google_absl//absl/strings:string_view",
+        "@org_xprof//plugin/xprof/worker:stub_factory",
+        "@org_xprof//xprof/convert:tool_options",
+        "@rules_python//python/cc:current_py_cc_headers",
+        "@tsl//tsl/profiler/protobuf:xplane_proto_cc",
+        "@xla//xla/pjrt:status_casters",  # buildcleaner: keep
+        "@xla//xla/tsl/platform/cloud:gcs_file_system",
+        "@xla//xla/tsl/profiler/rpc/client:capture_profile",
+    ] + select({
+        "//:embedded_features_enabled": [
+            "@org_xprof//xprof/embedded/llo_analysis:llo_analysis_c_api",
+            "@org_xprof//xprof/embedded/llo_analysis:llo_analysis_lib",
+        ],
+        "//conditions:default": [],
+    }),
+)
+
+py_library(
+    name = "_pywrap_profiler_plugin",
+    srcs = ["_pywrap_profiler_plugin.py"],
+    data = [":profiler_plugin_c_api.so"],
+)
+
+py_test(
+    name = "profiler_wrapper_test",
+    srcs = ["profiler_wrapper_test.py"],
+    tags = ["no_oss"],
+    deps = [
+        ":_pywrap_profiler_plugin",
+        "@absl_py//absl/testing:absltest",
+        "@absl_py//absl/testing:parameterized",
+    ],
+)
+
+cc_library(
+    name = "profiler_plugin_impl",
+    srcs = ["profiler_plugin_impl.cc"],
+    hdrs =
+        ["profiler_plugin_impl.h"],
+    deps = [
+        "@com_google_absl//absl/base",
+        "@com_google_absl//absl/base:no_destructor",
+        "@com_google_absl//absl/container:flat_hash_set",
+        "@com_google_absl//absl/flags:flag",
+        "@com_google_absl//absl/log",
+        "@com_google_absl//absl/status",
+        "@com_google_absl//absl/status:statusor",
+        "@com_google_protobuf//:protobuf",
+        "@org_xprof//plugin/xprof/worker:grpc_server",
+        "@org_xprof//xprof/convert:repository",
+        "@org_xprof//xprof/convert:tool_options",
+        "@org_xprof//xprof/convert:xplane_to_tools_data",
+        "@org_xprof//xprof/convert:xplane_to_tools_data_with_profile_processor",
+        "@tsl//tsl/profiler/protobuf:xplane_proto_cc_impl",
+        "@xla//xla/tsl/platform:errors",
+        "@xla//xla/tsl/platform:types",
+        "@xla//xla/tsl/profiler/rpc/client:capture_profile",
+        "@xla//xla/tsl/profiler/rpc/client:profiler_client_impl",
+        "@xla//xla/tsl/profiler/utils:session_manager",
+    ],
+)

@@ -1,0 +1,63 @@
+@use 'frontend/app/styles/common';
+
+:host {
+  display: block;
+}
+
+.section-container {
+  margin: 20px 20px 0px;
+}
+
+.block-content {
+  padding: 5px;
+}
+
+.row {
+  display: flex;
+}
+
+.flex-space {
+  flex: 1;
+}
+
+.description {
+  font-size: 14px;
+}
+
+.tableHeaderCell {
+  word-wrap: break-word;
+  background-color: azure; //!to hide the scrolled-up text.
+}
+
+.tableTableCell {
+  word-break: break-all;
+}
+
+.opColumnClass {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.errorMessage {
+  border: 2px solid;
+  background-color: #ffcccb;
+  color: red;
+}
+
+.tooltip-icon {
+  transform: scale(0.8);
+}
+
+.control-title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.control {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
+  gap: 10px;
+}

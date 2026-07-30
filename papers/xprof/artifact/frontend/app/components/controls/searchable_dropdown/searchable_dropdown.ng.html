@@ -1,0 +1,23 @@
+<mat-form-field appearance="outline" class="full-width">
+  <mat-label>{{label}}</mat-label>
+  <mat-select
+    panelClass="panel-override"
+    [(value)]="selectedItem"
+    [disabled]="!itemList.length"
+    (selectionChange)="emitSelectionChange()"
+  >
+      <div class="search-box">
+          <mat-icon class="search-icon">search</mat-icon>
+          <input matInput
+                 #searchInput
+                 type="text"
+                 placeholder="Filter"
+                 [(ngModel)]="filterText"
+                 class="search-input"
+                 autocomplete="off">
+      </div>
+    <mat-option *ngFor="let item of filteredItemList" [value]="item">
+      {{ item }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>

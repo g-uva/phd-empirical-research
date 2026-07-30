@@ -1,0 +1,110 @@
+<mat-card>
+  <mat-card-title>{{ title }}</mat-card-title>
+  <mat-card-content>
+    <ng-content></ng-content>
+    <div class="item-container">
+      <table>
+        <tr>
+          <td>
+            <b>#Allocation</b>
+          </td>
+          <td class="item-value">
+            <div>{{ numAllocations }}</div>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="item-container">
+      <table>
+        <tr>
+          <td>
+            <b>#Deallocation</b>
+          </td>
+          <td class="item-value">
+            <div>{{ numDeallocations }}</div>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="item-container">
+      <table>
+        <tr>
+          <td>
+            <b>Memory Capacity</b>
+          </td>
+          <td class="item-value">
+            <div>{{ memoryCapacity }}</div>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="item-container">
+      <table>
+        <tr>
+          <td>
+            <b>Lifetime Peak Heap Usage</b>
+            <div class="description">high water mark in lifetime, may be outside profiling window</div>
+          </td>
+          <td class="item-value">
+            <div>{{ peakHeapUsageLifetime }}</div>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="item-container">
+      <table>
+        <tr>
+          <td>
+            <b>Profile-window Peak Memory Usage</b>
+            <div class="description">stack + heap, within profiling window</div>
+          </td>
+          <td class="item-value">
+            <div>{{ peakMemUsageProfile }} </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <ul>
+      <li class="primary-content">Timestamp: {{ timestampAtPeakMs }} ms
+        <mat-icon
+          class="tooltip-icon"
+          matTooltip="Where this happens on the Timeline Graph."
+          matTooltipPosition="above">
+          info
+        </mat-icon>
+      </li>
+      <li class="primary-content">Stack Reservation: {{ stackAtPeak }}
+        <mat-icon
+          class="tooltip-icon"
+          matTooltip="Amount of memory (in GiBs) reserved on the stack"
+          matTooltipPosition="above">
+          info
+        </mat-icon>
+      </li>
+      <li class="primary-content">Heap Allocation: {{ heapAtPeak }}
+        <mat-icon
+          class="tooltip-icon"
+          matTooltip="Amount of memory (in GiBs) allocated on the heap"
+          matTooltipPosition="above">
+          info
+        </mat-icon>
+      </li>
+      <li class="primary-content">Free Memory: {{ freeAtPeak }}
+        <mat-icon
+          class="tooltip-icon"
+          matTooltip="Amount of memory (in GiBs) that is free (so Stack Reservation + Heap Allocation + Free Memory = Memory Capacity)."
+          matTooltipPosition="above">
+          info
+        </mat-icon>
+      </li>
+      <li class="primary-content">Fragmentation: {{ fragmentationAtPeakPct }}
+      <mat-icon
+        class="tooltip-icon"
+        matTooltip="The percentage of fragmentation (lower is better), It is defined as: Fragmentation = 100% * (1 - largest-chunk-of-free-memory / total-free-memory)"
+        matTooltipPosition="above">
+        info
+      </mat-icon>
+      </li>
+    </ul>
+  </mat-card-content>
+</mat-card>

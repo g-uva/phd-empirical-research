@@ -1,0 +1,16 @@
+{
+  "relationships": [
+    {"source": "paper:einfer", "predicate": "has-artifact", "target": "artifact:einfer", "evidence": {"source_file": "papers/einfer/artifact/README.md", "description": "Catalogue placeholder for a currently unavailable artifact."}},
+    {"source": "artifact:einfer", "predicate": "supports-paper", "target": "paper:einfer", "evidence": {"source_file": "papers/einfer/artifact/README.md", "description": "Placeholder is explicitly associated with the eInfer paper."}},
+    {"source": "paper:einfer", "predicate": "published-at", "target": "venue:ebpf-workshop", "evidence": {"source_file": "papers/einfer/paper/2025-einfer.pdf"}},
+    {"source": "paper:einfer", "predicate": "authored-by", "target": "person:kexin-chu", "evidence": {"source_file": "papers/einfer/paper/2025-einfer.pdf"}},
+    {"source": "paper:einfer", "predicate": "authored-by", "target": "person:jianchang-su", "evidence": {"source_file": "papers/einfer/paper/2025-einfer.pdf"}},
+    {"source": "paper:einfer", "predicate": "authored-by", "target": "person:yifan-zhang", "evidence": {"source_file": "papers/einfer/paper/2025-einfer.pdf"}},
+    {"source": "paper:einfer", "predicate": "authored-by", "target": "person:chenxingyu-zhao", "evidence": {"source_file": "papers/einfer/paper/2025-einfer.pdf"}},
+    {"source": "paper:einfer", "predicate": "authored-by", "target": "person:yiwei-yang", "evidence": {"source_file": "papers/einfer/paper/2025-einfer.pdf"}},
+    {"source": "paper:einfer", "predicate": "authored-by", "target": "person:yusheng-zheng", "evidence": {"source_file": "papers/einfer/paper/2025-einfer.pdf"}},
+    {"source": "paper:einfer", "predicate": "authored-by", "target": "person:shengkai-lin", "evidence": {"source_file": "papers/einfer/paper/2025-einfer.pdf"}},
+    {"source": "paper:einfer", "predicate": "authored-by", "target": "person:shizhen-zhao", "evidence": {"source_file": "papers/einfer/paper/2025-einfer.pdf"}},
+    {"source": "paper:einfer", "predicate": "authored-by", "target": "person:wei-zhang", "evidence": {"source_file": "papers/einfer/paper/2025-einfer.pdf"}}
+  ]
+}

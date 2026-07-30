@@ -1,0 +1,42 @@
+# load("//third_party/bazel_rules/rules_cc/cc:cc_test.bzl", "cc_test")
+load("@org_xprof//frontend/app/components/trace_viewer_v2:build_defs.bzl", "wasm_cc_library")
+
+package(default_visibility = [
+    "@org_xprof//frontend/app/components/trace_viewer_v2:__subpackages__",
+])
+
+wasm_cc_library(
+    name = "colors",
+    srcs = [
+        "color_generator.cc",
+        "colors.cc",
+    ],
+    hdrs = [
+        "color_generator.h",
+        "colors.h",
+        "palettes.h",
+    ],
+    deps = [
+        "@com_google_absl//absl/base:no_destructor",
+        "@com_google_absl//absl/container:flat_hash_map",
+        "@com_google_absl//absl/container:inlined_vector",
+        "@com_google_absl//absl/log:check",
+        "@com_google_absl//absl/status",
+        "@com_google_absl//absl/status:statusor",
+        "@com_google_absl//absl/strings",
+        "@com_google_absl//absl/types:span",
+        "@imgui",
+        "@tsl//tsl/platform:fingerprint",
+    ],
+)
+
+cc_test(
+    name = "color_generator_test",
+    srcs = ["color_generator_test.cc"],
+    deps = [
+        ":colors",
+        "@com_google_absl//absl/strings",
+        "@com_google_googletest//:gtest_main",
+        "@imgui",
+    ],
+)

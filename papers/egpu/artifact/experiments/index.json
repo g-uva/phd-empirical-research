@@ -1,0 +1,42 @@
+{
+  "schema_version": "0.2.0",
+  "artifact": "artifact:egpu",
+  "next_experiment_number": 6,
+  "experiments": [
+    {
+      "id": "exp-0001",
+      "uid": "ceecee8d",
+      "path": "exp-0001/metadata.json",
+      "status": "draft",
+      "content_hash": "f0cbdb40f478e3340742d719384b2073074b7bffe91dba2f42c0f3c0f6deb689"
+    },
+    {
+      "id": "exp-0002",
+      "uid": "e8a4c26e",
+      "path": "exp-0002/metadata.json",
+      "status": "draft",
+      "content_hash": "504aee307cc38b79f6d39cf01e1db1942a1c1098fe0e6af993ed3ae3532054a8"
+    },
+    {
+      "id": "exp-0003",
+      "uid": "79aa7181",
+      "path": "exp-0003/metadata.json",
+      "status": "draft",
+      "content_hash": "aa809dc00deff16131cbdd6b7b227a3640d531247babdba32f656d7587c342eb"
+    },
+    {
+      "id": "exp-0004",
+      "uid": "d3ebb6c0",
+      "path": "exp-0004/metadata.json",
+      "status": "draft",
+      "content_hash": "2c610c60cb0e38bb786d48de40d1d20113203068c4c15f811042ede08011f02a"
+    },
+    {
+      "id": "exp-0005",
+      "uid": "27139852",
+      "path": "exp-0005/metadata.json",
+      "status": "draft",
+      "content_hash": "cba37d39fd00dfd8c18a4d5393b0de953fb5a6c07ae359820e3f9823426dbea2"
+    }
+  ]
+}

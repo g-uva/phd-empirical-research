@@ -1,0 +1,183 @@
+/** CSS for a smart suggestion view component. */
+
+@use 'frontend/app/styles/common';
+
+:host {
+  @include common.border-bottom-gray;
+  @include common.border-right-gray;
+}
+
+// Styles for the outer list wrapping each suggestion block
+.suggestion-list {
+  list-style-type: none;
+  padding-left: 10px;
+  margin-left: 0;
+
+  > li {
+    margin-bottom: 15px;
+    padding-left: 0;
+  }
+}
+
+.suggestion-item-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 15px;
+}
+
+.suggestion-text {
+  flex-grow: 1;
+  margin-right: 8px;
+  word-break: break-word;
+  text-align: left;
+}
+
+:host ::ng-deep .suggestion-text {
+  p {
+    margin-top: 0;
+    margin-bottom: 8px;
+    line-height: 1.4;
+  }
+
+  ul {
+    list-style-type: disc;
+    padding-left: 20px;
+    margin-top: 5px;
+    margin-bottom: 8px;
+  }
+
+  li {
+    margin-bottom: 4px;
+  }
+
+  b {
+    font-weight: 500;
+  }
+}
+
+.feedback-buttons {
+  display: flex;
+  align-items: flex-start; // Align to the top
+  flex-shrink: 0;
+  padding-top: 0;
+
+  button {
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    mat-icon {
+      font-size: 20px;
+      width: 20px;
+      height: 20px;
+      color: grey;
+
+      &.selected {
+        color: blue;
+      }
+    }
+  }
+}
+
+:host:not(.dark-theme) {
+  mat-expansion-panel {
+    margin: 0;
+    @include common.overview-card;
+  }
+}
+
+mat-expansion-panel-header {
+  margin: 8px 8px 0;
+}
+
+mat-panel-title {
+  @include common.overview-card-title;
+  background-color: transparent;
+}
+
+.experimental-badge {
+  display: flex;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 800;
+  color: black;
+  background-color: orange;
+  border: 2px solid orange;
+  padding: 2px 4px;
+  border-radius: 4px;
+  margin-left: 12px;
+  vertical-align: middle;
+  user-select: none;
+  cursor: default;
+}
+
+mat-expansion-panel-header.cdk-keyboard-focused,
+mat-expansion-panel:not(.mat-expanded) mat-expansion-panel-header:hover {
+  background-color: common.$card-title-focus-background-color;
+}
+
+.mat-expanded mat-expansion-panel-header {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+:host.dark-theme {
+  border: none;
+
+  mat-expansion-panel {
+    @include common.overview-card-dark-theme;
+  }
+
+  mat-panel-title {
+    background-color: transparent;
+    color: common.$dark-theme-card-title-color;
+  }
+
+  mat-expansion-panel-header {
+    background-color: common.$dark-theme-card-title-background-color;
+    margin: 0;
+  }
+
+  mat-expansion-panel-header.cdk-keyboard-focused,
+  mat-expansion-panel:not(.mat-expanded) mat-expansion-panel-header:hover {
+    background-color: common.$dark-theme-card-title-focus-background-color;
+  }
+
+  .table {
+    margin-top: 18px;
+  }
+
+  .feedback-buttons {
+    button {
+      mat-icon {
+        color: grey;
+
+        &.selected {
+          color: blue;
+        }
+      }
+    }
+  }
+}
+
+.progress-smart-suggestion-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+
+  .loading-spinner {
+    margin-bottom: 16px;
+  }
+
+  .loading-message {
+    text-align: center;
+    font-weight: 500;
+    color: #555;
+  }
+}

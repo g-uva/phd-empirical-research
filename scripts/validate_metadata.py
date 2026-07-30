@@ -134,8 +134,6 @@ def main() -> int:
         work_root = ROOT / "papers" / slug
         for relative in required_work_paths:
             check_path(work_root / relative, f"required {slug} catalogue layout", errors)
-        if not list((work_root / "original").glob("*.zip")):
-            errors.append(f"no original source ZIP is preserved for {slug}")
         nested_git = list(work_root.rglob(".git"))
         if nested_git:
             errors.append(
@@ -314,12 +312,23 @@ def main() -> int:
     for artifact_id, artifact in documents.items():
         if not artifact_id.startswith("artifact:"):
             continue
+        available = artifact.get("artifact_available", True)
         snapshots = artifact.get("original_source_snapshots")
         if snapshots is None:
             singular = artifact.get("original_source_snapshot")
             snapshots = [singular] if singular else []
-        if not snapshots:
+        if available and not snapshots:
             errors.append(f"{artifact_id} has no original source snapshot metadata")
+        if not available:
+            due = artifact.get("availability_review_due")
+            if not re.fullmatch(r"[0-9]{4}-[0-9]{2}-[0-9]{2}", str(due)):
+                errors.append(
+                    f"{artifact_id} is unavailable but has no valid availability review date"
+                )
+            if snapshots:
+                errors.append(
+                    f"{artifact_id} is marked unavailable but declares source snapshots"
+                )
         for snapshot in snapshots:
             snapshot_path = ROOT / str(snapshot.get("path", ""))
             snapshot_digest = snapshot.get("sha256")

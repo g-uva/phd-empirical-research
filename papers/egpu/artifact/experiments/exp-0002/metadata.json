@@ -1,0 +1,38 @@
+{
+  "id": "exp-0002",
+  "uid": "e8a4c26e",
+  "title": "End-to-end instrumentation latency scaling",
+  "status": "draft",
+  "parent": null,
+  "created": null,
+  "last_modified": null,
+  "objective": "Reproduce end-to-end latency as the instrumented byte count scales.",
+  "description": "Pre-registered from artifact/graph1.py; only hard-coded summary values are currently present.",
+  "git_commit": null,
+  "paper_sections": [],
+  "datasets": [],
+  "software_components": [
+    "software:egpu",
+    "software:cuda"
+  ],
+  "configuration_files": [
+    "artifact/graph1.py"
+  ],
+  "configuration_entities": [],
+  "execution_commands": [
+    "python3 artifact/graph1.py"
+  ],
+  "expected_outputs": [
+    "end_to_end_latency.pdf",
+    "Raw scaling measurements"
+  ],
+  "actual_outputs": [],
+  "result_entities": [],
+  "notes": [
+    "Running the plotting script alone is not scientific reproduction."
+  ],
+  "metadata_gaps": [
+    "Hardware, workload, measurement protocol, repetitions, and raw data are unknown."
+  ],
+  "content_hash": "504aee307cc38b79f6d39cf01e1db1942a1c1098fe0e6af993ed3ae3532054a8"
+}

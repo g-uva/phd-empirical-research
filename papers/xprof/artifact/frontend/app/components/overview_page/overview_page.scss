@@ -1,0 +1,61 @@
+/** CSS for an overview page component. */
+
+@use 'frontend/app/styles/common';
+
+:host {
+  display: block;
+  padding-top: 10px;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: start;
+  width: 100%;
+}
+
+.left-column {
+  display: flex;
+  flex-direction: column;
+  width: 33.333%;
+}
+
+.right-column {
+  display: flex;
+  flex-direction: column;
+  width: 66.667%;
+}
+
+.full-column {
+  @include common.border-right-gray;
+  width: 100%;
+}
+
+@media screen and (max-width: 860px) {
+  :host {
+    width: fit-content;
+  }
+}
+
+@media screen and (max-width: 1140px) {
+  .left-column,
+  .right-column {
+    width: 100%;
+  }
+}
+
+.key-label {
+  font-weight: 500;
+}
+
+.value-label {
+  word-break: break-all;
+}
+
+.job-information-level1 {
+  padding-left: 20px;
+}
+
+.job-information-level2 {
+  padding-left: 40px;
+}

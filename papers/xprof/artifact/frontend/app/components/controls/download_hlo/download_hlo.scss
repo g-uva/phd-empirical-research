@@ -1,0 +1,12 @@
+/** CSS for a download hlo component. */
+
+@use 'frontend/app/styles/common';
+
+.save-button {
+  text-align: center;
+}
+
+.save-button:hover {
+  color: common.$button-focus-color;
+  cursor: pointer;
+}

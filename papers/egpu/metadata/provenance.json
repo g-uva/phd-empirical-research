@@ -1,0 +1,9 @@
+{
+  "schema_version": "0.1.0",
+  "configurations": [],
+  "results": [],
+  "notes": [
+    "Checked-in plots and scripts contain summary values without raw measurement provenance.",
+    "No eGPU experiment has been executed in this workspace."
+  ]
+}

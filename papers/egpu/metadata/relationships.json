@@ -1,0 +1,14 @@
+{
+  "relationships": [
+    {"source": "paper:egpu", "predicate": "has-artifact", "target": "artifact:egpu", "evidence": {"source_file": "papers/egpu/artifact/UPSTREAM_README.md"}},
+    {"source": "artifact:egpu", "predicate": "supports-paper", "target": "paper:egpu", "evidence": {"source_file": "papers/egpu/artifact/UPSTREAM_README.md"}},
+    {"source": "paper:egpu", "predicate": "published-at", "target": "venue:hcds", "evidence": {"source_file": "papers/egpu/paper/2025-egpu-hcds.pdf"}},
+    {"source": "paper:egpu", "predicate": "authored-by", "target": "person:yiwei-yang", "evidence": {"source_file": "papers/egpu/paper/2025-egpu-hcds.pdf"}},
+    {"source": "paper:egpu", "predicate": "authored-by", "target": "person:tong-yu", "evidence": {"source_file": "papers/egpu/paper/2025-egpu-hcds.pdf"}},
+    {"source": "paper:egpu", "predicate": "authored-by", "target": "person:yusheng-zheng", "evidence": {"source_file": "papers/egpu/paper/2025-egpu-hcds.pdf"}},
+    {"source": "paper:egpu", "predicate": "authored-by", "target": "person:andrew-quinn", "evidence": {"source_file": "papers/egpu/paper/2025-egpu-hcds.pdf"}},
+    {"source": "artifact:egpu", "predicate": "implements-software", "target": "software:egpu", "evidence": {"source_file": "papers/egpu/artifact/README.md"}},
+    {"source": "software:egpu", "predicate": "uses-software", "target": "software:cuda", "evidence": {"source_file": "papers/egpu/artifact/UPSTREAM_README.md"}},
+    {"source": "software:egpu", "predicate": "uses-software", "target": "software:ebpf", "evidence": {"source_file": "papers/egpu/artifact/UPSTREAM_README.md"}}
+  ]
+}

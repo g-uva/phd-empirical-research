@@ -1,0 +1,5455 @@
+{
+  "schema_version": "1.0.0",
+  "created": "2026-07-30T16:05:56Z",
+  "reason": "Register the XProf artifact and initial smoke-test experiment",
+  "base_git_commit": "28892dbdad7309432d8c0e31bd80035aadc86a8a",
+  "hash_algorithm": "sha256",
+  "hash_format": "experiment-content-v1",
+  "experiments": [
+    {
+      "experiment_id": "exp-0001",
+      "uid": "7ffc6ff9",
+      "previous_content_hash": null,
+      "content_hash": "053393cab79180ae4f5a9a02f5dcafc2a4d16241c280d18937509196f2836a93",
+      "metadata_path": "papers/xprof/artifact/experiments/exp-0001/metadata.json"
+    }
+  ],
+  "working_tree_changes": [
+    {
+      "path": "papers/xprof/README.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/.bazelrc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/.bazelversion",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/.gitignore",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/LICENSE",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/README.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/REPRODUCING.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/UPSTREAM_README.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/WORKSPACE",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/config.bzl",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/defs/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/defs/backend_defs.bzl",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/defs/defs.bzl",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/demo/plugins/profile/tpu-training/gke-tpu-b309f56b-rq5s.xplane.pb",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/demo/plugins/profile/v6e-4-training/t1v-n-9bfa07b4-w-0.xplane.pb",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/_toc.yaml",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/advanced_profiler_options.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/capturing_profiles.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/custom_call_profiling.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/dcn_pcie_profiling.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/docker_deployment.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/events.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/framework_op_stats.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/gpu_kernel_stats.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/graph_viewer.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/hlo_op_profile.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/hlo_op_stats.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/images/buffer_charts.png",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/images/buffer_charts_memory_leaks.png",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/images/capture_profile.png",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/images/counter_sampling.png",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/images/cpu_perf_counter_profile_events.png",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/images/dcn_collective_stats/com-timeline-observed-duration.png",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/images/dcn_collective_stats/com-timeline-slack-time.png",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/images/dcn_collective_stats/com-timeline-stall-duration.png",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/images/framework_op_stats.png",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/images/framework_op_stats_csv.png",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/images/framework_op_stats_operations.png",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/images/framework_op_stats_summarized.png",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/images/fw_pcie_utilization.png",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/images/gpu_kernel_stats.png",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/images/gpu_kernel_stats_csv.png",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/images/graph_viewer.png",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/images/graph_viewer_from_op_profile_annotated.png",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/images/graph_viewer_hlo_full_text.png",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/images/graph_viewer_hover.png",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/images/hlo_op_profile_pinned_annotated.png",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/images/hlo_op_profile_start.png",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/images/hlo_op_stats.png",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/images/hlo_op_stats_2.png",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/images/kernel_1.png",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/images/kernel_2.png",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/images/kubernetes/xprof_aggregator_landing_page.png",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/images/kubernetes/xprof_aggregator_worker_architecture_for_kubernetes.png",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/images/llo_tracing_image_1.png",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/images/llo_tracing_image_2.png",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/images/llo_utilization.png",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/images/megascale_viewer_access.png",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/images/megascale_viewer_connecting_1.png",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/images/megascale_viewer_connecting_2.png",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/images/megascale_viewer_connecting_3.png",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/images/megascale_viewer_connecting_4.png",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/images/megascale_viewer_journey_1.png",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/images/megascale_viewer_journey_2.png",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/images/megascale_viewer_journey_3.png",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/images/megascale_viewer_journey_4.png",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/images/megascale_viewer_journey_5.png",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/images/megascale_viewer_journey_6.png",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/images/megascale_viewer_layout_1.png",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/images/megascale_viewer_layout_2.png",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/images/megascale_viewer_layout_3.png",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/images/megascale_viewer_sql_1.png",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/images/memory_leaks.png",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/images/memory_profile_2.png",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/images/memory_profile_3.png",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/images/memory_profile_annotated.png",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/images/memory_profile_summary.png",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/images/memory_viewer.png",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/images/memory_viewer_2.png",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/images/memory_viewer_dropdowns.png",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/images/memory_viewer_modules.png",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/images/memory_viewer_text.png",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/images/memory_viewer_timeline.png",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/images/perf_counters.png",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/images/power_thermal_events.png",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/images/roofline_1.png",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/images/roofline_2.png",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/images/roofline_3.png",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/images/trace_viewer.png",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/images/trace_viewer_details.png",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/images/trace_viewer_find.png",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/images/trace_viewer_gpu.png",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/images/trace_viewer_to_hlo_graph_1.png",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/images/trace_viewer_to_hlo_graph_2.png",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/images/trace_viewer_tool_selector.png",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/images/utilization_viewer_unit_util.png",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/images/xprof_overview.png",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/images/xprof_overview_summary.png",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/jax_gpu_profiling.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/jax_profiling.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/kernel-profiling.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/kubernetes_deployment.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/megascale_stats.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/megascale_viewer.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/megascale_viewer_sql.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/memory_leaks.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/memory_profile.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/memory_viewer.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/overview_page.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/perf_counters.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/pytorch_xla_profiling.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/roofline_model.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/tensorflow_profiling.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/terminology.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/trace_viewer.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/utilization_viewer.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/xprof_demo.ipynb",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/docs/xprof_kernel_demo.ipynb",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/experiments/README.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/experiments/exp-0001/metadata.json",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/experiments/index.json",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/app.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/app.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/app.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/app_module.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/common/angular/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/common/classes/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/common/classes/throbber.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/common/constants/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/common/constants/colors.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/common/constants/constants.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/common/constants/enums.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/common/constants/roofline_model_constants.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/common/interfaces/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/common/interfaces/buffer_allocation_info.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/common/interfaces/capture_profile.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/common/interfaces/chart.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/common/interfaces/data_table.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/common/interfaces/diagnostics.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/common/interfaces/graph_viewer.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/common/interfaces/heap_object.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/common/interfaces/hlo.jsonpb_decls.d.ts.gz",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/common/interfaces/hosts.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/common/interfaces/memory_analysis.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/common/interfaces/memory_analysis_view.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/common/interfaces/memory_profile.jsonpb_decls.d.ts.gz",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/common/interfaces/memory_viewer_preprocess.jsonpb_decls.d.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/common/interfaces/navigation_event.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/common/interfaces/op_metrics.jsonpb_decls.d.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/common/interfaces/op_profile.jsonpb_decls.d.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/common/interfaces/roofline_model.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/common/interfaces/smart_suggestion.jsonpb_decls.d.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/common/interfaces/source_info.jsonpb_decls.d.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/common/interfaces/source_stats.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/common/interfaces/summary_info.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/common/interfaces/tool.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/common/interfaces/trace_buffer_drop_analysis.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/common/interfaces/window.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/common/interfaces/xla_data.jsonpb_decls.d.ts.gz",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/common/interfaces/xplane_diagnostics.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/common/utils/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/common/utils/diff_utils.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/common/utils/utils.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/capture_kernel/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/capture_kernel/capture_kernel.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/capture_kernel/capture_kernel.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/capture_kernel/capture_kernel.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/capture_kernel/capture_kernel_dialog/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/capture_kernel/capture_kernel_dialog/capture_kernel_dialog.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/capture_kernel/capture_kernel_dialog/capture_kernel_dialog.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/capture_kernel/capture_kernel_dialog/capture_kernel_dialog.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/capture_profile/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/capture_profile/capture_profile.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/capture_profile/capture_profile.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/capture_profile/capture_profile.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/capture_profile/capture_profile_dialog/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/capture_profile/capture_profile_dialog/capture_profile_dialog.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/capture_profile/capture_profile_dialog/capture_profile_dialog.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/capture_profile/capture_profile_dialog/capture_profile_dialog.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/capture_profile/capture_profile_dialog/capture_profile_dialog_module.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/capture_profile/capture_profile_module.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/chart/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/chart/category_diff_table_data_processor.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/chart/category_table_data_processor.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/chart/chart.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/chart/chart_options.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/chart/dashboard/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/chart/dashboard/dashboard.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/chart/default_data_provider.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/chart/filter_data_processor.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/chart/org_chart/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/chart/org_chart/org_chart.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/chart/org_chart/org_chart.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/chart/org_chart/org_chart.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/chart/org_chart/org_chart_module.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/chart/table/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/chart/table/table.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/chart/table/table.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/chart/table/table.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/chart/table/table_module.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/chart/table_utils.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/chart/xy_table_data_processor.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/controls/category_filter/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/controls/category_filter/category_filter.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/controls/category_filter/category_filter.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/controls/category_filter/category_filter.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/controls/category_filter/category_filter_module.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/controls/download_hlo/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/controls/download_hlo/blob_downloader.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/controls/download_hlo/download_hlo.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/controls/download_hlo/download_hlo.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/controls/download_hlo/download_hlo.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/controls/download_hlo/download_hlo_module.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/controls/export_as_csv/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/controls/export_as_csv/export_as_csv.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/controls/export_as_csv/export_as_csv.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/controls/export_as_csv/export_as_csv.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/controls/export_as_csv/export_as_csv_module.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/controls/searchable_dropdown/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/controls/searchable_dropdown/searchable_dropdown.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/controls/searchable_dropdown/searchable_dropdown.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/controls/searchable_dropdown/searchable_dropdown.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/controls/string_filter/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/controls/string_filter/string_filter.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/controls/string_filter/string_filter.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/controls/string_filter/string_filter.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/controls/string_filter/string_filter_module.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/controls/view_architecture/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/controls/view_architecture/view_architecture.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/controls/view_architecture/view_architecture.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/controls/view_architecture/view_architecture.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/controls/view_architecture/view_architecture_module.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/diagnostics_view/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/diagnostics_view/diagnostics_view.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/diagnostics_view/diagnostics_view.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/diagnostics_view/diagnostics_view.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/diagnostics_view/diagnostics_view_module.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/empty_page/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/empty_page/empty_page.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/empty_page/empty_page.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/empty_page/empty_page.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/empty_page/empty_page_module.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/framework_op_stats/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/framework_op_stats/flop_rate_chart/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/framework_op_stats/flop_rate_chart/flop_rate_chart.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/framework_op_stats/flop_rate_chart/flop_rate_chart.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/framework_op_stats/flop_rate_chart/flop_rate_chart.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/framework_op_stats/flop_rate_chart/flop_rate_chart_module.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/framework_op_stats/framework_op_stats.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/framework_op_stats/framework_op_stats.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/framework_op_stats/framework_op_stats.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/framework_op_stats/framework_op_stats_adapter.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/framework_op_stats/framework_op_stats_module.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/framework_op_stats/model_properties/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/framework_op_stats/model_properties/model_properties.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/framework_op_stats/model_properties/model_properties.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/framework_op_stats/model_properties/model_properties.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/framework_op_stats/model_properties/model_properties_module.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/framework_op_stats/operations_table/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/framework_op_stats/operations_table/operations_table.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/framework_op_stats/operations_table/operations_table.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/framework_op_stats/operations_table/operations_table.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/framework_op_stats/operations_table/operations_table_data_provider.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/framework_op_stats/operations_table/operations_table_module.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/framework_op_stats/stats_table/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/framework_op_stats/stats_table/stats_table.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/framework_op_stats/stats_table/stats_table.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/framework_op_stats/stats_table/stats_table.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/framework_op_stats/stats_table/stats_table_data_provider.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/framework_op_stats/stats_table/stats_table_module.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/graph_viewer/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/graph_viewer/graph_viewer.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/graph_viewer/graph_viewer.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/graph_viewer/graph_viewer.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/graph_viewer/graph_viewer_module.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/graph_viewer/hlo_text_view/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/graph_viewer/hlo_text_view/hlo_text_view.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/graph_viewer/hlo_text_view/hlo_text_view.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/graph_viewer/hlo_text_view/hlo_text_view.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/graph_viewer/hlo_text_view/hlo_text_view_module.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/graph_viewer/testdata/legacy_graph.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/hlo_stats/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/hlo_stats/hlo_stats.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/hlo_stats/hlo_stats.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/hlo_stats/hlo_stats.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/hlo_stats/hlo_stats_module.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/inference_profile/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/inference_profile/inference_profile.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/inference_profile/inference_profile.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/inference_profile/inference_profile.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/inference_profile/inference_profile_module.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/input_pipeline/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/input_pipeline/analysis_summary/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/input_pipeline/analysis_summary/analysis_summary.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/input_pipeline/analysis_summary/analysis_summary.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/input_pipeline/analysis_summary/analysis_summary.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/input_pipeline/analysis_summary/analysis_summary_module.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/input_pipeline/device_side_analysis_detail/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/input_pipeline/device_side_analysis_detail/device_side_analysis_detail.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/input_pipeline/device_side_analysis_detail/device_side_analysis_detail.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/input_pipeline/device_side_analysis_detail/device_side_analysis_detail.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/input_pipeline/device_side_analysis_detail/device_side_analysis_detail_data_provider.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/input_pipeline/device_side_analysis_detail/device_side_analysis_detail_module.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/input_pipeline/host_op/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/input_pipeline/host_op/host_op.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/input_pipeline/host_op/host_op.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/input_pipeline/host_op/host_op.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/input_pipeline/host_op/host_op_module.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/input_pipeline/host_side_analysis_detail/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/input_pipeline/host_side_analysis_detail/host_side_analysis_detail.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/input_pipeline/host_side_analysis_detail/host_side_analysis_detail.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/input_pipeline/host_side_analysis_detail/host_side_analysis_detail.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/input_pipeline/host_side_analysis_detail/host_side_analysis_detail_module.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/input_pipeline/host_side_analysis_detail/host_side_analysis_detail_table_data_provider.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/input_pipeline/input_pipeline.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/input_pipeline/input_pipeline.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/input_pipeline/input_pipeline.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/input_pipeline/input_pipeline_common.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/input_pipeline/input_pipeline_module.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/input_pipeline/max_infeed_detail/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/input_pipeline/max_infeed_detail/max_infeed_detail.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/input_pipeline/max_infeed_detail/max_infeed_detail.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/input_pipeline/max_infeed_detail/max_infeed_detail.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/input_pipeline/max_infeed_detail/max_infeed_detail_module.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/kernel_analysis/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/kernel_analysis/data/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/kernel_analysis/data/data_component_keywords.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/kernel_analysis/data/data_sampling_info.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/kernel_analysis/data/data_tpu_generations.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/kernel_analysis/execution_preview/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/kernel_analysis/execution_preview/execution_preview.component.css",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/kernel_analysis/execution_preview/execution_preview.component.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/kernel_analysis/execution_preview/execution_preview.component.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/kernel_analysis/kernel_analysis.component.css",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/kernel_analysis/kernel_analysis.component.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/kernel_analysis/kernel_analysis.component.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/kernel_analysis/profiler_options/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/kernel_analysis/profiler_options/profiler_options.component.css",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/kernel_analysis/profiler_options/profiler_options.component.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/kernel_analysis/profiler_options/profiler_options.component.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/kernel_analysis/shared/components/counter_selection/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/kernel_analysis/shared/components/counter_selection/counter_selection.component.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/kernel_analysis/shared/components/counter_selection/counter_selection.component.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/kernel_analysis/shared/components/counter_selection/counter_selection.component.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/kernel_analysis/shared/components/counter_selection/types.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/kernel_stats/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/kernel_stats/kernel_stats.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/kernel_stats/kernel_stats.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/kernel_stats/kernel_stats.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/kernel_stats/kernel_stats_adapter.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/kernel_stats/kernel_stats_module.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/kernel_stats/kernel_stats_table/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/kernel_stats/kernel_stats_table/kernel_stats_table.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/kernel_stats/kernel_stats_table/kernel_stats_table.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/kernel_stats/kernel_stats_table/kernel_stats_table.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/kernel_stats/kernel_stats_table/kernel_stats_table_module.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/labs/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/labs/curated_tool.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/labs/curated_tools.service.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/labs/labs.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/labs/labs.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/labs/labs.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/labs/labs_module.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/main_page/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/main_page/main_page.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/main_page/main_page.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/main_page/main_page.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/main_page/main_page_module.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/megascale_perfetto/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/megascale_perfetto/megascale_perfetto.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/megascale_perfetto/megascale_perfetto.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/megascale_perfetto/megascale_perfetto.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/megascale_perfetto/megascale_perfetto_module.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/megascale_stats/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/megascale_stats/megascale_stats.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/megascale_stats/megascale_stats.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/megascale_stats/megascale_stats.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/megascale_stats/megascale_stats_module.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/memory_profile/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/memory_profile/memory_breakdown_table/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/memory_profile/memory_breakdown_table/memory_breakdown_table.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/memory_profile/memory_breakdown_table/memory_breakdown_table.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/memory_profile/memory_breakdown_table/memory_breakdown_table.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/memory_profile/memory_breakdown_table/memory_breakdown_table_module.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/memory_profile/memory_profile.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/memory_profile/memory_profile.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/memory_profile/memory_profile.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/memory_profile/memory_profile_base.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/memory_profile/memory_profile_common.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/memory_profile/memory_profile_module.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/memory_profile/memory_profile_summary/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/memory_profile/memory_profile_summary/memory_profile_summary.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/memory_profile/memory_profile_summary/memory_profile_summary.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/memory_profile/memory_profile_summary/memory_profile_summary.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/memory_profile/memory_profile_summary/memory_profile_summary_module.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/memory_profile/memory_timeline_graph/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/memory_profile/memory_timeline_graph/memory_timeline_graph.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/memory_profile/memory_timeline_graph/memory_timeline_graph.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/memory_profile/memory_timeline_graph/memory_timeline_graph.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/memory_profile/memory_timeline_graph/memory_timeline_graph_module.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/memory_viewer/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/memory_viewer/buffer_details/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/memory_viewer/buffer_details/buffer_details.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/memory_viewer/buffer_details/buffer_details.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/memory_viewer/buffer_details/buffer_details.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/memory_viewer/buffer_details/buffer_details_module.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/memory_viewer/max_heap_chart/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/memory_viewer/max_heap_chart/max_heap_chart.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/memory_viewer/max_heap_chart/max_heap_chart.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/memory_viewer/max_heap_chart/max_heap_chart.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/memory_viewer/max_heap_chart/max_heap_chart_module.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/memory_viewer/max_heap_chart_downloader/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/memory_viewer/max_heap_chart_downloader/max_heap_chart_downloader.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/memory_viewer/max_heap_chart_downloader/max_heap_chart_downloader.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/memory_viewer/max_heap_chart_downloader/max_heap_chart_downloader.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/memory_viewer/max_heap_chart_downloader/max_heap_chart_downloader_module.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/memory_viewer/memory_usage/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/memory_viewer/memory_usage/memory_usage.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/memory_viewer/memory_viewer.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/memory_viewer/memory_viewer.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/memory_viewer/memory_viewer.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/memory_viewer/memory_viewer_control/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/memory_viewer/memory_viewer_control/memory_viewer_control.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/memory_viewer/memory_viewer_control/memory_viewer_control.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/memory_viewer/memory_viewer_control/memory_viewer_control.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/memory_viewer/memory_viewer_control/memory_viewer_control_module.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/memory_viewer/memory_viewer_main/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/memory_viewer/memory_viewer_main/memory_viewer_main.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/memory_viewer/memory_viewer_main/memory_viewer_main.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/memory_viewer/memory_viewer_main/memory_viewer_main.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/memory_viewer/memory_viewer_main/memory_viewer_main_module.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/memory_viewer/memory_viewer_module.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/memory_viewer/program_order_chart/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/memory_viewer/program_order_chart/program_order_chart.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/memory_viewer/program_order_chart/program_order_chart.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/memory_viewer/program_order_chart/program_order_chart.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/memory_viewer/program_order_chart/program_order_chart_module.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/op_profile/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/op_profile/op_details/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/op_profile/op_details/op_details.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/op_profile/op_details/op_details.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/op_profile/op_details/op_details.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/op_profile/op_details/op_details_module.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/op_profile/op_profile.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/op_profile/op_profile.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/op_profile/op_profile_base.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/op_profile/op_profile_base.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/op_profile/op_profile_base_module.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/op_profile/op_profile_common.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/op_profile/op_profile_data.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/op_profile/op_profile_module.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/op_profile/op_table/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/op_profile/op_table/op_table.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/op_profile/op_table/op_table.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/op_profile/op_table/op_table.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/op_profile/op_table/op_table_module.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/op_profile/op_table_entry/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/op_profile/op_table_entry/op_table_entry.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/op_profile/op_table_entry/op_table_entry.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/op_profile/op_table_entry/op_table_entry.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/op_profile/op_table_entry/op_table_entry_module.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/overview_page/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/overview_page/inference_latency_chart/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/overview_page/inference_latency_chart/inference_latency_chart.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/overview_page/inference_latency_chart/inference_latency_chart.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/overview_page/inference_latency_chart/inference_latency_chart.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/overview_page/inference_latency_chart/inference_latency_chart_module.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/overview_page/normalized_accelerator_performance_view/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/overview_page/normalized_accelerator_performance_view/normalized_accelerator_performance_view.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/overview_page/normalized_accelerator_performance_view/normalized_accelerator_performance_view.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/overview_page/normalized_accelerator_performance_view/normalized_accelerator_performance_view.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/overview_page/normalized_accelerator_performance_view/normalized_accelerator_performance_view_module.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/overview_page/overview_page.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/overview_page/overview_page.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/overview_page/overview_page_module.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/overview_page/performance_summary/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/overview_page/performance_summary/performance_summary.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/overview_page/performance_summary/performance_summary.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/overview_page/performance_summary/performance_summary.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/overview_page/performance_summary/performance_summary_module.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/overview_page/run_environment_view/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/overview_page/run_environment_view/run_environment_view.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/overview_page/run_environment_view/run_environment_view.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/overview_page/run_environment_view/run_environment_view.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/overview_page/run_environment_view/run_environment_view_module.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/overview_page/step_time_graph/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/overview_page/step_time_graph/step_time_graph.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/overview_page/step_time_graph/step_time_graph.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/overview_page/step_time_graph/step_time_graph.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/overview_page/step_time_graph/step_time_graph_module.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/perf_counters/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/perf_counters/perf_counters.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/perf_counters/perf_counters.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/perf_counters/perf_counters.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/perf_counters/perf_counters_module.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/pod_viewer/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/pod_viewer/pod_viewer.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/pod_viewer/pod_viewer.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/pod_viewer/pod_viewer.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/pod_viewer/pod_viewer_common.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/pod_viewer/pod_viewer_details/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/pod_viewer/pod_viewer_details/pod_viewer_details.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/pod_viewer/pod_viewer_details/pod_viewer_details.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/pod_viewer/pod_viewer_details/pod_viewer_details.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/pod_viewer/pod_viewer_details/pod_viewer_details_module.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/pod_viewer/pod_viewer_module.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/pod_viewer/stack_bar_chart/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/pod_viewer/stack_bar_chart/stack_bar_chart.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/pod_viewer/stack_bar_chart/stack_bar_chart.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/pod_viewer/stack_bar_chart/stack_bar_chart.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/pod_viewer/stack_bar_chart/stack_bar_chart_module.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/pod_viewer/topology_graph/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/pod_viewer/topology_graph/topology_graph.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/pod_viewer/topology_graph/topology_graph.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/pod_viewer/topology_graph/topology_graph.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/pod_viewer/topology_graph/topology_graph_module.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/roofline_model/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/roofline_model/operation_level_analysis/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/roofline_model/operation_level_analysis/operation_level_analysis.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/roofline_model/operation_level_analysis/operation_level_analysis.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/roofline_model/operation_level_analysis/operation_level_analysis.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/roofline_model/operation_level_analysis/operation_level_analysis_module.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/roofline_model/program_level_analysis/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/roofline_model/program_level_analysis/program_level_analysis.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/roofline_model/program_level_analysis/program_level_analysis.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/roofline_model/program_level_analysis/program_level_analysis.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/roofline_model/program_level_analysis/program_level_analysis_module.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/roofline_model/roofline_model.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/roofline_model/roofline_model.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/roofline_model/roofline_model.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/roofline_model/roofline_model_module.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/sidenav/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/sidenav/sidenav.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/sidenav/sidenav.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/sidenav/sidenav.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/sidenav/sidenav_module.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/smart_suggestion/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/smart_suggestion/smart_suggestion_view.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/smart_suggestion/smart_suggestion_view.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/smart_suggestion/smart_suggestion_view.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/source_mapper/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/source_mapper/source_mapper.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/source_mapper/source_mapper.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/source_mapper/source_mapper.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/source_mapper/source_mapper_module.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/stack_trace_page/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/stack_trace_page/stack_trace_page.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/stack_trace_page/stack_trace_page.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/stack_trace_page/stack_trace_page.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/stack_trace_page/stack_trace_page_module.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/stack_trace_snippet/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/stack_trace_snippet/message.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/stack_trace_snippet/message.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/stack_trace_snippet/message.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/stack_trace_snippet/stack_frame_snippet.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/stack_trace_snippet/stack_frame_snippet.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/stack_trace_snippet/stack_frame_snippet.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/stack_trace_snippet/stack_frame_snippet_module.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/stack_trace_snippet/stack_trace_snippet.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/stack_trace_snippet/stack_trace_snippet.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/stack_trace_snippet/stack_trace_snippet.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/stack_trace_snippet/stack_trace_snippet_module.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer/constants.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer/filter_chips.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer/filter_input.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer/interfaces.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer/trace_viewer.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer/trace_viewer.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer/trace_viewer.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer/trace_viewer_module.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer/trace_viewer_typings.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer/utils.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_container/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_container/trace_viewer_container.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_container/trace_viewer_container.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_container/trace_viewer_container.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/animation.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/animation_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/application.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/application.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/application_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/build_defs.bzl",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/canvas_state.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/canvas_state.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/canvas_state_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/color/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/color/color_generator.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/color/color_generator.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/color/color_generator_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/color/colors.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/color/colors.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/color/palettes.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/customization_panel.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/event_data.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/event_manager.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/event_manager.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/event_manager_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/feature_flags.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/fonts/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/fonts/font_rules.bzl",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/fonts/fonts.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/fonts/fonts.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/helper/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/helper/clipboard.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/helper/clipboard.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/helper/time_formatter.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/helper/time_formatter.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/helper/time_formatter_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/imgui_webgpu_backend.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/imgui_webgpu_backend.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/index.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/input_handler.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/input_handler.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/input_handler_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/main.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/main.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/scheduler.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/scheduler.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/scheduler_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/timeline/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/timeline/constants.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/timeline/data_provider.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/timeline/data_provider.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/timeline/data_provider_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/timeline/draw_helpers.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/timeline/draw_helpers.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/timeline/time_range.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/timeline/time_range.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/timeline/time_range_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/timeline/timeline.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/timeline/timeline.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/timeline/timeline_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/trace_helper/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/trace_helper/event_args_keys.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/trace_helper/perfetto_constants.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/trace_helper/perfetto_proto_parser.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/trace_helper/perfetto_proto_parser.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/trace_helper/perfetto_proto_parser_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/trace_helper/trace_event.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/trace_helper/trace_event_packer.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/trace_helper/trace_event_packer.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/trace_helper/trace_event_packer_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/trace_helper/trace_event_parser.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/trace_helper/trace_event_parser.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/trace_helper/trace_event_parser_core.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/trace_helper/trace_event_parser_core.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/trace_helper/trace_event_parser_core_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/trace_helper/trace_event_tree.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/trace_helper/trace_event_tree.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/trace_helper/trace_event_tree_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/trace_helper/trace_lite.proto",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/trace_helper/trace_pb_event_parser.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/trace_helper/trace_pb_event_parser.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/trace_helper/trace_pb_event_parser_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/webgpu_render_platform.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/trace_viewer_v2/webgpu_render_platform.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/utilization_viewer/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/utilization_viewer/utilization_viewer.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/utilization_viewer/utilization_viewer.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/utilization_viewer/utilization_viewer.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/components/utilization_viewer/utilization_viewer_module.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/pipes/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/pipes/pipes_module.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/pipes/safe_pipe.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/services/communication_service/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/services/communication_service/communication_service.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/services/data_dispatcher/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/services/data_dispatcher/data_dispatcher.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/services/data_dispatcher/data_dispatcher_base.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/services/data_dispatcher/data_request_queue.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/services/data_service_v2/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/services/data_service_v2/data_service_v2.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/services/data_service_v2/data_service_v2_interface.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/services/data_service_v2/diff_service.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/services/source_code_service/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/services/source_code_service/source_code_service.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/services/source_code_service/source_code_service_interface.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/services/source_code_service/syntax_highlight_service.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/store/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/store/actions.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/store/common_data_store/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/store/common_data_store/actions.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/store/common_data_store/reducers.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/store/common_data_store/selectors.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/store/common_data_store/state.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/store/framework_op_stats/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/store/framework_op_stats/actions.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/store/framework_op_stats/reducers.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/store/framework_op_stats/selectors.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/store/framework_op_stats/state.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/store/reducers.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/store/selectors.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/store/state.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/store/store_module.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/store/types.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/styles/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/app/styles/common.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/index.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/main.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/server.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/frontend/styles.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/install_and_run.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/labs/curated/memory_analysis/backend/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/labs/curated/memory_analysis/backend/hlo_to_memory_analysis.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/labs/curated/memory_analysis/backend/hlo_to_memory_analysis.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/labs/curated/memory_analysis/backend/hlo_to_memory_analysis_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/labs/curated/memory_analysis/frontend/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/labs/curated/memory_analysis/frontend/flame_graph/flame_graph.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/labs/curated/memory_analysis/frontend/flame_graph/flame_graph.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/labs/curated/memory_analysis/frontend/flame_graph/flame_graph.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/labs/curated/memory_analysis/frontend/memory_analysis.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/labs/curated/memory_analysis/frontend/memory_analysis.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/labs/curated/memory_analysis/frontend/memory_analysis.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/labs/curated/memory_analysis/frontend/memory_analysis_module.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/labs/curated/memory_analysis/frontend/treemap/treemap.ng.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/labs/curated/memory_analysis/frontend/treemap/treemap.scss",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/labs/curated/memory_analysis/frontend/treemap/treemap.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/labs/curated/memory_analysis/frontend/utils/tree_builder.ts",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/package.json",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/patch_keys.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/build_pip_package.sh",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/setup.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/third_party/tracing/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/third_party/tracing/trace_viewer_full.html.gz",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/third_party/webcomponentsjs/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/third_party/webcomponentsjs/webcomponents.js",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/trace_viewer/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/trace_viewer/tf_trace_viewer/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/trace_viewer/tf_trace_viewer/data/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/trace_viewer/tf_trace_viewer/data/trace.json",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/trace_viewer/tf_trace_viewer/demo.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/trace_viewer/tf_trace_viewer/tf-trace-viewer-helper.js",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/trace_viewer/tf_trace_viewer/tf-trace-viewer.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/trace_viewer/trace_viewer.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/trace_viewer/webcomponentsjs_polyfill/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/trace_viewer/webcomponentsjs_polyfill/webcomponentsjs_polyfill.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/__init__.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/api/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/api/continuous_profiling_snapshot.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/api/continuous_profiling_snapshot_test.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/build_utils/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/build_utils/profiler_test.bzl",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/build_utils/pytype.default.bzl",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/build_utils/strict.default.bzl",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/cli/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/cli/METADATA",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/cli/README.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/cli/__init__.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/cli/internal/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/cli/internal/__init__.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/cli/internal/decorators.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/cli/internal/oss/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/cli/internal/oss/__init__.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/cli/internal/oss/hlo_tools.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/cli/internal/oss/kernel_stats_tools.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/cli/internal/oss/smart_suggestion_tools.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/cli/internal/oss/xplane_tools.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/cli/internal/oss/xprof_client.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/cli/internal/xprof_data.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/cli/tests/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/cli/tests/detect_layout_mismatch_copies_tool_test.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/cli/tests/detect_unfused_updates_tool_test.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/cli/tests/detect_unnecessary_convert_reduce_tool_test.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/cli/tests/get_graph_viewer_tool_test.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/cli/tests/get_kernel_stats_tool_test.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/cli/tests/get_kpi_metrics_tool_test.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/cli/tests/get_memory_profile_tool_test.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/cli/tests/get_overview_tool_test.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/cli/tests/get_peak_allocations_tool_test.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/cli/tests/get_smart_suggestions_tool_test.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/cli/tests/get_top_hlo_ops_tool_test.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/cli/tests/get_utilization_viewer_tool_test.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/cli/tests/oss_kernel_stats_tools_test.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/cli/tests/oss_xplane_tools_test.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/cli/tests/oss_xprof_client_test.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/cli/tests/xprof_cli_test.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/cli/tests/xprof_data_test.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/cli/tools/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/cli/tools/__init__.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/cli/tools/detect_layout_mismatch_copies_tool.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/cli/tools/detect_unfused_reshapes_tool.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/cli/tools/detect_unfused_updates_tool.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/cli/tools/detect_unnecessary_convert_reduce_tool.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/cli/tools/get_graph_viewer_tool.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/cli/tools/get_kernel_stats_tool.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/cli/tools/get_kpi_metrics_tool.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/cli/tools/get_llo_analysis_tool.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/cli/tools/get_llo_debug_string_tool.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/cli/tools/get_memory_profile_tool.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/cli/tools/get_overview_tool.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/cli/tools/get_peak_allocations_tool.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/cli/tools/get_smart_suggestions_tool.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/cli/tools/get_top_hlo_ops_tool.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/cli/tools/get_utilization_viewer_tool.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/cli/tools/oss/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/cli/tools/oss/upload_trace_tool.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/cli/xprof_cli.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/convert/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/convert/__init__.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/convert/counter_extractor.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/convert/counter_extractor_test.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/convert/csv_writer.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/convert/csv_writer_test.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/convert/raw_to_tool_data.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/convert/raw_to_tool_data_test.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/convert/scratch/test_extractor.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/convert/scratch/test_resources.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/convert/trace_events_json.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/convert/trace_events_json_test.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/demo/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/demo/__init__.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/demo/data/profile_demo.input_pipeline.json",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/demo/data/profile_demo.input_pipeline.pb",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/demo/data/profile_demo.memory_viewer.json",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/demo/data/profile_demo.op_profile.json",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/demo/data/profile_demo.overview_page.json",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/demo/data/profile_demo.overview_page.pb",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/demo/data/profile_demo.pod_viewer.json",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/demo/data/profile_demo.tensorflow_stats.pb",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/demo/profile_demo.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/demo/profile_demo_data.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/integration_tests/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/integration_tests/__init__.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/integration_tests/tf_mnist.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/integration_tests/tf_profiler_session.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/integration_tests/tpu/jax/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/integration_tests/tpu/jax/__init__.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/integration_tests/tpu/jax/hlo_metadata_test.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/integration_tests/tpu/jax/jax_profiler_test.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/integration_tests/tpu/jax/perf_counters_test.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/integration_tests/tpu/tensorflow/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/integration_tests/tpu/tensorflow/__init__.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/integration_tests/tpu/tensorflow/tpu_tf2_keras_test.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/profile_data.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/profile_data_test.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/profile_io.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/profile_io_test.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/profile_plugin.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/profile_plugin_loader.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/profile_plugin_test.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/profile_plugin_test_utils.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/protobuf/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/protobuf/__init__.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/protobuf/dcn_collective_info.proto",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/protobuf/dcn_slack_analysis.proto",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/protobuf/diagnostics.proto",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/protobuf/event_time_fraction_analyzer.proto",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/protobuf/flat_op_metrics.proto",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/protobuf/hardware_types.proto",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/protobuf/hlo_stats.proto",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/protobuf/inference_stats.proto",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/protobuf/input_pipeline.proto",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/protobuf/kernel_stats.proto",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/protobuf/memory_profile.proto",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/protobuf/memory_viewer_preprocess.proto",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/protobuf/op_metrics.proto",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/protobuf/op_profile.proto",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/protobuf/op_stats.proto",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/protobuf/overview_page.proto",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/protobuf/pod_stats.proto",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/protobuf/pod_viewer.proto",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/protobuf/power_metrics.proto",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/protobuf/prefix_trie_node.proto",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/protobuf/roofline_model.proto",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/protobuf/smart_suggestion.proto",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/protobuf/source_info.proto",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/protobuf/source_stats.proto",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/protobuf/steps_db.proto",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/protobuf/task.proto",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/protobuf/tensorflow_datatypes.proto",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/protobuf/tf_data_stats.proto",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/protobuf/tf_function.proto",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/protobuf/tf_stats.proto",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/protobuf/tfstreamz.proto",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/protobuf/topology.proto",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/protobuf/tpu_input_pipeline.proto",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/protobuf/trace_data_response.proto",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/protobuf/trace_events.proto",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/protobuf/trace_events_old.proto",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/protobuf/trace_events_raw.proto",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/protobuf/trace_filter_config.proto",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/protobuf/worker_service.proto",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/server.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/server_test.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/standalone/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/standalone/__init__.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/standalone/base_plugin.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/standalone/context.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/standalone/data_provider.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/standalone/plugin_asset_util.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/standalone/plugin_asset_util_test.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/standalone/plugin_event_multiplexer.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/standalone/tensorboard_shim.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/static/index.html",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/static/index.js",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/static/materialicons.woff2",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/tools_cache_test.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/version.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/worker/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/worker/grpc_server.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/worker/grpc_server.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/worker/grpc_utils.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/worker/grpc_utils.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/worker/stub_factory.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/worker/stub_factory.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/worker/stub_factory_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/worker/worker_service.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/plugin/xprof/worker/worker_service.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/requirements.in",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/requirements_lock_3_10.txt",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/requirements_lock_3_11.txt",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/requirements_lock_3_12.txt",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/requirements_lock_3_13.txt",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/rollup.config.js",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/tbp_package/setup.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/tbp_package/tensorboard_plugin_profile/__init__.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/third_party/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/third_party/curl.BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/third_party/emsdk.patch",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/third_party/rules_closure.patch",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/third_party/tensorboard.patch",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/third_party/xla.patch",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/tsconfig.json",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/__init__.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/base_hlo_processor.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/base_hlo_processor.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/base_hlo_processor_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/base_op_stats_processor.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/base_op_stats_processor.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/base_op_stats_processor_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/compute_inference_latency.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/compute_inference_latency.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/compute_inference_latency_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/data_table_utils.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/data_table_utils.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/data_table_utils_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/dcn_analysis.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/dcn_analysis.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/dcn_analysis_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/dcn_slack_analysis_combiner.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/dcn_slack_analysis_combiner.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/dcn_utils.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/dcn_utils.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/dcn_utils_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/duty_cycle_combiner.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/duty_cycle_combiner_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/duty_cycle_tracker.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/duty_cycle_tracker.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/duty_cycle_tracker_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/event_time_fraction_analyzer_processor.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/event_time_fraction_analyzer_processor.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/executor.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/file_utils.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/file_utils.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/file_utils_gcs.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/file_utils_gcs.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/file_utils_internal.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/file_utils_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/flat_op_metrics_db_combiner.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/flat_op_metrics_db_combiner.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/flat_op_metrics_db_combiner_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/flat_op_stats_to_op_profile.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/flat_op_stats_to_op_profile.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/flat_op_stats_to_op_profile_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/framework_op_stats_processor.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/framework_op_stats_processor.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/graph_viewer_processor.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/graph_viewer_processor.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/graphviz_helper.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/hlo_proto_to_graph_view.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/hlo_proto_to_graph_view.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/hlo_proto_to_graph_view_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/hlo_proto_to_memory_visualization_utils.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/hlo_proto_to_memory_visualization_utils.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/hlo_proto_to_memory_visualization_utils_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/hlo_stats_processor.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/hlo_stats_processor.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/hlo_to_tools_data.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/hlo_to_tools_data.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/inference_stats.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/inference_stats.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/inference_stats_combiner.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/inference_stats_combiner.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/inference_stats_grouping.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/inference_stats_grouping.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/inference_stats_grouping_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/inference_stats_processor.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/inference_stats_processor.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/inference_stats_sampler.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/inference_stats_sampler.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/inference_stats_sampler_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/input_pipeline_processor.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/input_pipeline_processor.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/kernel_stats_processor.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/kernel_stats_processor.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/megascale_perfetto/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/megascale_perfetto/perfetto_writer.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/megascale_perfetto/perfetto_writer.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/megascale_perfetto/perfetto_writer_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/megascale_perfetto/trace_processor.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/megascale_perfetto/trace_processor.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/megascale_perfetto/trace_processor_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/megascale_perfetto/xprof_trace.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/megascale_perfetto/xspace_loader.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/megascale_perfetto/xspace_loader.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/megascale_perfetto/xspace_loader_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/megascale_stats_processor.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/megascale_stats_processor.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/memory_profile_processor.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/memory_profile_processor.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/memory_viewer_processor.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/memory_viewer_processor.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/model_tracker.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/model_tracker.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/multi_xplanes_to_op_stats.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/multi_xplanes_to_op_stats.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/multi_xspace_to_inference_stats.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/multi_xspace_to_inference_stats.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/multi_xspace_to_inference_stats_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/op_metrics_db_combiner.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/op_metrics_db_combiner.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/op_metrics_to_record.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/op_metrics_to_record.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/op_profile_builder.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/op_profile_builder.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/op_profile_processor.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/op_profile_processor.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/op_stack.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/op_stats_combiner.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/op_stats_combiner.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/op_stats_combiner_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/op_stats_processor.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/op_stats_processor.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/op_stats_to_hlo_stats.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/op_stats_to_hlo_stats.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/op_stats_to_input_pipeline_analysis.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/op_stats_to_input_pipeline_analysis.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/op_stats_to_input_pipeline_analysis_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/op_stats_to_op_profile.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/op_stats_to_op_profile.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/op_stats_to_overview_page.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/op_stats_to_overview_page.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/op_stats_to_overview_page_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/op_stats_to_pod_stats.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/op_stats_to_pod_stats.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/op_stats_to_pod_stats_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/op_stats_to_pod_viewer.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/op_stats_to_pod_viewer.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/op_stats_to_pod_viewer_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/op_stats_to_roofline_model.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/op_stats_to_roofline_model.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/op_stats_to_tf_stats.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/op_stats_to_tf_stats.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/op_stats_to_tf_stats_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/oss/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/oss/tpu_input_pipeline_analysis_constants.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/oss/url_utils.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/overview_page_processor.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/overview_page_processor.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/pod_viewer_processor.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/pod_viewer_processor.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/preprocess_single_host_xplane.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/preprocess_single_host_xplane.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/preprocess_single_host_xplane_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/process_megascale_dcn.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/process_megascale_dcn.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/profile_processor.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/profile_processor_factory.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/profile_processor_factory.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/profile_processor_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/profile_time_breakdown.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/profile_time_breakdown.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/repository.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/repository.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/repository_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/roofline_model_processor.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/roofline_model_processor.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/smart_suggestion/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/smart_suggestion/all_rules.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/smart_suggestion/barrier_cores_rule.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/smart_suggestion/barrier_cores_rule_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/smart_suggestion/collective_bound_rule.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/smart_suggestion/collective_bound_rule_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/smart_suggestion/compute_bound_rule.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/smart_suggestion/compute_bound_rule_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/smart_suggestion/constants.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/smart_suggestion/data_shuffle_bound_rule.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/smart_suggestion/data_shuffle_bound_rule_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/smart_suggestion/data_transfer_bound_rule.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/smart_suggestion/data_transfer_bound_rule_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/smart_suggestion/debug_print_rule.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/smart_suggestion/host_processing_bound_rule.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/smart_suggestion/host_processing_bound_rule_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/smart_suggestion/input_bound_rule.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/smart_suggestion/memory_bound_rule.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/smart_suggestion/memory_bound_rule_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/smart_suggestion/mock_tool_data_provider.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/smart_suggestion/signal_provider.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/smart_suggestion/smart_suggestion_engine.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/smart_suggestion/smart_suggestion_engine.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/smart_suggestion/smart_suggestion_rule.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/smart_suggestion/smart_suggestion_rule_factory.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/smart_suggestion/sparse_core_bound_rule.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/smart_suggestion/sparse_core_bound_rule_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/smart_suggestion/sparse_core_offload_rule.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/smart_suggestion/sparse_core_offload_rule_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/smart_suggestion/tensor_core_idle_bound_rule.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/smart_suggestion/tensor_core_idle_bound_rule_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/smart_suggestion/tool_data_provider.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/smart_suggestion/tool_data_provider_impl.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/smart_suggestion_processor.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/smart_suggestion_processor.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/source_info_utils.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/source_info_utils_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/step_events_to_steps_db.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/step_events_to_steps_db.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/storage_client_interface.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/streaming_trace_viewer_processor.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/streaming_trace_viewer_processor.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/streaming_trace_viewer_processor_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/test_xplanes/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/test_xplanes/gpu_training_2.xplane.pb",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/test_xplanes/tpu_inference_2.xplane.pb",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/tool_options.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/tpu_counter_util.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/tpu_counter_util.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/tpu_counter_util_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/tpu_generic_utilization_utils.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/tpu_generic_utilization_utils.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/tpu_input_pipeline_analysis_constants.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/trace_view_options.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/trace_view_options.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/trace_view_options_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/trace_viewer/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/trace_viewer/delta_series/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/trace_viewer/delta_series/trace_data_to_compressed_delta_series_proto.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/trace_viewer/delta_series/trace_data_to_compressed_delta_series_proto.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/trace_viewer/delta_series/trace_data_to_compressed_delta_series_proto_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/trace_viewer/delta_series/zstd_compression.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/trace_viewer/delta_series/zstd_compression.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/trace_viewer/delta_series/zstd_compression_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/trace_viewer/lite_trace_events.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/trace_viewer/lite_trace_events.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/trace_viewer/lite_trace_events_visibility.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/trace_viewer/prefix_trie.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/trace_viewer/prefix_trie.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/trace_viewer/prefix_trie_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/trace_viewer/trace_event_arguments_builder.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/trace_viewer/trace_events.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/trace_viewer/trace_events.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/trace_viewer/trace_events_filter_interface.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/trace_viewer/trace_events_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/trace_viewer/trace_events_to_json.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/trace_viewer/trace_events_to_json.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/trace_viewer/trace_events_to_json_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/trace_viewer/trace_events_util.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/trace_viewer/trace_events_util.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/trace_viewer/trace_events_util_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/trace_viewer/trace_options.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/trace_viewer/trace_options.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/trace_viewer/trace_options_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/trace_viewer/trace_utils.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/trace_viewer/trace_utils_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/trace_viewer/trace_viewer_color.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/trace_viewer/trace_viewer_color.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/trace_viewer/trace_viewer_visibility.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/trace_viewer/trace_viewer_visibility.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/trace_viewer/trace_viewer_visibility_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/trace_viewer_processor.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/trace_viewer_processor.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/unified_hlo_stats_processor.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/unified_hlo_stats_processor.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/unified_hlo_stats_processor_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/unified_memory_profile_processor.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/unified_memory_profile_processor.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/unified_memory_profile_processor_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/unified_memory_viewer_processor.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/unified_memory_viewer_processor.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/unified_memory_viewer_processor_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/unified_op_profile_processor.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/unified_op_profile_processor.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/unified_op_profile_processor_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/unified_overview_page_processor.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/unified_overview_page_processor.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/unified_overview_page_processor_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/unified_profile_processor.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/unified_profile_processor_factory.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/unified_profile_processor_factory.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/unified_profile_processor_factory_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/unified_session_snapshot.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/unified_tools_registration.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/unified_tools_registration.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/unified_utilization_viewer_processor.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/unified_utilization_viewer_processor.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/unified_utilization_viewer_processor_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/url_utils.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/xplane_to_dcn_collective_stats.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/xplane_to_dcn_collective_stats.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/xplane_to_dcn_collective_stats_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/xplane_to_flat_op_metrics_db.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/xplane_to_flat_op_metrics_db.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/xplane_to_flat_op_metrics_db_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/xplane_to_hlo.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/xplane_to_hlo.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/xplane_to_hlo_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/xplane_to_kernel_stats_db.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/xplane_to_kernel_stats_db.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/xplane_to_kernel_stats_db_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/xplane_to_memory_profile.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/xplane_to_memory_profile.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/xplane_to_memory_profile_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/xplane_to_op_metrics_db.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/xplane_to_op_metrics_db.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/xplane_to_op_metrics_db_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/xplane_to_op_stats.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/xplane_to_op_stats.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/xplane_to_op_stats_benchmark_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/xplane_to_op_stats_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/xplane_to_perf_counters.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/xplane_to_perf_counters.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/xplane_to_perf_counters_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/xplane_to_step_events.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/xplane_to_step_events.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/xplane_to_step_events_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/xplane_to_tf_data_stats.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/xplane_to_tf_data_stats.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/xplane_to_tf_data_stats_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/xplane_to_tf_functions.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/xplane_to_tf_functions.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/xplane_to_tf_functions_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/xplane_to_tool_names.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/xplane_to_tool_names.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/xplane_to_tool_names_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/xplane_to_tools_data.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/xplane_to_tools_data.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/xplane_to_tools_data_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/xplane_to_tools_data_with_profile_processor.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/xplane_to_tools_data_with_profile_processor.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/xplane_to_trace_container.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/xplane_to_trace_container.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/xplane_to_trace_container_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/xplane_to_utilization_viewer.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/xplane_to_utilization_viewer.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/xplane_to_utilization_viewer_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/xprof_thread_pool_executor.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/xprof_thread_pool_executor.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/xspace_to_dcn_slack_analysis.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/xspace_to_dcn_slack_analysis.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/xspace_to_event_time_fraction_analyzer.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/xspace_to_event_time_fraction_analyzer.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/convert/xspace_to_event_time_fraction_analyzer_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/pywrap/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/pywrap/__init__.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/pywrap/_pywrap_profiler_plugin.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/pywrap/profile_data_c_api.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/pywrap/profile_data_c_api.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/pywrap/profiler_plugin_c_api.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/pywrap/profiler_plugin_c_api.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/pywrap/profiler_plugin_impl.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/pywrap/profiler_plugin_impl.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/pywrap/profiler_wrapper_test.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/BUILD",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/backend_configs.proto",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/cost_utils.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/custom_call_utils.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/custom_call_utils.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/derived_timeline.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/derived_timeline.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/derived_timeline_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/device_caps_utils.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/device_caps_utils.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/diagnostics.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/diagnostics.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/event_span.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/event_span.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/event_span_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/flat_op_metrics_db_utils.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/flat_op_metrics_db_utils.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/flat_op_metrics_db_utils_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/function_registry.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/function_registry_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/gpu_event_stats.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/gpu_event_stats.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/hardware_type_utils.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/hardware_type_utils.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/hardware_type_utils_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/hlo_cost_analysis_wrapper.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/hlo_cost_analysis_wrapper.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/hlo_cost_analysis_wrapper_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/hlo_module_map.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/hlo_module_map.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/hlo_module_utils.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/hlo_module_utils.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/hlo_module_utils_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/hlo_proto_map.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/hlo_proto_map.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/hlo_proto_map_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/hlo_proto_to_module.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/hlo_proto_to_module.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/hlo_proto_to_module_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/host_offload_utils.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/host_offload_utils.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/html_utils.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/kernel_stats_utils.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/kernel_stats_utils.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/kernel_stats_utils_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/op_metrics_db_utils.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/op_metrics_db_utils.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/op_metrics_db_utils_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/op_utils.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/op_utils.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/op_utils_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/performance_info_wrapper.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/performance_info_wrapper.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/performance_info_wrapper_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/roofline_model_utils.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/roofline_model_utils.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/roofline_model_utils_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/step_intersection.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/step_intersection.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/step_intersection_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/tensorflow_utils.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/tensorflow_utils.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/tfstreamz_utils.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/tfstreamz_utils.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/tpu_counter_ids_v6e.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/tpu_counter_ids_v7x.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/tpu_step_breakdown_utils.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/tpu_step_details_utils.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/xla_op_utils.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/xla_op_utils.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/xla_op_utils_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/xplane_hlo_fixer.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/xplane_hlo_fixer.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/xplane_hlo_fixer_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/xprof_gpu_cost_analysis.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/xprof_gpu_cost_analysis.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/xprof_gpu_cost_analysis_registration.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/xprof_gpu_cost_analysis_registration_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/xprof_gpu_cost_analysis_test.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/xprof/utils/xprof_gpu_cost_analysis_types.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/yarn.lock",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/metadata/artifact.json",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/metadata/entities.json",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/metadata/paper.json",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/metadata/provenance.json",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/metadata/relationships.json",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/original/README.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/original/xprof-713b05f09e30.zip",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/paper/2026-xprof-mlsys.pdf",
+      "status": "untracked"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "people": [
+    {"id": "person:kexin-chu", "name": "Kexin Chu", "affiliations": []},
+    {"id": "person:jianchang-su", "name": "Jianchang Su", "affiliations": []},
+    {"id": "person:yifan-zhang", "name": "Yifan Zhang", "affiliations": []},
+    {"id": "person:chenxingyu-zhao", "name": "Chenxingyu Zhao", "affiliations": []},
+    {"id": "person:shengkai-lin", "name": "Shengkai Lin", "affiliations": []},
+    {"id": "person:shizhen-zhao", "name": "Shizhen Zhao", "affiliations": []},
+    {"id": "person:wei-zhang", "name": "Wei Zhang", "affiliations": []}
+  ],
+  "organisations": [],
+  "software": [
+    {"id": "software:einfer", "name": "eInfer", "type": "distributed-llm-tracer", "version": null, "url": null}
+  ],
+  "datasets": [],
+  "experiments": [],
+  "venues": [
+    {"id": "venue:ebpf-workshop", "name": "Workshop on eBPF and Kernel Extensions", "type": "workshop", "url": "https://doi.org/10.1145/3748355"}
+  ],
+  "funding_projects": []
+}

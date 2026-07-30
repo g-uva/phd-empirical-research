@@ -1,0 +1,3479 @@
+{
+  "schema_version": "1.0.0",
+  "created": "2026-07-30T16:05:57Z",
+  "reason": "Register the eGPU artifact and identifiable paper-result experiment families",
+  "base_git_commit": "28892dbdad7309432d8c0e31bd80035aadc86a8a",
+  "hash_algorithm": "sha256",
+  "hash_format": "experiment-content-v1",
+  "experiments": [
+    {
+      "experiment_id": "exp-0001",
+      "uid": "ceecee8d",
+      "previous_content_hash": null,
+      "content_hash": "f0cbdb40f478e3340742d719384b2073074b7bffe91dba2f42c0f3c0f6deb689",
+      "metadata_path": "papers/egpu/artifact/experiments/exp-0001/metadata.json"
+    },
+    {
+      "experiment_id": "exp-0002",
+      "uid": "e8a4c26e",
+      "previous_content_hash": null,
+      "content_hash": "504aee307cc38b79f6d39cf01e1db1942a1c1098fe0e6af993ed3ae3532054a8",
+      "metadata_path": "papers/egpu/artifact/experiments/exp-0002/metadata.json"
+    },
+    {
+      "experiment_id": "exp-0003",
+      "uid": "79aa7181",
+      "previous_content_hash": null,
+      "content_hash": "aa809dc00deff16131cbdd6b7b227a3640d531247babdba32f656d7587c342eb",
+      "metadata_path": "papers/egpu/artifact/experiments/exp-0003/metadata.json"
+    },
+    {
+      "experiment_id": "exp-0004",
+      "uid": "d3ebb6c0",
+      "previous_content_hash": null,
+      "content_hash": "2c610c60cb0e38bb786d48de40d1d20113203068c4c15f811042ede08011f02a",
+      "metadata_path": "papers/egpu/artifact/experiments/exp-0004/metadata.json"
+    },
+    {
+      "experiment_id": "exp-0005",
+      "uid": "27139852",
+      "previous_content_hash": null,
+      "content_hash": "cba37d39fd00dfd8c18a4d5393b0de953fb5a6c07ae359820e3f9823426dbea2",
+      "metadata_path": "papers/egpu/artifact/experiments/exp-0005/metadata.json"
+    }
+  ],
+  "working_tree_changes": [
+    {
+      "path": "papers/egpu/README.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/.clang-format",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/.devcontainer/devcontainer.json",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/.gitattributes",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/.github/FUNDING.yml",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/.github/assets/sum.bpf.o",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/.github/dependabot.yml",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/.github/script/run_example.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/.github/workflows/build-benchmarks.yml",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/.github/workflows/docker.yml",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/.github/workflows/test-attach.yml",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/.github/workflows/test-examples.yml",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/.github/workflows/test-runtime.yml",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/.github/workflows/test-tools.yml",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/.github/workflows/test-verifier.yml",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/.github/workflows/test-vm.yml",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/.gitignore",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/.gitmodules",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/.vscode/c_cpp_properties.json",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/.vscode/launch.json",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/.vscode/tasks.json",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/CITATION.cff",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/CMakeLists.txt",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/CODE_OF_CONDUCT.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/CONTRIBUTING.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/Dockerfile",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/Dockerfile.fedora",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/Dockerfile.ubuntu",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/LICENSE",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/Makefile",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/README.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/REPRODUCING.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/UPSTREAM_README.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/artifact/end_to_end_latency.pdf",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/artifact/graph.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/artifact/graph1.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/artifact/graph2.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/artifact/graph3.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/artifact/graph4.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/artifact/graph5.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/artifact/io_path.pdf",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/artifact/latency_comparison.pdf",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/artifact/lru_lfu.pdf",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/artifact/memtrace.pdf",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/artifact/motivation.pdf",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/artifact/motivation_swapped.pdf",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/CMakeLists.txt",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/base_attach_impl/CMakeLists.txt",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/base_attach_impl/attach_private_data.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/base_attach_impl/base_attach_impl.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/frida_uprobe_attach_impl/CMakeLists.txt",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/frida_uprobe_attach_impl/include/frida_attach_entry.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/frida_uprobe_attach_impl/include/frida_attach_private_data.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/frida_uprobe_attach_impl/include/frida_attach_utils.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/frida_uprobe_attach_impl/include/frida_internal_attach_entry.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/frida_uprobe_attach_impl/include/frida_register_conversion.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/frida_uprobe_attach_impl/include/frida_register_def.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/frida_uprobe_attach_impl/include/frida_uprobe.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/frida_uprobe_attach_impl/include/frida_uprobe_attach_impl.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/frida_uprobe_attach_impl/src/frida_attach_entry.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/frida_uprobe_attach_impl/src/frida_attach_private_data.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/frida_uprobe_attach_impl/src/frida_attach_utils.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/frida_uprobe_attach_impl/src/frida_internal_attach_entry.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/frida_uprobe_attach_impl/src/frida_register_conversion.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/frida_uprobe_attach_impl/src/frida_uprobe_attach_impl.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/frida_uprobe_attach_impl/test/test_attach_private_data_parsing.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/frida_uprobe_attach_impl/test/test_attach_with_unified_interface.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/frida_uprobe_attach_impl/test/test_base_attach_impl.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/frida_uprobe_attach_impl/test/test_filter_attach_with_override.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/frida_uprobe_attach_impl/test/test_function_address_resolve.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/frida_uprobe_attach_impl/test/test_replace_attach_with_override.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/frida_uprobe_attach_impl/test/test_uprobe_uretprobe.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/nv_attach_impl/CMakeLists.txt",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/nv_attach_impl/GPU_JIT_INTEGRATION.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/nv_attach_impl/cuda_injector.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/nv_attach_impl/cuda_injector.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/nv_attach_impl/examples/CMakeLists.txt",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/nv_attach_impl/examples/default_trampoline/.gitignore",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/nv_attach_impl/examples/default_trampoline/README.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/nv_attach_impl/examples/default_trampoline/default_trampoline-cuda-nvptx64-nvidia-cuda-sm_60.s",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/nv_attach_impl/examples/default_trampoline/default_trampoline.cu",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/nv_attach_impl/examples/gpu_jit_usage_example.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/nv_attach_impl/examples/ptx/CMakeLists.txt",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/nv_attach_impl/examples/ptx/README.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/nv_attach_impl/examples/ptx/ptx_test.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/nv_attach_impl/gpu_checkpoint_restore.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/nv_attach_impl/gpu_checkpoint_restore.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/nv_attach_impl/gpu_jit_api.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/nv_attach_impl/gpu_jit_api.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/nv_attach_impl/gpu_state_manager.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/nv_attach_impl/gpu_state_manager.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/nv_attach_impl/memory_utils.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/nv_attach_impl/nv_attach_impl.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/nv_attach_impl/nv_attach_impl.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/nv_attach_impl/nv_attach_impl_frida_setup.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/nv_attach_impl/nv_attach_impl_patcher.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/nv_attach_impl/nv_attach_impl_register_guard_patcher.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/nv_attach_impl/nv_attach_private_data.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/nv_attach_impl/nv_attach_private_data.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/nv_attach_impl/nv_attach_utils.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/nv_attach_impl/nv_attach_utils.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/nv_attach_impl/ptx_jit_compiler.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/nv_attach_impl/ptx_jit_compiler.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/nv_attach_impl/test/CMakeLists.txt",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/nv_attach_impl/test/nv_attach_impl_tests.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/nv_attach_impl/test/test_cuda_injector.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/nv_attach_impl/test/test_kernel_finder.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/nv_attach_impl/test/test_register_guard.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/nv_attach_impl/trampoline_ptx.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/syscall_trace_attach_impl/CMakeLists.txt",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/syscall_trace_attach_impl/generate_syscall_id_table.sh",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/syscall_trace_attach_impl/include/syscall_table.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/syscall_trace_attach_impl/include/syscall_trace_attach.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/syscall_trace_attach_impl/include/syscall_trace_attach_impl.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/syscall_trace_attach_impl/include/syscall_trace_attach_private_data.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/syscall_trace_attach_impl/src/syscall_table.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/syscall_trace_attach_impl/src/syscall_trace_attach_impl.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/syscall_trace_attach_impl/src/syscall_trace_attach_private_data.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/syscall_trace_attach_impl/test/test_private_data_parsing.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/syscall_trace_attach_impl/test/test_syscall_dispatch.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/text_segment_transformer/CMakeLists.txt",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/text_segment_transformer/agent-transformer.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/text_segment_transformer/text_segment_transformer.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/attach/text_segment_transformer/text_segment_transformer.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/benchmark/.gitignore",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/benchmark/CMakeLists.txt",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/benchmark/Makefile",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/benchmark/README.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/benchmark/mpk/Makefile",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/benchmark/mpk/README.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/benchmark/mpk/benchmark_mpk.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/benchmark/run_benchmark.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/benchmark/ssl-nginx/.gitignore",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/benchmark/ssl-nginx/Makefile",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/benchmark/ssl-nginx/README.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/benchmark/ssl-nginx/nginx.conf",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/benchmark/ssl-nginx/test.cer",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/benchmark/ssl-nginx/test.csr",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/benchmark/ssl-nginx/test.key",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/benchmark/syscall/.gitignore",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/benchmark/syscall/Makefile",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/benchmark/syscall/README.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/benchmark/syscall/syscall.bpf.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/benchmark/syscall/syscall.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/benchmark/syscall/victim.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/benchmark/syscount/Makefile",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/benchmark/syscount/read-sendmsg.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/benchmark/syscount/test.sh",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/benchmark/syscount/testfile.txt",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/benchmark/test.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/benchmark/test_embed.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/benchmark/uprobe/.gitignore",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/benchmark/uprobe/Makefile",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/benchmark/uprobe/attach_override.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/benchmark/uprobe/uprobe-override.bpf.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/benchmark/uprobe/uprobe-override.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/benchmark/uprobe/uprobe.bpf.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/benchmark/uprobe/uprobe.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/bpftime-verifier/.gitignore",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/bpftime-verifier/CMakeLists.txt",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/bpftime-verifier/README.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/bpftime-verifier/include/bpftime-verifier.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/bpftime-verifier/include/platform-impl.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/bpftime-verifier/src/bpftime-verifier.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/bpftime-verifier/src/platform-impl.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/bpftime-verifier/test/map.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/bpftime-verifier/test/non_kernel_helper.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/bpftime-verifier/test/simple.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/cmake/CompilerWarnings.cmake",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/cmake/StandardSettings.cmake",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/cmake/aarch64-toolchain.cmake",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/cmake/arm-toolchain.cmake",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/cmake/cuda.cmake",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/cmake/extract_and_rename.sh",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/cmake/frida.cmake",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/cmake/libbpf.cmake",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/daemon/.gitignore",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/daemon/CMakeLists.txt",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/daemon/README.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/daemon/assets/embedfile.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/daemon/assets/placeholder",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/daemon/bpf_tracer_event.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/daemon/kernel/bpf_defs.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/daemon/kernel/bpf_event_ringbuf.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/daemon/kernel/bpf_kernel_config.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/daemon/kernel/bpf_obj_id_fd_map.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/daemon/kernel/bpf_pid_fd_map.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/daemon/kernel/bpf_tracer.bpf.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/daemon/test/CMakeLists.txt",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/daemon/test/asserts/malloc.json",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/daemon/test/common_def.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/daemon/test/test_daemon.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/daemon/test/test_daemon_driver.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/daemon/user/bpf_tracer.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/daemon/user/bpftime_driver.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/daemon/user/bpftime_driver.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/daemon/user/daemon.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/daemon/user/daemon_config.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/daemon/user/handle_bpf_event.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/daemon/user/handle_bpf_event.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/daemon/user/main.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/.gitignore",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/Makefile",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/attach_implementation/.gitignore",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/attach_implementation/CMakeLists.txt",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/attach_implementation/README.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/attach_implementation/controller/controller.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/attach_implementation/controller/request_filter.bpf.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/attach_implementation/controller/request_filter.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/attach_implementation/nginx.conf",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/attach_implementation/nginx_plugin/.clangd",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/attach_implementation/nginx_plugin/config",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/attach_implementation/nginx_plugin/ngx_http_bpftime_module.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/attach_implementation/nginx_plugin_adaptor/nginx_plugin_adaptor.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/bpftrace/README.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/bpftrace/bashreadline.bt",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/bpftrace/execsnoop.bt",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/bpftrace/gethostlatency.bt",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/bpftrace/killsnoop.bt",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/bpftrace/opensnoop.bt",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/bpftrace/sslsnoop.bt",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/bpftrace/statsnoop.bt",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/bpftrace/syncsnoop.bt",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/bpftrace/syscount.bt",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/bpftrace/threadsnoop.bt",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-neuro-surgeon/.gitignore",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-neuro-surgeon/Makefile",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-neuro-surgeon/README.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-neuro-surgeon/benchmark_resnet_splits.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-neuro-surgeon/benchmark_split_layers.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-neuro-surgeon/best_split.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-neuro-surgeon/cuda_neuro_surgeon.bpf.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-neuro-surgeon/cuda_neuro_surgeon.bpf.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-neuro-surgeon/cuda_neuro_surgeon.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-neuro-surgeon/data.csv",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-neuro-surgeon/freq_scaling.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-neuro-surgeon/heatmap.pdf",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-neuro-surgeon/heatmap1.pdf",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-neuro-surgeon/inference.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-neuro-surgeon/llama_inference.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-neuro-surgeon/mnist_inference.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-neuro-surgeon/plot.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-neuro-surgeon/plot_data.pdf",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-neuro-surgeon/plot_data.png",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-neuro-surgeon/plot_data.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-neuro-surgeon/plot_slice.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-neuro-surgeon/resnet_inference.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-neuro-surgeon/slice.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-neuro-surgeon/slice_plot.pdf",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-neuro-surgeon/slice_plot.png",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-neuro-surgeon/solar_wind_power_daily.png",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-probe-retprobe-test/.gitignore",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-probe-retprobe-test/Makefile",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-probe-retprobe-test/cuda_probe.bpf.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-probe-retprobe-test/cuda_probe.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-probe-retprobe-test/filter_hashtag.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-probe-retprobe-test/vec_add.cu",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-probe-test/.gitignore",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-probe-test/Makefile",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-probe-test/README.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-probe-test/cuda_probe.bpf.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-probe-test/cuda_probe.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-probe-test/filter_hashtag.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-probe-test/gemm.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-probe-test/gemm.cu",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-probe-test/llama2-13b-chat-hf/.gitignore",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-probe-test/llama2-13b-chat-hf/dataset/elon_musk_tweets.csv",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-probe-test/llama2-13b-chat-hf/download.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-probe-test/llama2-13b-chat-hf/inference.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-probe-test/llama2-13b-chat-hf/inference_cpu.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-probe-test/llama2-13b-chat-hf/inference_paged.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-probe-test/llama2-13b-chat-hf/inference_ttft.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-probe-test/llama2-13b-chat-hf/llama/__init__.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-probe-test/llama2-13b-chat-hf/llama/configuration_llama.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-probe-test/llama2-13b-chat-hf/llama/convert_llama_weights_to_hf.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-probe-test/llama2-13b-chat-hf/llama/modeling_llama.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-probe-test/llama2-13b-chat-hf/llama/tokenization_llama.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-probe-test/llama2-13b-chat-hf/pos.yaml",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-probe-test/llama2-13b-chat-hf/readme.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-probe-test/llama2-13b-chat-hf/tokenizer.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-probe-test/llama2-13b-chat-hf/train.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-probe-test/resnet/.gitignore",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-probe-test/resnet/inference.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-probe-test/resnet/pos.yaml",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-probe-test/resnet/readme.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-probe-test/resnet/train.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-probe-test/resnet/utils/ResNet.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-probe-test/resnet/utils/cutout.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-probe-test/resnet/utils/readData.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-probe-test/simple_victim.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-probe-test/spmv.cu",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-probe-test/stencil.cu",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-probe-test/victim.cu",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-scheduler/.gitignore",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-scheduler/Makefile",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-scheduler/README.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-scheduler/cuda_scheduler.bpf.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-scheduler/cuda_scheduler.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-scheduler/gemm.cu",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-scheduler/plot.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-scheduler/plot_cuda_scheduler.pdf",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-scheduler/victim.cu",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-scheduler/victim_blocktime.cu",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cuda-scheduler/victim_fairshare.cu",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cudamem-capture/.gitignore",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cudamem-capture/Makefile",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cudamem-capture/README.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cudamem-capture/attach_override.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cudamem-capture/cudamem_capture",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cudamem-capture/cudamem_capture.bpf.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cudamem-capture/cudamem_capture.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cudamem-capture/infinite.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cudamem-capture/pos.yaml",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cudamem-capture/runptx.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cudamem-capture/runptx.cu",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cudamem-capture/victim.cu",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cudamem-capture/victim.fatbin",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/cudamem-capture/victim.ptx",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/error-inject/.gitignore",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/error-inject/Makefile",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/error-inject/README.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/error-inject/attach_override.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/error-inject/error_inject.bpf.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/error-inject/error_inject.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/error-inject/error_inject_syscall.bpf.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/error-inject/error_inject_syscall.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/error-inject/victim.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/goroutine/.gitignore",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/goroutine/LICENSE",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/goroutine/Makefile",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/goroutine/README.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/goroutine/go-server-http/.gitattributes",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/goroutine/go-server-http/main",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/goroutine/go-server-http/main.go",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/goroutine/goroutine.bpf.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/goroutine/goroutine.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/goroutine/goroutine.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/gpu-checkpoint-jit/CMakeLists.txt",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/gpu-checkpoint-jit/README.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/gpu-checkpoint-jit/main.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/gpu-checkpoint-jit/test_checkpoint_jit.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/hipmem-capture/.gitignore",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/hipmem-capture/Makefile",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/hipmem-capture/README.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/hipmem-capture/attach_override.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/hipmem-capture/hipmem_capture.bpf.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/hipmem-capture/hipmem_capture.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/hipmem-capture/victim_hip.cu",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/libbpf-tools/bashreadline/.gitignore",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/libbpf-tools/bashreadline/Makefile",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/libbpf-tools/bashreadline/README.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/libbpf-tools/bashreadline/readline.bpf.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/libbpf-tools/bashreadline/readline.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/libbpf-tools/bashreadline/readline.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/libbpf-tools/funclatency/.gitignore",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/libbpf-tools/funclatency/Makefile",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/libbpf-tools/funclatency/bits.bpf.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/libbpf-tools/funclatency/funclatency.bpf.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/libbpf-tools/funclatency/funclatency.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/libbpf-tools/funclatency/funclatency.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/libbpf-tools/funclatency/victim.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/libbpf-tools/mountsnoop/.gitignore",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/libbpf-tools/mountsnoop/Makefile",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/libbpf-tools/mountsnoop/mountsnoop.bpf.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/libbpf-tools/mountsnoop/mountsnoop.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/libbpf-tools/mountsnoop/mountsnoop.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/libbpf-tools/mountsnoop/victim.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/libbpf-tools/opensnoop/.gitignore",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/libbpf-tools/opensnoop/Makefile",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/libbpf-tools/opensnoop/README.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/libbpf-tools/opensnoop/opensnoop.bpf.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/libbpf-tools/opensnoop/opensnoop.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/libbpf-tools/opensnoop/opensnoop.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/libbpf-tools/opensnoop/victim.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/libbpf-tools/sigsnoop/.gitignore",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/libbpf-tools/sigsnoop/Makefile",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/libbpf-tools/sigsnoop/sigsnoop.bpf.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/libbpf-tools/sigsnoop/sigsnoop.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/libbpf-tools/sigsnoop/sigsnoop.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/libbpf-tools/sigsnoop/victim.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/libbpf-tools/statsnoop/.gitignore",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/libbpf-tools/statsnoop/Makefile",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/libbpf-tools/statsnoop/README.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/libbpf-tools/statsnoop/statsnoop.bpf.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/libbpf-tools/statsnoop/statsnoop.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/libbpf-tools/statsnoop/statsnoop.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/libbpf-tools/statsnoop/victim.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/libbpf-tools/syscount/.gitignore",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/libbpf-tools/syscount/Makefile",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/libbpf-tools/syscount/README.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/libbpf-tools/syscount/errno_helpers.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/libbpf-tools/syscount/errno_helpers.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/libbpf-tools/syscount/maps.bpf.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/libbpf-tools/syscount/syscall_helpers.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/libbpf-tools/syscount/syscall_helpers.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/libbpf-tools/syscount/syscount.bpf.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/libbpf-tools/syscount/syscount.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/libbpf-tools/syscount/syscount.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/libbpf-tools/syscount/victim.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/libbpftime_example/Makefile",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/libbpftime_example/README.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/libbpftime_example/ebpf.json",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/libbpftime_example/main.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/malloc/.gitignore",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/malloc/Makefile",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/malloc/README.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/malloc/malloc.bpf.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/malloc/malloc.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/malloc/victim.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/minimal/.gitignore",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/minimal/Makefile",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/minimal/README.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/minimal/attach_override.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/minimal/syscall.bpf.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/minimal/syscall.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/minimal/uprobe-override.bpf.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/minimal/uprobe-override.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/minimal/uprobe.bpf.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/minimal/uprobe.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/minimal/victim.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/mix-schedule-llama/.gitignore",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/mix-schedule-llama/Makefile",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/mix-schedule-llama/cpu/.clangd",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/mix-schedule-llama/cpu/.gitignore",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/mix-schedule-llama/cpu/CMakeLists.txt",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/mix-schedule-llama/cpu/cpu_pytorch.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/mix-schedule-llama/cpu/cpu_runner.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/mix-schedule-llama/filter_hashtag.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/mix-schedule-llama/gpu/.gitignore",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/mix-schedule-llama/gpu/Makefile",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/mix-schedule-llama/gpu/main.cu",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/mix-schedule-llama/gpu/utils.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/mix-schedule-llama/gpu/utils.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/mix-schedule-llama/gpu_victim.cu",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/mix-schedule-llama/mix_schedule_gpu.bpf.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/mix-schedule-llama/mix_schedule_gpu.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/mix-schedule-mnist/.gitignore",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/mix-schedule-mnist/Makefile",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/mix-schedule-mnist/cpu/.clangd",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/mix-schedule-mnist/cpu/.gitignore",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/mix-schedule-mnist/cpu/CMakeLists.txt",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/mix-schedule-mnist/cpu/cpu_pytorch.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/mix-schedule-mnist/cpu/cpu_runner.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/mix-schedule-mnist/filter_hashtag.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/mix-schedule-mnist/gpu/.gitignore",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/mix-schedule-mnist/gpu/Makefile",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/mix-schedule-mnist/gpu/main.cu",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/mix-schedule-mnist/gpu/utils.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/mix-schedule-mnist/gpu/utils.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/mix-schedule-mnist/gpu_victim.cu",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/mix-schedule-mnist/mix_schedule_gpu.bpf.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/mix-schedule-mnist/mix_schedule_gpu.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/mix-schedule-mnist/train/.gitignore",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/mix-schedule-mnist/train/train.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/opensnoop/.gitignore",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/opensnoop/Makefile",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/opensnoop/README.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/opensnoop/opensnoop.bpf.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/opensnoop/opensnoop.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/opensnoop/opensnoop.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/opensnoop/victim.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/patch/redis/.gitignore",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/patch/redis/Makefile",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/patch/redis/README.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/patch/redis/redis-patch.bpf.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/patch/redis/redis-patch.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/patch/redis/redis-server.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/patch/redis/ufunc.bpf.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/patch/vim/README.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/patch/vim/poc.bpf.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/sslsniff/.gitignore",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/sslsniff/Makefile",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/sslsniff/README.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/sslsniff/sslsniff.bpf.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/sslsniff/sslsniff.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/sslsniff/sslsniff.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/tailcall_minimal/.gitignore",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/tailcall_minimal/Makefile",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/tailcall_minimal/README.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/tailcall_minimal/tailcall_minimal.bpf.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/tailcall_minimal/tailcall_minimal.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/tailcall_minimal/victim.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/train/data/MNIST/raw/t10k-images-idx3-ubyte",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/train/data/MNIST/raw/t10k-images-idx3-ubyte.gz",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/train/data/MNIST/raw/t10k-labels-idx1-ubyte",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/train/data/MNIST/raw/t10k-labels-idx1-ubyte.gz",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/train/data/MNIST/raw/train-images-idx3-ubyte",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/train/data/MNIST/raw/train-images-idx3-ubyte.gz",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/train/data/MNIST/raw/train-labels-idx1-ubyte",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/train/data/MNIST/raw/train-labels-idx1-ubyte.gz",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/usdt_minimal/.gitignore",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/usdt_minimal/Makefile",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/usdt_minimal/README.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/usdt_minimal/usdt_minimal.bpf.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/usdt_minimal/usdt_minimal.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/usdt_minimal/victim.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/xdp-counter/.gitignore",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/xdp-counter/Makefile",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/xdp-counter/README.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/xdp-counter/base.btf",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/xdp-counter/xdp-counter.bpf.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/example/xdp-counter/xdp-counter.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/experiments/README.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/experiments/exp-0001/metadata.json",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/experiments/exp-0002/metadata.json",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/experiments/exp-0003/metadata.json",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/experiments/exp-0004/metadata.json",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/experiments/exp-0005/metadata.json",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/experiments/index.json",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/.gitignore",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/CMakeLists.txt",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/Makefile",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/README.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/agent/CMakeLists.txt",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/agent/agent.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/agent/agent.version",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/extension/extension_helper.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/extension/userspace_xdp.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/generate_syscall_id_table.sh",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/include/bpf_attach_ctx.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/include/bpftime.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/include/bpftime_config.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/include/bpftime_epoll.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/include/bpftime_helper_group.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/include/bpftime_logger.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/include/bpftime_prog.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/include/bpftime_shm.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/include/bpftime_ufunc.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/include/platform_utils.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/include/spinlock.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/include/spinlock_wrapper.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/include/syscall_table.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/object/CMakeLists.txt",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/object/bpf_object.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/object/bpftime_object.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos-unit-test/CMakeLists.txt",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos-unit-test/test.bin",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos-unit-test/test_fatbin_parse.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/CMakeLists.txt",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cli/cli.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cli/command_format.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cli/src/dump.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cli/src/help.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cli/src/main.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cli/src/migrate.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cli/src/predump.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cli/src/restore.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cli/src/start.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cli/src/trace.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cuda_impl/api_context.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cuda_impl/api_index.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cuda_impl/client.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cuda_impl/handle.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cuda_impl/handle/context.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cuda_impl/handle/cublas.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cuda_impl/handle/device.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cuda_impl/handle/event.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cuda_impl/handle/function.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cuda_impl/handle/memory.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cuda_impl/handle/module.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cuda_impl/handle/stream.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cuda_impl/handle/var.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cuda_impl/parser.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cuda_impl/patcher/CMakeLists.txt",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cuda_impl/patcher/Cargo.lock",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cuda_impl/patcher/Cargo.toml",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cuda_impl/patcher/build.rs",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cuda_impl/patcher/cxx/to_cxx.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cuda_impl/patcher/cxx/to_cxx.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cuda_impl/patcher/cxxbridge/patcher/src/lib.rs.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cuda_impl/patcher/cxxbridge/patcher/src/lib.rs.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cuda_impl/patcher/cxxbridge/patcher/src/to_cxx.rs.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cuda_impl/patcher/cxxbridge/patcher/src/to_cxx.rs.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cuda_impl/patcher/cxxbridge/rust/cxx.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cuda_impl/patcher/patcher.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cuda_impl/patcher/patcher.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cuda_impl/patcher/ptx/torch.ptx",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cuda_impl/patcher/scripts/parse.py",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cuda_impl/patcher/src/access_check.ptx",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cuda_impl/patcher/src/call_param.ptx",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cuda_impl/patcher/src/fatbin.rs",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cuda_impl/patcher/src/lib.rs",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cuda_impl/patcher/src/main.rs",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cuda_impl/patcher/src/parser.rs",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cuda_impl/patcher/src/patcher.rs",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cuda_impl/patcher/src/printer.rs",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cuda_impl/patcher/src/to_cxx.rs",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cuda_impl/proto/.gitignore",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cuda_impl/proto/context.proto",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cuda_impl/proto/cublas.proto",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cuda_impl/proto/device.proto",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cuda_impl/proto/event.proto",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cuda_impl/proto/function.proto",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cuda_impl/proto/memory.proto",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cuda_impl/proto/module.proto",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cuda_impl/proto/stream.proto",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cuda_impl/proto/var.proto",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cuda_impl/remoting/workspace.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cuda_impl/src/api_context.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cuda_impl/src/client.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cuda_impl/src/handle.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cuda_impl/src/handle/context.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cuda_impl/src/handle/cublas.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cuda_impl/src/handle/device.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cuda_impl/src/handle/event.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cuda_impl/src/handle/function.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cuda_impl/src/handle/memory.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cuda_impl/src/handle/module.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cuda_impl/src/handle/stream.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cuda_impl/src/handle/var.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cuda_impl/src/parser/cublas.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cuda_impl/src/parser/cuda_driver.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cuda_impl/src/parser/cuda_runtime.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cuda_impl/src/parser/remoting.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cuda_impl/src/utils/fatbin.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cuda_impl/src/worker.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cuda_impl/src/worker/cublas.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cuda_impl/src/worker/cuda_driver.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cuda_impl/src/worker/cuda_runtime.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cuda_impl/src/worker/remoting.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cuda_impl/src/workspace.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cuda_impl/utils/fatbin.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cuda_impl/worker.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/cuda_impl/workspace.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/include/agent.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/include/api_context.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/include/checkpoint.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/include/client.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/include/command.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/include/common.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/include/eval_configs.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/include/handle.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/include/log.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/include/metrics.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/include/metrics/counter.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/include/metrics/reducer.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/include/metrics/sequence.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/include/metrics/ticker.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/include/oob.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/include/oob/agent.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/include/oob/ckpt_dump.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/include/oob/ckpt_predump.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/include/oob/restore.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/include/oob/trace.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/include/parser.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/include/patcher.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/include/proto/.gitignore",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/include/proto/apicxt.proto",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/include/proto/client.proto",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/include/proto/handle.proto",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/include/remoting/agent.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/include/runtime_configs.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/include/trace.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/include/trace/counter.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/include/trace/reducer.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/include/trace/tick.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/include/transport.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/include/utils/command_caller.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/include/utils/lockfree_queue.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/include/utils/mempool.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/include/utils/readerwriterqueue/atomicops.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/include/utils/readerwriterqueue/readerwriterqueue.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/include/utils/string.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/include/utils/system.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/include/utils/timer.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/include/worker.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/include/workspace.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/src/agent.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/src/api_context.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/src/checkpoint_disable.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/src/checkpoint_enable.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/src/client.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/src/handle.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/src/oob/agent.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/src/oob/ckpt_dump.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/src/oob/ckpt_predump.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/src/oob/cli.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/src/oob/mgnt.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/src/oob/migration.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/src/oob/restore.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/src/oob/trace.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/src/oob/utils.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/src/parser.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/src/patcher.cc",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/src/worker.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/pos/src/workspace.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/src/attach/bpf_attach_ctx.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/src/attach/bpf_attach_ctx_cuda.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/src/attach/demo_ptx_prog.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/src/bpf_helper.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/src/bpf_map/README.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/src/bpf_map/bpftime_hash_map.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/src/bpf_map/map_common_def.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/src/bpf_map/shared/array_map_kernel_user.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/src/bpf_map/shared/array_map_kernel_user.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/src/bpf_map/shared/hash_map_kernel_user.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/src/bpf_map/shared/hash_map_kernel_user.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/src/bpf_map/shared/percpu_array_map_kernel_user.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/src/bpf_map/shared/percpu_array_map_kernel_user.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/src/bpf_map/shared/perf_event_array_kernel_user.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/src/bpf_map/shared/perf_event_array_kernel_user.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/src/bpf_map/userspace/array_map.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/src/bpf_map/userspace/array_map.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/src/bpf_map/userspace/fix_hash_map.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/src/bpf_map/userspace/fix_hash_map.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/src/bpf_map/userspace/lru_var_hash_map.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/src/bpf_map/userspace/lru_var_hash_map.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/src/bpf_map/userspace/map_in_maps.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/src/bpf_map/userspace/per_cpu_array_map.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/src/bpf_map/userspace/per_cpu_array_map.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/src/bpf_map/userspace/per_cpu_hash_map.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/src/bpf_map/userspace/per_cpu_hash_map.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/src/bpf_map/userspace/perf_event_array_map.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/src/bpf_map/userspace/perf_event_array_map.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/src/bpf_map/userspace/prog_array.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/src/bpf_map/userspace/prog_array.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/src/bpf_map/userspace/ringbuf_map.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/src/bpf_map/userspace/ringbuf_map.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/src/bpf_map/userspace/var_hash_map.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/src/bpf_map/userspace/var_hash_map.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/src/bpftime_config.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/src/bpftime_handler.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/src/bpftime_internal.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/src/bpftime_prog.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/src/bpftime_shm.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/src/bpftime_shm_internal.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/src/bpftime_shm_internal.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/src/bpftime_shm_json.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/src/bpftime_shm_json.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/src/handler/btf_handler.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/src/handler/epoll_handler.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/src/handler/epoll_handler.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/src/handler/handler_manager.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/src/handler/handler_manager.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/src/handler/link_handler.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/src/handler/map_handler.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/src/handler/map_handler.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/src/handler/perf_event_handler.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/src/handler/perf_event_handler.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/src/handler/prog_handler.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/src/handler/prog_handler.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/src/platform_utils.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/src/ufunc.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/syscall-server/.gitignore",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/syscall-server/CMakeLists.txt",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/syscall-server/README.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/syscall-server/syscall-server.version",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/syscall-server/syscall_context.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/syscall-server/syscall_context.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/syscall-server/syscall_server_main.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/syscall-server/syscall_server_utils.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/syscall-server/syscall_server_utils.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/test/CMakeLists.txt",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/test/README.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/test/bpf/.gitignore",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/test/bpf/Makefile",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/test/bpf/btf-relo.bpf.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/test/bpf/ffi-btf.bpf.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/test/bpf/global.bpf.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/test/bpf/hash-map-test.bpf.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/test/bpf/map.bpf.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/test/bpf/patch.bpf.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/test/bpf/replace.bpf.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/test/bpf/ufunc.bpf.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/test/include/test_bpf_progs.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/test/include/test_defs.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/test/include/test_minimal_bpf_host_ufunc.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/test/src/test_hash_map.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/test/src/test_shm_client.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/test/src/test_shm_server.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/test/src/test_ufunc.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/unit-test/CMakeLists.txt",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/unit-test/assets/filter.bpf.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/unit-test/assets/helpers.bpf.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/unit-test/assets/replace.bpf.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/unit-test/assets/ufunc.bpf.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/unit-test/assets/ufunc.bpf.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/unit-test/assets/uprobe.bpf.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/unit-test/attach_with_ebpf/helper.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/unit-test/attach_with_ebpf/test_attach_filter_with_ebpf.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/unit-test/attach_with_ebpf/test_attach_replace.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/unit-test/attach_with_ebpf/test_attach_uprobe_with_ebpf.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/unit-test/attach_with_ebpf/test_helpers.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/unit-test/attach_with_ebpf/test_shm_progs_attach.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/unit-test/attach_with_ebpf/test_ufunc_register.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/unit-test/common_def.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/unit-test/cuda/test_cuda_compile.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/unit-test/maps/kernel_unit_tests.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/unit-test/maps/test_bpftime_hash_map.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/unit-test/maps/test_external_map_ops.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/unit-test/maps/test_lru_var_hash_map.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/unit-test/maps/test_per_cpu_array.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/unit-test/maps/test_per_cpu_hash.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/unit-test/maps/test_shm_hash_maps.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/unit-test/tailcall/test_user_to_kernel_tailcall.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/unit-test/test_bpftime_shm_json.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/unit-test/test_config.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/runtime/unit-test/test_probe.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/third_party/json.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/third_party/libbpf",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/third_party/vmlinux/arm/vmlinux.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/third_party/vmlinux/arm/vmlinux_62.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/third_party/vmlinux/arm64/vmlinux.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/third_party/vmlinux/arm64/vmlinux_516.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/third_party/vmlinux/arm64/vmlinux_601.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/third_party/vmlinux/loongarch/vmlinux.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/third_party/vmlinux/loongarch/vmlinux_602.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/third_party/vmlinux/powerpc/vmlinux.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/third_party/vmlinux/powerpc/vmlinux_600.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/third_party/vmlinux/riscv/vmlinux.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/third_party/vmlinux/riscv/vmlinux_602.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/third_party/vmlinux/vmlinux.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/third_party/vmlinux/x86/vmlinux.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/third_party/vmlinux/x86/vmlinux_601.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/tools/CMakeLists.txt",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/tools/README.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/tools/aot/CMakeLists.txt",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/tools/aot/README.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/tools/aot/example/.gitignore",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/tools/aot/example/Makefile",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/tools/aot/example/do_count.o",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/tools/aot/example/do_uprobe_trace.o",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/tools/aot/example/main.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/tools/aot/example/malloc.json",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/tools/aot/main.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/tools/aot/optimize.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/tools/bpftimetool/CMakeLists.txt",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/tools/bpftimetool/README.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/tools/bpftimetool/main.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/tools/cli/CMakeLists.txt",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/tools/cli/main.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/vm/.gitignore",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/vm/CMakeLists.txt",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/vm/Makefile",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/vm/README.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/vm/compat/CMakeLists.txt",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/vm/compat/include/bpftime_vm_compat.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/vm/compat/include/ebpf_inst.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/vm/compat/llvm-vm/CMakeLists.txt",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/vm/compat/llvm-vm/compat_llvm.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/vm/compat/llvm-vm/compat_llvm.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/vm/compat/ubpf-vm/CMakeLists.txt",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/vm/compat/ubpf-vm/README.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/vm/compat/ubpf-vm/compat_ubpf.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/vm/compat/ubpf-vm/compat_ubpf.hpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/vm/example/bpf_progs.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/vm/example/main.c",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/vm/vm-core/CMakeLists.txt",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/vm/vm-core/include/ebpf-vm.h",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/artifact/vm/vm-core/src/ebpf-vm.cpp",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/metadata/artifact.json",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/metadata/entities.json",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/metadata/paper.json",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/metadata/provenance.json",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/metadata/relationships.json",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/original/README.md",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/original/egpu-166c175bdc6c.zip",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/egpu/paper/2025-egpu-hcds.pdf",
+      "status": "untracked"
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+#ifndef THIRD_PARTY_XPROF_CONVERT_MEGASCALE_PERFETTO_TRACE_PROCESSOR_H_
+#define THIRD_PARTY_XPROF_CONVERT_MEGASCALE_PERFETTO_TRACE_PROCESSOR_H_
+
+#include <cstdint>
+
+#include "absl/base/nullability.h"
+#include "xprof/convert/megascale_perfetto/xprof_trace.h"
+
+namespace xprof::megascale {
+
+// This class processes an XprofTrace in-place to prepare it for conversion to
+// Perfetto trace format. It focuses on better visualization of Megascale
+// actions and their dependencies.
+class TraceProcessor {
+ public:
+  explicit TraceProcessor(XprofTrace* absl_nonnull trace,
+                          bool group_tiny_events = true);
+
+  // This function makes a series of modifications to the trace in-place:
+  // - Reorders events in a more logical order.
+  // - Groups Megascale events with their corresponding TPU events.
+  // - Adds flows between key actions in the Megascale action graph.
+  void Process();
+
+ private:
+  // Sorts events in each track by timestamp.
+  void SortEvents();
+  // Assigns run IDs to events in each track.
+  // This is used to group events that are part of the same XLA program run. We
+  // don't assign run IDs to program runs that were not fully captured in the
+  // profile.
+  void AssignRunIds();
+  // Marks the last D2H and H2D events for each action graph execution. This is
+  // needed for adding flows.
+  void MarkLastDmaEvents();
+  // Resolves flows between TPU events and Megascale events.
+  void ResolveFlows();
+  // Adds a counter track for network metrics.
+  void AddGlobalCounters();
+  // Tiny event grouping (folding) is a layout optimization for the Perfetto
+  // trace UI. Subsequent tiny TPU events (duration strictly < 1ns)
+  // floor-truncate to the same nanosecond integer coordinate, appearing as
+  // length 0 instant slices. Perfetto stacks these vertical columns, wasting
+  // canvas space. Grouping aggregates these contiguous compute events into a
+  // single composite Summary Block, compressing layout height while keeping
+  // the core timeline flat.
+  void MaybeGroupTinyEvents();
+  // Modifies track names to make them more readable and to control ordering in
+  // Perfetto UI.
+  void ModifyTrackNames();
+
+  XprofTrace& trace_;
+  const bool group_tiny_events_;
+
+  // Cached interned string keys to bypass hashing loops
+  const StringId description_key_;
+  const StringId description_val_;
+  const StringId hidden_events_key_;
+};
+
+}  // namespace xprof::megascale
+
+#endif  // THIRD_PARTY_XPROF_CONVERT_MEGASCALE_PERFETTO_TRACE_PROCESSOR_H_

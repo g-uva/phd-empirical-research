@@ -1,0 +1,55 @@
+/** CSS for a side navigation component. */
+
+@use 'frontend/app/styles/common';
+
+.button-container {
+  padding: 20px;
+}
+
+.item-container {
+  padding: 20px 20px 0 20px;
+}
+
+.mat-subheading-2 {
+  margin-bottom: 0;
+}
+
+.select-all-checkbox {
+  margin-left: -10px;
+  padding-left: 16px;
+}
+
+// Target the custom panel class defined in sidenav.ng.html
+.multi-host-select-panel {
+  .full-width {
+    width: 100%;
+  }
+
+  // Styles for the sticky header containing the "Select/Deselect All" button.
+  // 'position: sticky' keeps the header fixed at the top of the dropdown panel during scroll.
+  .sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 1; // Ensures the header stays above the scrolling list of options.
+    padding: 8px;
+    background: #fff;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1); // Visual separator.
+  }
+
+  // Styles for the sticky footer containing the "Apply Host Selection" button.
+  // 'position: sticky' keeps the footer fixed at the bottom of the dropdown panel.
+  .sticky-footer {
+    position: sticky;
+    bottom: 0;
+    z-index: 1; // Ensures the footer stays below the scrolling list of options.
+    padding: 8px;
+    background: #fff;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  // Ensure options remain clickable and are not covered by the sticky button's
+  // padding.
+  mat-option {
+    flex-shrink: 0;
+  }
+}

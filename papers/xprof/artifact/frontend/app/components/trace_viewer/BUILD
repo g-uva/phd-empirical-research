@@ -1,0 +1,86 @@
+load("@io_bazel_rules_sass//:defs.bzl", "sass_binary")
+load("//defs:defs.bzl", "xprof_ng_module")
+
+package(default_visibility = ["//frontend:internal"])
+
+xprof_ng_module(
+    name = "trace_viewer",
+    srcs = [
+        "constants.ts",
+        "filter_chips.ts",
+        "filter_input.ts",
+        "interfaces.ts",
+        "trace_viewer.ts",
+        "trace_viewer_module.ts",
+        "trace_viewer_typings.ts",
+        "utils.ts",
+    ],
+    assets = [
+        ":trace_viewer_css",
+        "trace_viewer.ng.html",
+    ],
+    deps = [
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/forms",
+        "@npm//@angular/router",
+        "@npm//@ngrx/store",
+        "@npm//rxjs",
+        "@org_xprof//frontend/app/common/angular:angular_common_http",
+        "@org_xprof//frontend/app/common/angular:angular_material_autocomplete",
+        "@org_xprof//frontend/app/common/angular:angular_material_button",
+        "@org_xprof//frontend/app/common/angular:angular_material_checkbox",
+        "@org_xprof//frontend/app/common/angular:angular_material_chips",
+        "@org_xprof//frontend/app/common/angular:angular_material_dialog",
+        "@org_xprof//frontend/app/common/angular:angular_material_divider",
+        "@org_xprof//frontend/app/common/angular:angular_material_icon",
+        "@org_xprof//frontend/app/common/angular:angular_material_menu",
+        "@org_xprof//frontend/app/common/angular:angular_material_progress_bar",
+        "@org_xprof//frontend/app/common/angular:angular_material_tooltip",
+        "@org_xprof//frontend/app/common/constants",
+        "@org_xprof//frontend/app/common/interfaces",
+        "@org_xprof//frontend/app/components/diagnostics_view",
+        "@org_xprof//frontend/app/components/trace_viewer_container",
+        "@org_xprof//frontend/app/components/trace_viewer_v2:app_bundle_ts",
+        "@org_xprof//frontend/app/pipes",
+        "@org_xprof//frontend/app/services/communication_service",
+        "@org_xprof//frontend/app/services/data_service_v2",
+        "@org_xprof//frontend/app/services/source_code_service:source_code_service_interface",
+        "@org_xprof//frontend/app/store",
+    ],
+)
+
+xprof_ng_module(
+    name = "tests",
+    testonly = True,
+    srcs = [
+        "trace_viewer_test.ts",
+        "utils_test.ts",
+    ],
+    deps = [
+        ":trace_viewer",
+        "//javascript/angular2/testing/catalyst/fake_async",
+        # ksf,
+        "@npm//@angular/common",
+        "@org_xprof//frontend/app/common/angular:angular_platform-browser_animation",
+        "@npm//@angular/router",
+        "//third_party/javascript/angular_components:cdk_testing_catalyst",
+        "@org_xprof//frontend/app/common/angular:angular_material_dialog",
+        "@org_xprof//frontend/app/common/angular:angular_material_menu_testing",
+        "@npm//@ngrx/store",
+        "@npm//rxjs",
+        "//third_party/javascript/typings/jasmine",
+        "@org_xprof//frontend/app/common/interfaces",
+        "@org_xprof//frontend/app/components/trace_viewer_container",
+        "@org_xprof//frontend/app/components/trace_viewer_v2:app_bundle_ts",
+        "@org_xprof//frontend/app/services/data_service_v2",
+        "@org_xprof//frontend/app/store",
+    ],
+)
+
+sass_binary(
+    name = "trace_viewer_css",
+    src = "trace_viewer.scss",
+    # stack = False,
+    sourcemap = False,
+)

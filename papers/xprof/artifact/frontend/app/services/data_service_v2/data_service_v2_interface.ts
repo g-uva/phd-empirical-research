@@ -1,0 +1,178 @@
+/**
+ * @fileoverview Data service interface meant to accommodate different
+ * implementations
+ */
+
+import {InjectionToken} from '@angular/core';
+import {ProfilerConfig} from 'org_xprof/frontend/app/common/interfaces/capture_profile';
+import {DataTable} from 'org_xprof/frontend/app/common/interfaces/data_table';
+import {type Diagnostics} from 'org_xprof/frontend/app/common/interfaces/diagnostics';
+import {GraphTypeObject} from 'org_xprof/frontend/app/common/interfaces/graph_viewer';
+import {HostMetadata} from 'org_xprof/frontend/app/common/interfaces/hosts';
+import {type SmartSuggestionReport} from 'org_xprof/frontend/app/common/interfaces/smart_suggestion.jsonpb_decls';
+import {
+  OpProfileData,
+  OpProfileSummary,
+} from 'org_xprof/frontend/app/components/op_profile/op_profile_data';
+import {Observable} from 'rxjs';
+
+/** The data service class that calls API and return response. */
+export interface DataServiceV2Interface {
+  /** Fetches plugin config details from the backend. */
+  getConfig(): Observable<ProfilerConfig | null>;
+
+  getData(
+    sessionId: string,
+    tool: string,
+    host?: string,
+    parameters?: Map<string, string | boolean>,
+    options?: {ignoreError?: boolean; updateSearchParams?: boolean},
+  ): Observable<DataTable | DataTable[] | null>;
+
+  getDataUrl(
+    sessionId: string,
+    tool: string,
+    host?: string,
+    parameters?: Map<string, string>,
+  ): string;
+
+  getSmartSuggestions(
+    sessionId: string,
+    parameters?: Map<string, string>,
+  ): Observable<SmartSuggestionReport | null>;
+
+  // Returns a string of comma separated module names.
+  getModuleList(sessionId: string, graphType?: string): Observable<string>;
+
+  /** Creates a tool URL for cross tool linking. */
+  createToolUrl(options: {
+    toolName: string;
+    sessionId: string;
+    params: Record<string, string>;
+  }): string;
+
+  getGraphViewerLink(
+    sessionId: string,
+    moduleName: string,
+    opName: string,
+    programId: string,
+  ): string;
+
+  meGraphEnabled(): boolean;
+  getGraphTypes(sessionId: string): Observable<GraphTypeObject[]>;
+  getGraphOpStyles(sessionId: string): Observable<string>;
+  getGraphVizUri(sessionId: string, params: Map<string, string>): string;
+  getGraphvizUrl(
+    sessionId: string,
+    opName: string,
+    moduleName: string,
+    graphWidth: number,
+    showMetadata: boolean,
+    mergeFusion: boolean,
+    graphType: string,
+  ): Observable<string>;
+  getMeGraphJson(
+    sessionId: string,
+    params: Map<string, string>,
+  ): Observable<string>;
+
+  getTags(sessionId: string): Observable<string[]>;
+  getHosts(sessionId: string, tool?: string): Observable<HostMetadata[]>;
+
+  // host is needed to fetch the corresponding <host>.xplane.pb data
+  // params: op_profile_limit to control the numbe of op displayed in each layer
+  // of the op tree on UI
+  getOpProfileData(
+    sessionId: string,
+    host: string,
+    params: Map<string, string>,
+  ): Observable<DataTable | null>;
+
+  getTraceBufferDropAnalysis(
+    sessionId: string,
+    host?: string,
+  ): Observable<Diagnostics>;
+
+  getXPlaneDiagnostics(sessionId: string): Observable<Diagnostics>;
+
+  getOpProfileSummary(data: OpProfileData): OpProfileSummary[];
+  // TODO(b/429042977): Do not include Custom Call text for provenance nodes.
+  getCustomCallTextLink(
+    sessionId: string,
+    moduleName: string,
+    opName: string,
+    programId: string,
+  ): string;
+
+  getCustomCallRegvizLink(
+    sessionId: string,
+    moduleName: string,
+    opName: string,
+    programId: string,
+  ): string;
+
+  getCustomCallText(
+    sessionId: string,
+    moduleName: string,
+    opName: string,
+    programId: string,
+  ): Observable<string>;
+
+  downloadHloProto(
+    sessionId: string,
+    graphType: string,
+    moduleName: string,
+    type: string,
+    showMetadata: boolean,
+    programId?: string,
+  ): Observable<string | Blob | null>;
+
+  // Pick first host in the list if not specified.
+  getLloSourceInfo(
+    sessionId: string,
+    opName: string,
+    host?: string,
+  ): Observable<string>;
+
+  getSearchParams(): URLSearchParams;
+  setSearchParams(searchParams: URLSearchParams): void;
+
+  getBaseSessionId(): string | null;
+  setBaseSessionId(sessionId: string): void;
+
+  // Export tool data for the given session as a CSV.
+  // tqx: additional query parameters to pass to the server. The format should
+  // be a semicolon-separated list of key-value pairs, for example,
+  // "key1:value1;key2:value2".
+  exportDataAsCSV(
+    sessionId: string,
+    tool: string,
+    host: string,
+    tqx?: string,
+    additionalParams?: Map<string, string>,
+  ): void;
+
+  getDataByModuleNameAndMemorySpace(
+    tool: string,
+    sessionId: string,
+    host: string,
+    moduleName: string,
+    memorySpace: number,
+  ): Observable<DataTable>;
+
+  disableCacheRegeneration(): void;
+
+  openUtilizationGraphviz(sessionId: string): void;
+  isGraphvizAvailable(): boolean;
+  getRooflineModelLink(sessionId: string): string;
+  getPluginVersion(): Observable<string | null>;
+  isSmartSuggestionEnabled(): boolean;
+  getMemoryAnalysisModuleList(
+    sessionId: string,
+    host: string,
+  ): Observable<string>;
+}
+
+/** Injection token for the data service interface. */
+export const DATA_SERVICE_INTERFACE_TOKEN =
+  new InjectionToken<DataServiceV2Interface>('DataServiceV2Interface');

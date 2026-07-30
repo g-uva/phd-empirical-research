@@ -1,0 +1,8 @@
+add_subdirectory(base_attach_impl)
+add_subdirectory(frida_uprobe_attach_impl)
+if(UNIX AND NOT APPLE)
+  add_subdirectory(syscall_trace_attach_impl)
+  add_subdirectory(text_segment_transformer)
+  add_subdirectory(nv_attach_impl)
+  # add_subdirectory(nv_attach_impl_basic)
+endif()

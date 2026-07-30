@@ -1,0 +1,14 @@
+{
+  "schema_version": "0.2.0",
+  "artifact": "artifact:xprof",
+  "next_experiment_number": 2,
+  "experiments": [
+    {
+      "id": "exp-0001",
+      "uid": "7ffc6ff9",
+      "path": "exp-0001/metadata.json",
+      "status": "draft",
+      "content_hash": "053393cab79180ae4f5a9a02f5dcafc2a4d16241c280d18937509196f2836a93"
+    }
+  ]
+}

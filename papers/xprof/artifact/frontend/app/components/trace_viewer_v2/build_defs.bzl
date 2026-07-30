@@ -1,0 +1,58 @@
+"""
+This module contains global variables and configurations used in the BUILD files.
+"""
+
+load("@rules_cc//cc:defs.bzl", "cc_library")
+load("@rules_cc//cc:defs.bzl", "cc_test")
+
+# Tags to apply to targets that are part of the WASM build and cannot be built with standard tools.
+# This includes libraries, binaries, and tests that will be run in a WASM environment.
+WASM_TAGS = [
+    "manual",
+    "nobuilder",
+    "notap",
+    "requires_wasm_config",
+]
+
+TEST_LINKOPTS = ["-sASYNCIFY=1", "-sNO_EXIT_RUNTIME=1"]
+
+def wasm_cc_test(name, srcs, deps = [], copts = [], linkopts = TEST_LINKOPTS, **kwargs):
+    """Generates a cc_test and a wasm_web_test target.
+
+    Args:
+      name: The name of the test.
+      srcs: The source files for the test.
+      deps: The dependencies for the test.
+      copts: The compilation options for the test.
+      linkopts: The link options for the test.
+      **kwargs: Additional arguments to pass to the cc_test.
+    """
+    cc_test(
+        name = name + "_cc",
+        srcs = srcs,
+        copts = copts,
+        linkopts = linkopts,
+        tags = WASM_TAGS,
+        deps = deps,
+        **kwargs
+    )
+
+def wasm_cc_library(name, copts = [], **kwargs):
+    """Generates a cc_library target with WASM_TAGS.
+
+    Args:
+      name: The name of the library.
+      copts: The compilation options for the library.
+      **kwargs: Additional arguments to pass to the cc_library.
+    """
+    cc_library(
+        name = name,
+        tags = WASM_TAGS,
+        copts = copts + select({
+            "@org_xprof//frontend/app/components/trace_viewer_v2:is_emscripten": [
+                "-msimd128",
+            ],
+            "//conditions:default": [],
+        }),
+        **kwargs
+    )

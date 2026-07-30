@@ -1,0 +1,14 @@
+@use 'frontend/app/styles/common';
+
+mat-dialog-content {
+  max-height: none; // Override default max-height
+}
+
+mat-dialog-actions {
+  justify-content: flex-end;
+}
+
+.mat-mdc-raised-button {
+  @include common.box-shadow-none;
+  @include common.border-black;
+}

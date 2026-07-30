@@ -1,0 +1,38 @@
+{
+  "id": "exp-0003",
+  "uid": "79aa7181",
+  "title": "Profiler and instrumentation overhead comparison",
+  "status": "draft",
+  "parent": null,
+  "created": null,
+  "last_modified": null,
+  "objective": "Compare eGPU/Cuprobe, CUPTI, and NVBit overhead.",
+  "description": "Pre-registered from artifact/graph2.py; only hard-coded summary values are currently present.",
+  "git_commit": null,
+  "paper_sections": [],
+  "datasets": [],
+  "software_components": [
+    "software:egpu",
+    "software:cuda"
+  ],
+  "configuration_files": [
+    "artifact/graph2.py"
+  ],
+  "configuration_entities": [],
+  "execution_commands": [
+    "python3 artifact/graph2.py"
+  ],
+  "expected_outputs": [
+    "motivation_swapped.pdf",
+    "Raw competitor measurements"
+  ],
+  "actual_outputs": [],
+  "result_entities": [],
+  "notes": [
+    "Running the plotting script alone is not scientific reproduction."
+  ],
+  "metadata_gaps": [
+    "Competitor versions, workloads, hardware, repetitions, and raw data are unknown."
+  ],
+  "content_hash": "aa809dc00deff16131cbdd6b7b227a3640d531247babdba32f656d7587c342eb"
+}

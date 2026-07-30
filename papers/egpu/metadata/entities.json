@@ -1,0 +1,24 @@
+{
+  "people": [
+    {"id": "person:yiwei-yang", "name": "Yiwei Yang", "affiliations": []},
+    {"id": "person:tong-yu", "name": "Tong Yu", "affiliations": []},
+    {"id": "person:yusheng-zheng", "name": "Yusheng Zheng", "affiliations": []},
+    {"id": "person:andrew-quinn", "name": "Andrew Quinn", "affiliations": []}
+  ],
+  "organisations": [],
+  "software": [
+    {"id": "software:egpu", "name": "eGPU", "type": "gpu-ebpf-runtime", "version": "166c175bdc6c654fe115a261b0aa00c3aaf092f9", "url": "https://github.com/eunomia-bpf/eGPU"}
+  ],
+  "datasets": [],
+  "experiments": [
+    {"id": "experiment:egpu-exp-0001", "name": "exp-0001", "metadata_path": "../artifact/experiments/exp-0001/metadata.json"},
+    {"id": "experiment:egpu-exp-0002", "name": "exp-0002", "metadata_path": "../artifact/experiments/exp-0002/metadata.json"},
+    {"id": "experiment:egpu-exp-0003", "name": "exp-0003", "metadata_path": "../artifact/experiments/exp-0003/metadata.json"},
+    {"id": "experiment:egpu-exp-0004", "name": "exp-0004", "metadata_path": "../artifact/experiments/exp-0004/metadata.json"},
+    {"id": "experiment:egpu-exp-0005", "name": "exp-0005", "metadata_path": "../artifact/experiments/exp-0005/metadata.json"}
+  ],
+  "venues": [
+    {"id": "venue:hcds", "name": "Workshop on Heterogeneous Composable and Disaggregated Systems", "type": "workshop", "url": "https://doi.org/10.1145/3723851"}
+  ],
+  "funding_projects": []
+}
