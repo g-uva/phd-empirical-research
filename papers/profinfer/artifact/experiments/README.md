@@ -16,7 +16,28 @@ This directory records scientific experiment identity and intent. It does not re
 5. Set `parent` only when the new run is a scientific continuation of a prior experiment. Parent references use the readable `exp-####` ID.
 6. Add the `id`, `uid`, metadata path, and status to `index.json`, then increment `next_experiment_number`. Never reuse either identifier.
 7. Run `python3 scripts/validate_metadata.py` from the catalogue root. It rejects malformed, duplicate, mismatched, or incorrectly derived UIDs.
-8. Change status through `draft`, `working`, `validated`, `archived`, or `published` as evidence warrants. Tags or releases are only appropriate for published experiments and are never created automatically by this workflow.
+8. Generate the experiment `content_hash` and its change record:
+
+   ```bash
+   python3 scripts/experiment_versions.py update exp-0015 \
+     --reason "Register exp-0015"
+   ```
+
+9. Change status through `draft`, `working`, `validated`, `archived`, or `published` as evidence warrants. Tags or releases are only appropriate for published experiments and are never created automatically by this workflow.
+
+## Identity, versions, and change checks
+
+`id` and `uid` are permanent identities and never change. `content_hash` is a
+SHA-256 version fingerprint of the canonical experiment metadata and changes
+when that metadata changes. The hash is stored both in `metadata.json` and the
+index. It incorporates referenced configuration/result checksums through their
+metadata values; local generated files remain outside Git.
+
+Run `python3 scripts/experiment_versions.py check` before committing. For an
+intentional edit, use `update --reason ...`; this refreshes the hash and writes
+a timestamped, machine-readable record under `changes/` with old/new hashes and
+the current Git working-tree change list. Repository hooks and CI reject stale
+or missing hashes.
 
 The sequential `exp-####` value remains the primary human-readable identity and directory name. The eight-character `uid` is a compact artifact-scoped alias; it is not a cryptographic security token or a globally collision-proof identifier. Both values are immutable once issued.
 

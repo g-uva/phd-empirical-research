@@ -15,6 +15,7 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 ID_RE = re.compile(r"^[a-z][a-z0-9-]*:[a-z0-9][a-z0-9.-]*$")
 SEMVER_RE = re.compile(r"^[0-9]+\.[0-9]+\.[0-9]+$")
+SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
 
 VOCABULARY = {
     "research_functions": {
@@ -134,7 +135,7 @@ def main() -> int:
 
     for record in provenance.get("configurations", []):
         digest = record.get("sha256")
-        if not re.fullmatch(r"[0-9a-f]{64}", str(digest)):
+        if not SHA256_RE.fullmatch(str(digest)):
             errors.append(f"invalid configuration SHA-256 for {record.get('id')}: {digest}")
         path = (provenance_path.parent / str(record.get("path"))).resolve()
         if path.exists():
@@ -146,7 +147,7 @@ def main() -> int:
 
     for record in provenance.get("results", []):
         digest = record.get("manifest_sha256")
-        if not re.fullmatch(r"[0-9a-f]{64}", str(digest)):
+        if not SHA256_RE.fullmatch(str(digest)):
             errors.append(f"invalid result manifest SHA-256 for {record.get('id')}: {digest}")
         directory = (provenance_path.parent / str(record.get("path"))).resolve()
         if directory.exists():
@@ -217,12 +218,30 @@ def main() -> int:
                 errors.append(f"experiment metadata UID mismatch in {metadata_path}")
             if metadata.get("status") not in EXPERIMENT_STATUSES:
                 errors.append(f"invalid status for {entry.get('id')}: {metadata.get('status')}")
+            content_hash = metadata.get("content_hash")
+            if not SHA256_RE.fullmatch(str(content_hash)):
+                errors.append(f"invalid content hash for {entry.get('id')}: {content_hash}")
+            if entry.get("content_hash") != content_hash:
+                errors.append(f"experiment index content hash mismatch for {entry.get('id')}")
             parent = metadata.get("parent")
             if parent is not None and parent not in experiment_ids:
                 errors.append(f"unresolved parent for {entry.get('id')}: {parent}")
     next_number = index.get("next_experiment_number")
     if issued_numbers and (not isinstance(next_number, int) or next_number <= max(issued_numbers)):
         errors.append("next_experiment_number must exceed every issued experiment number")
+
+    artifact = documents.get("artifact:profinfer", {})
+    snapshot = artifact.get("original_source_snapshot", {})
+    snapshot_path = ROOT / str(snapshot.get("path", ""))
+    snapshot_digest = snapshot.get("sha256")
+    if not SHA256_RE.fullmatch(str(snapshot_digest)):
+        errors.append(f"invalid original source snapshot SHA-256: {snapshot_digest}")
+    elif snapshot_path.is_file():
+        observed = hashlib.sha256(snapshot_path.read_bytes()).hexdigest()
+        if observed != snapshot_digest:
+            errors.append("original source snapshot checksum mismatch")
+    else:
+        errors.append(f"missing original source snapshot: {snapshot_path}")
 
     relationships = load(profinfer_meta / "relationships.json", errors) or {}
     known_ids = set(definition_ids)

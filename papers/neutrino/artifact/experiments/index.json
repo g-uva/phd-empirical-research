@@ -1,0 +1,13 @@
+{
+  "schema_version": "0.2.0",
+  "artifact": "artifact:neutrino",
+  "next_experiment_number": 7,
+  "experiments": [
+    {"id": "exp-0001", "uid": "41344e86", "path": "exp-0001/metadata.json", "status": "draft"},
+    {"id": "exp-0002", "uid": "4fb9f1bb", "path": "exp-0002/metadata.json", "status": "draft"},
+    {"id": "exp-0003", "uid": "461c9581", "path": "exp-0003/metadata.json", "status": "draft"},
+    {"id": "exp-0004", "uid": "8082758d", "path": "exp-0004/metadata.json", "status": "draft"},
+    {"id": "exp-0005", "uid": "f7093b03", "path": "exp-0005/metadata.json", "status": "draft"},
+    {"id": "exp-0006", "uid": "1a6e91d5", "path": "exp-0006/metadata.json", "status": "draft"}
+  ]
+}

@@ -8,98 +8,112 @@
       "uid": "1acd2f20",
       "path": "exp-0001/metadata.json",
       "status": "draft",
-      "source_run": "Linux/experiments/2026-05-28-21-05-58_llama-trace"
+      "source_run": "Linux/experiments/2026-05-28-21-05-58_llama-trace",
+      "content_hash": "c9827eeda2fd6654116de71a1d9772f92e9374997990b9942abf89a7198a87f2"
     },
     {
       "id": "exp-0002",
       "uid": "dec6da8c",
       "path": "exp-0002/metadata.json",
       "status": "working",
-      "source_run": "Linux/experiments/2026-05-28-21-06-57_llama-trace"
+      "source_run": "Linux/experiments/2026-05-28-21-06-57_llama-trace",
+      "content_hash": "67cb788273c385d5c3fff231fde6ece45cbc6e43db58ae8568c97382a0f10b85"
     },
     {
       "id": "exp-0003",
       "uid": "8b993d9d",
       "path": "exp-0003/metadata.json",
       "status": "working",
-      "source_run": "Linux/experiments/2026-05-28-21-15-39_llama-trace"
+      "source_run": "Linux/experiments/2026-05-28-21-15-39_llama-trace",
+      "content_hash": "46f957e58602e558259ebd763a21521865863c16897bb1b4029bcf1010055c82"
     },
     {
       "id": "exp-0004",
       "uid": "5fb0d4b3",
       "path": "exp-0004/metadata.json",
       "status": "working",
-      "source_run": "Linux/experiments/2026-05-28-21-19-01_llama-trace"
+      "source_run": "Linux/experiments/2026-05-28-21-19-01_llama-trace",
+      "content_hash": "97dd2bba6c2b49d7940ba1f850df30b82a6c6ecf15816b9bcfcde40cb2f03fc9"
     },
     {
       "id": "exp-0005",
       "uid": "f07c54b5",
       "path": "exp-0005/metadata.json",
       "status": "working",
-      "source_run": "Linux/experiments/2026-05-29-13-51-52_trace_qwen2.5-0.5B"
+      "source_run": "Linux/experiments/2026-05-29-13-51-52_trace_qwen2.5-0.5B",
+      "content_hash": "a30c1a739f22f8cfd2b592e0ac4b33dc4be8be6aa48785a018b3b919f090458c"
     },
     {
       "id": "exp-0006",
       "uid": "d8fe06ba",
       "path": "exp-0006/metadata.json",
       "status": "working",
-      "source_run": "Linux/experiments/2026-05-29-13-52-27_trace_llama3.2-1B"
+      "source_run": "Linux/experiments/2026-05-29-13-52-27_trace_llama3.2-1B",
+      "content_hash": "478f53256694f63d609bf206501cfdf73bfcd99ae085e7e6a2d124b0228c7d03"
     },
     {
       "id": "exp-0007",
       "uid": "7f53932f",
       "path": "exp-0007/metadata.json",
       "status": "working",
-      "source_run": "Linux/experiments/2026-05-29-13-52-59_trace_deepseek-r1-qwen-1.5B"
+      "source_run": "Linux/experiments/2026-05-29-13-52-59_trace_deepseek-r1-qwen-1.5B",
+      "content_hash": "c9bc55812fa82a2c05ffdc0996c1304d144d14d0ba397df8e90e54a54f737040"
     },
     {
       "id": "exp-0008",
       "uid": "1eb944cd",
       "path": "exp-0008/metadata.json",
       "status": "working",
-      "source_run": "Linux/experiments/2026-05-29-13-53-13_trace_gemma2-2B"
+      "source_run": "Linux/experiments/2026-05-29-13-53-13_trace_gemma2-2B",
+      "content_hash": "2ff466e2553adcd165cdb0dd546e5dc10c204bde577d08987e3f5b89bd702242"
     },
     {
       "id": "exp-0009",
       "uid": "87c6f0df",
       "path": "exp-0009/metadata.json",
       "status": "working",
-      "source_run": "Linux/experiments/2026-06-25-14-17-34_trace_qwen2.5-0.5B"
+      "source_run": "Linux/experiments/2026-06-25-14-17-34_trace_qwen2.5-0.5B",
+      "content_hash": "13a7afe6715d89b368aa850f1f45040cd4f765b9f4eaa3d9392c93380a53cd3d"
     },
     {
       "id": "exp-0010",
       "uid": "49015a0e",
       "path": "exp-0010/metadata.json",
       "status": "working",
-      "source_run": "Linux/experiments/2026-06-25-14-20-05_trace_llama3.2-1B"
+      "source_run": "Linux/experiments/2026-06-25-14-20-05_trace_llama3.2-1B",
+      "content_hash": "e454bbe2c0d298b6b848188ba93cffd11870ed5c156030cb10e440a663a635cf"
     },
     {
       "id": "exp-0011",
       "uid": "aa8ecc8c",
       "path": "exp-0011/metadata.json",
       "status": "working",
-      "source_run": "Linux/experiments/2026-06-25-14-30-19_trace_qwen2.5-0.5B"
+      "source_run": "Linux/experiments/2026-06-25-14-30-19_trace_qwen2.5-0.5B",
+      "content_hash": "a8de50f2cb6ff03d50366d3a678dc3460d8505dbf33056e806ddf6458219b795"
     },
     {
       "id": "exp-0012",
       "uid": "0da27b3c",
       "path": "exp-0012/metadata.json",
       "status": "working",
-      "source_run": "Linux/experiments/2026-06-25-14-32-41_trace_llama3.2-1B"
+      "source_run": "Linux/experiments/2026-06-25-14-32-41_trace_llama3.2-1B",
+      "content_hash": "a108d5534317fb4b3713e1a219506d235825e692dca9b42ac1e0037e60b408f2"
     },
     {
       "id": "exp-0013",
       "uid": "83b05724",
       "path": "exp-0013/metadata.json",
       "status": "working",
-      "source_run": "Linux/experiments/2026-06-25-14-35-07_trace_deepseek-r1-qwen-1.5B"
+      "source_run": "Linux/experiments/2026-06-25-14-35-07_trace_deepseek-r1-qwen-1.5B",
+      "content_hash": "b925f52fe47d1119b02c50980a83c916438b6d0e1fa808940c67c6c944b1f897"
     },
     {
       "id": "exp-0014",
       "uid": "be6f7b54",
       "path": "exp-0014/metadata.json",
       "status": "working",
-      "source_run": "Linux/experiments/2026-06-25-14-37-49_trace_gemma2-2B"
+      "source_run": "Linux/experiments/2026-06-25-14-37-49_trace_gemma2-2B",
+      "content_hash": "4d9a556d80e312aff1712dd73a263697af938d735d4975a3d180a3f96ba740d7"
     }
   ]
 }

@@ -7,16 +7,21 @@
   "supports_paper": "paper:profinfer",
   "source_path": "../artifact",
   "repository": {
-    "url": null,
-    "current_commit": "a311e7c24687b878ec560d77ea7bfd04e9036e04",
-    "remote_status": "No Git remote is configured in the artifact repository.",
-    "contributors_observed_in_git_history": [
-      {
-        "name": "Gonçalo Ferreira",
-        "email": "g.j.teixeiradepinhoferreira@uva.nl",
-        "role": "repository contributor; not asserted to be an author of ProfInfer"
-      }
-    ]
+    "url": "https://gitcode.com/openharmony-robot/oh-llama.cpp/tree/main/profinfer",
+    "repository_url": "https://gitcode.com/openharmony-robot/oh-llama.cpp",
+    "upstream_commit": "210890a1f06cc837179d83e96fa0ea5327f9bf9d",
+    "catalogue_import_commit": "a311e7c24687b878ec560d77ea7bfd04e9036e04",
+    "tracking": "The artifact files are tracked directly by the catalogue repository; upstream Git history is not embedded."
+  },
+  "original_source_snapshot": {
+    "path": "papers/profinfer/original/profinfer-210890a1f06c.zip",
+    "format": "zip",
+    "scope": "profinfer/",
+    "source_url": "https://gitcode.com/openharmony-robot/oh-llama.cpp/tree/210890a1f06cc837179d83e96fa0ea5327f9bf9d/profinfer",
+    "revision": "210890a1f06cc837179d83e96fa0ea5327f9bf9d",
+    "sha256": "a2edefdfd18905a5e6d1ca025a547741f117a04c8251ffbe2aece7939cbfffd3",
+    "licence_status": "No licence covering the ProfInfer directory was found; redistribution terms require confirmation.",
+    "notes": "Created with git archive. Gitlink dependencies under OpenHarmony are empty directories in the snapshot."
   },
   "components": [
     { "name": "Linux profiler", "path": "../artifact/Linux" },
@@ -74,8 +79,7 @@
     }
   ],
   "metadata_gaps": [
-    "The original ProfInfer artifact repository URL is not recoverable from Git configuration; the existing Linux README clone command appears to name the oh-llama.cpp dependency and requires author confirmation.",
-    "No artifact licence or citation file is present.",
+    "No licence covering the ProfInfer directory or citation file is present.",
     "The exact BCC, kernel, hardware, and OpenHarmony versions are not recorded.",
     "Existing experiment outputs were generated after the last artifact commit, so a truthful per-run Git commit cannot be verified."
   ]

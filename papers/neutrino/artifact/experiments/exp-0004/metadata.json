@@ -1,0 +1,23 @@
+{
+  "id": "exp-0004",
+  "uid": "8082758d",
+  "title": "Maximum memory evaluation",
+  "status": "draft",
+  "parent": null,
+  "created": null,
+  "last_modified": null,
+  "objective": "Reproduce Neutrino's maximum-memory result in Figure 11.",
+  "description": "Pre-registered from the official artifact branch; not executed in this workspace.",
+  "git_commit": null,
+  "paper_sections": ["Figure 11"],
+  "datasets": ["dataset:neutrino-collected-traces"],
+  "software_components": ["software:neutrino", "software:cuda", "software:pytorch"],
+  "configuration_files": ["evaluation/static.ipynb", "evaluation/dynamic.ipynb"],
+  "configuration_entities": ["configuration:neutrino-static-notebook", "configuration:neutrino-dynamic-notebook"],
+  "execution_commands": ["Run the max_mem section of the static or dynamic notebook."],
+  "expected_outputs": ["Maximum-memory analysis and Figure 11"],
+  "actual_outputs": [],
+  "result_entities": [],
+  "notes": [],
+  "metadata_gaps": ["Hardware/software environment and exact run parameters are not yet recorded."]
+}

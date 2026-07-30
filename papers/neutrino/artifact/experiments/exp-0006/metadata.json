@@ -1,0 +1,23 @@
+{
+  "id": "exp-0006",
+  "uid": "1a6e91d5",
+  "title": "Warp scheduling evaluation",
+  "status": "draft",
+  "parent": null,
+  "created": null,
+  "last_modified": null,
+  "objective": "Reproduce Neutrino's warp-scheduling result in Figure 13.",
+  "description": "Pre-registered from the official artifact branch; not executed in this workspace.",
+  "git_commit": null,
+  "paper_sections": ["Figure 13"],
+  "datasets": ["dataset:neutrino-collected-traces"],
+  "software_components": ["software:neutrino", "software:cuda", "software:pytorch"],
+  "configuration_files": ["evaluation/static.ipynb", "evaluation/dynamic.ipynb"],
+  "configuration_entities": ["configuration:neutrino-static-notebook", "configuration:neutrino-dynamic-notebook"],
+  "execution_commands": ["Run the warp_sched section of the static or dynamic notebook."],
+  "expected_outputs": ["Warp-scheduling analysis and Figure 13"],
+  "actual_outputs": [],
+  "result_entities": [],
+  "notes": [],
+  "metadata_gaps": ["Hardware/software environment and exact run parameters are not yet recorded."]
+}

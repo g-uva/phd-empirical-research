@@ -1,0 +1,23 @@
+{
+  "id": "exp-0002",
+  "uid": "4fb9f1bb",
+  "title": "DMAT evaluation",
+  "status": "draft",
+  "parent": null,
+  "created": null,
+  "last_modified": null,
+  "objective": "Reproduce the DMAT results in Figures 1 and 10A--10C.",
+  "description": "Pre-registered from the official artifact branch; not executed in this workspace.",
+  "git_commit": null,
+  "paper_sections": ["Figure 1", "Figure 10A", "Figure 10B", "Figure 10C"],
+  "datasets": ["dataset:neutrino-collected-traces"],
+  "software_components": ["software:neutrino", "software:cuda", "software:pytorch"],
+  "configuration_files": ["evaluation/static.ipynb", "evaluation/dynamic.ipynb"],
+  "configuration_entities": ["configuration:neutrino-static-notebook", "configuration:neutrino-dynamic-notebook"],
+  "execution_commands": ["Run the dmat section of the static or dynamic notebook."],
+  "expected_outputs": ["DMAT statistics and Figures 1 and 10A--10C"],
+  "actual_outputs": [],
+  "result_entities": [],
+  "notes": [],
+  "metadata_gaps": ["Hardware/software environment and exact run parameters are not yet recorded."]
+}

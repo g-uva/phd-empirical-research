@@ -6,12 +6,17 @@ This repository contains the ProfInfer implementations for Linux and OpenHarmony
 
 - Artifact package version: `0.1.0` (from `Linux/pyproject.toml`)
 - Preserved Git revision: `a311e7c24687b878ec560d77ea7bfd04e9036e04`
-- Original ProfInfer repository URL: unknown; this checkout has no configured Git remote
+- Canonical ProfInfer source: [oh-llama.cpp/profinfer](https://gitcode.com/openharmony-robot/oh-llama.cpp/tree/main/profinfer)
+- Pinned upstream revision: `210890a1f06cc837179d83e96fa0ea5327f9bf9d`
+- Preserved source ZIP and checksum: [`../original/README.md`](../original/README.md)
 - Paper: [`../paper/profinfer-mlsys-2026.pdf`](../paper/profinfer-mlsys-2026.pdf)
 - Required `llama.cpp`: [ggml-org/llama.cpp](https://github.com/ggml-org/llama.cpp) at `d04e7163c85a847bc61d58c22f2c503596db7aa8`
 - Documented accelerator fork: [oh-llama.cpp](https://gitcode.com/openharmony-robot/oh-llama.cpp) (revision not recorded)
 
-The clone URL in the pre-existing `Linux/README.md` names `oh-llama.cpp`, not an independently verifiable ProfInfer origin. It is retained as documentation but is not represented as the artifact's original URL.
+The artifact files are tracked directly by the catalogue repository; upstream
+Git history is not embedded. The pre-existing clone URL was verified to contain
+the canonical `profinfer/` directory. No covering upstream licence was found,
+so redistribution terms still require author confirmation.
 
 ## Layout
 
