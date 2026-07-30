@@ -1,0 +1,5 @@
+#!/bin/sh
+set -eu
+
+python3 scripts/experiment_versions.py check
+python3 scripts/validate_metadata.py

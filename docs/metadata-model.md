@@ -14,8 +14,10 @@ Each experiment also has a mutable `content_hash`: a full SHA-256 over canonical
 JSON containing its metadata, excluding the `content_hash` field itself and
 wrapped with the format marker `experiment-content-v1`. The index mirrors this
 hash. Unlike the immutable UID, the content hash changes whenever the experiment
-record changes. Configuration and result checksums already embedded in the
-metadata therefore contribute transitively to the content hash.
+record changes. Referenced configuration and result files are protected
+separately by the SHA-256 and manifest checks in `metadata/provenance.json`; a
+configuration checksum change must also be described in the experiment change
+record when it changes the scientific run.
 
 Use `python3 scripts/experiment_versions.py check` to detect stale hashes. Use
 the explicit `update --reason ...` command for an intentional change; it updates
@@ -43,8 +45,8 @@ Paper classification is multi-label across independent axes: research function, 
 5. Catalogue existing experiments with immutable `exp-####` identifiers, their deterministically derived eight-character hexadecimal UIDs, and a validated content hash.
 6. Assign IDs and checksums to captured configurations and generated-result bundles, then connect them with `uses-configuration`, `produces-result`, and `derived-from` relationships. Do not commit datasets, weights, or generated results.
 7. Reference the paper and artifact from `catalog.json`, update the root table,
-   run `python3 scripts/experiment_versions.py update --reason "Initial
-   registration"`, and run the validators.
+   run `python3 scripts/experiment_versions.py update --paper <slug> --reason
+   "Initial registration"`, and run the validators.
 
 ## Future interoperability
 

@@ -1,0 +1,31 @@
+{
+  "people": [
+    {"id": "person:songlin-huang", "name": "Songlin Huang", "affiliations": ["organisation:university-of-hong-kong"]},
+    {"id": "person:chenshu-wu", "name": "Chenshu Wu", "affiliations": ["organisation:university-of-hong-kong"]}
+  ],
+  "organisations": [
+    {"id": "organisation:university-of-hong-kong", "name": "The University of Hong Kong", "type": "university"}
+  ],
+  "software": [
+    {"id": "software:neutrino", "name": "Neutrino", "type": "gpu-profiler", "version": "4a82cd22f474c31ac2fecfa174d381a19bb3f469", "url": "https://github.com/open-neutrino/neutrino"},
+    {"id": "software:cuda", "name": "CUDA", "type": "gpu-platform", "version": null, "url": "https://developer.nvidia.com/cuda-toolkit"},
+    {"id": "software:pytorch", "name": "PyTorch", "type": "machine-learning-framework", "version": "2.5.0 PTX-included custom build", "url": "https://pytorch.org"},
+    {"id": "software:triton", "name": "Triton", "type": "gpu-programming-framework", "version": null, "url": "https://triton-lang.org"},
+    {"id": "software:cutlass", "name": "CUTLASS", "type": "gpu-kernel-library", "version": "3.5.0", "url": "https://github.com/NVIDIA/cutlass"}
+  ],
+  "datasets": [
+    {"id": "dataset:neutrino-collected-traces", "name": "Neutrino OSDI 2025 collected traces", "type": "trace-bundle", "version": null, "url": "https://pub-eef24bf0aa5b4950860ea28dfbe39d8c.r2.dev/trace.zip", "tracked_in_git": false}
+  ],
+  "experiments": [
+    {"id": "experiment:neutrino-exp-0001", "name": "exp-0001", "metadata_path": "../artifact/experiments/exp-0001/metadata.json"},
+    {"id": "experiment:neutrino-exp-0002", "name": "exp-0002", "metadata_path": "../artifact/experiments/exp-0002/metadata.json"},
+    {"id": "experiment:neutrino-exp-0003", "name": "exp-0003", "metadata_path": "../artifact/experiments/exp-0003/metadata.json"},
+    {"id": "experiment:neutrino-exp-0004", "name": "exp-0004", "metadata_path": "../artifact/experiments/exp-0004/metadata.json"},
+    {"id": "experiment:neutrino-exp-0005", "name": "exp-0005", "metadata_path": "../artifact/experiments/exp-0005/metadata.json"},
+    {"id": "experiment:neutrino-exp-0006", "name": "exp-0006", "metadata_path": "../artifact/experiments/exp-0006/metadata.json"}
+  ],
+  "venues": [
+    {"id": "venue:osdi", "name": "USENIX Symposium on Operating Systems Design and Implementation", "type": "conference", "url": "https://www.usenix.org/conference/osdi25"}
+  ],
+  "funding_projects": []
+}

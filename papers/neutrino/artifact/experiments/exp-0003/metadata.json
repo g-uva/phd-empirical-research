@@ -9,15 +9,38 @@
   "objective": "Reproduce Neutrino's kernel-profiling overhead results in Table 2.",
   "description": "Pre-registered from the official artifact branch; not executed in this workspace.",
   "git_commit": null,
-  "paper_sections": ["Table 2"],
-  "datasets": ["dataset:neutrino-collected-traces"],
-  "software_components": ["software:neutrino", "software:cuda", "software:pytorch"],
-  "configuration_files": ["evaluation/static.ipynb", "evaluation/dynamic.ipynb"],
-  "configuration_entities": ["configuration:neutrino-static-notebook", "configuration:neutrino-dynamic-notebook"],
-  "execution_commands": ["Run the kernel_overhead section of the static or dynamic notebook."],
-  "expected_outputs": ["Kernel overhead values corresponding to Table 2"],
+  "paper_sections": [
+    "Table 2"
+  ],
+  "datasets": [
+    "dataset:neutrino-collected-traces"
+  ],
+  "software_components": [
+    "software:neutrino",
+    "software:cuda",
+    "software:pytorch"
+  ],
+  "configuration_files": [
+    "evaluation/static.ipynb",
+    "evaluation/dynamic.ipynb"
+  ],
+  "configuration_entities": [
+    "configuration:neutrino-static-notebook",
+    "configuration:neutrino-dynamic-notebook"
+  ],
+  "execution_commands": [
+    "Run the kernel_overhead section of the static or dynamic notebook."
+  ],
+  "expected_outputs": [
+    "Kernel overhead values corresponding to Table 2"
+  ],
   "actual_outputs": [],
   "result_entities": [],
-  "notes": ["The authors state that original traces for the first five rows of Table 2 were deleted."],
-  "metadata_gaps": ["Hardware/software environment and exact run parameters are not yet recorded."]
+  "notes": [
+    "The authors state that original traces for the first five rows of Table 2 were deleted."
+  ],
+  "metadata_gaps": [
+    "Hardware/software environment and exact run parameters are not yet recorded."
+  ],
+  "content_hash": "e6d5fdb64e17d6e0d9af3e02c534e4c17019b44cb0b009d4601b29cdcbf8c1c5"
 }

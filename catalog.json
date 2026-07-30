@@ -1,6 +1,6 @@
 {
   "$schema": "./schemas/research-catalogue.schema.json",
-  "catalogue_version": "0.1.0",
+  "catalogue_version": "0.2.0",
   "project": {
     "id": "project:phd-research",
     "title": "PhD Research Papers and Reproducibility Artifacts"
@@ -9,13 +9,20 @@
     {
       "id": "paper:profinfer",
       "path": "papers/profinfer/metadata/paper.json"
+    },
+    {
+      "id": "paper:neutrino",
+      "path": "papers/neutrino/metadata/paper.json"
     }
   ],
   "artifacts": [
     {
       "id": "artifact:profinfer",
       "path": "papers/profinfer/metadata/artifact.json"
+    },
+    {
+      "id": "artifact:neutrino",
+      "path": "papers/neutrino/metadata/artifact.json"
     }
   ]
 }
-

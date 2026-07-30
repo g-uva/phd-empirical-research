@@ -9,7 +9,7 @@ This repository contains the ProfInfer implementations for Linux and OpenHarmony
 - Canonical ProfInfer source: [oh-llama.cpp/profinfer](https://gitcode.com/openharmony-robot/oh-llama.cpp/tree/main/profinfer)
 - Pinned upstream revision: `210890a1f06cc837179d83e96fa0ea5327f9bf9d`
 - Preserved source ZIP and checksum: [`../original/README.md`](../original/README.md)
-- Paper: [`../paper/profinfer-mlsys-2026.pdf`](../paper/profinfer-mlsys-2026.pdf)
+- Paper: [`../paper/2026-profinfer-eurosys.pdf`](../paper/2026-profinfer-eurosys.pdf)
 - Required `llama.cpp`: [ggml-org/llama.cpp](https://github.com/ggml-org/llama.cpp) at `d04e7163c85a847bc61d58c22f2c503596db7aa8`
 - Documented accelerator fork: [oh-llama.cpp](https://gitcode.com/openharmony-robot/oh-llama.cpp) (revision not recorded)
 

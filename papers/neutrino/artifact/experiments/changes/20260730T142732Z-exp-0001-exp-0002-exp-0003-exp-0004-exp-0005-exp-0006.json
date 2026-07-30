@@ -1,0 +1,122 @@
+{
+  "schema_version": "1.0.0",
+  "created": "2026-07-30T14:27:32Z",
+  "reason": "Register Neutrino OSDI 2025 evaluation families and initial metadata",
+  "base_git_commit": "aac0ac0b6afee548eba6a802594def8313f789fe",
+  "hash_algorithm": "sha256",
+  "hash_format": "experiment-content-v1",
+  "experiments": [
+    {
+      "experiment_id": "exp-0001",
+      "uid": "41344e86",
+      "previous_content_hash": null,
+      "content_hash": "98e51ef1b3ccc5da50653addbae84283b294de84afbbeb2040ff0c9eed2ffd93",
+      "metadata_path": "papers/neutrino/artifact/experiments/exp-0001/metadata.json"
+    },
+    {
+      "experiment_id": "exp-0002",
+      "uid": "4fb9f1bb",
+      "previous_content_hash": null,
+      "content_hash": "3738d9134efbd6d7c25c917a2d4505858d61465690fe193a83cdd773503f4d5b",
+      "metadata_path": "papers/neutrino/artifact/experiments/exp-0002/metadata.json"
+    },
+    {
+      "experiment_id": "exp-0003",
+      "uid": "461c9581",
+      "previous_content_hash": null,
+      "content_hash": "e6d5fdb64e17d6e0d9af3e02c534e4c17019b44cb0b009d4601b29cdcbf8c1c5",
+      "metadata_path": "papers/neutrino/artifact/experiments/exp-0003/metadata.json"
+    },
+    {
+      "experiment_id": "exp-0004",
+      "uid": "8082758d",
+      "previous_content_hash": null,
+      "content_hash": "38f035a57d24b76b8643aaedaf11a06139c509ba6e47120ebb4292da18bd0ec5",
+      "metadata_path": "papers/neutrino/artifact/experiments/exp-0004/metadata.json"
+    },
+    {
+      "experiment_id": "exp-0005",
+      "uid": "f7093b03",
+      "previous_content_hash": null,
+      "content_hash": "b85db369af600f59e7240633209e0781b63552094d70fd3ca8f427a908c07c5c",
+      "metadata_path": "papers/neutrino/artifact/experiments/exp-0005/metadata.json"
+    },
+    {
+      "experiment_id": "exp-0006",
+      "uid": "1a6e91d5",
+      "previous_content_hash": null,
+      "content_hash": "7c09612b95556bce8aa9ee4948988e525f9258a9fdf30bacc0118e499c0cec7c",
+      "metadata_path": "papers/neutrino/artifact/experiments/exp-0006/metadata.json"
+    }
+  ],
+  "working_tree_changes": [
+    {
+      "path": "papers/neutrino/README.md",
+      "status": "A"
+    },
+    {
+      "path": "papers/neutrino/artifact/experiments/exp-0001/metadata.json",
+      "status": "M"
+    },
+    {
+      "path": "papers/neutrino/artifact/experiments/exp-0002/metadata.json",
+      "status": "M"
+    },
+    {
+      "path": "papers/neutrino/artifact/experiments/exp-0003/metadata.json",
+      "status": "M"
+    },
+    {
+      "path": "papers/neutrino/artifact/experiments/exp-0004/metadata.json",
+      "status": "M"
+    },
+    {
+      "path": "papers/neutrino/artifact/experiments/exp-0005/metadata.json",
+      "status": "M"
+    },
+    {
+      "path": "papers/neutrino/artifact/experiments/exp-0006/metadata.json",
+      "status": "M"
+    },
+    {
+      "path": "papers/neutrino/artifact/experiments/index.json",
+      "status": "M"
+    },
+    {
+      "path": "papers/neutrino/metadata/artifact.json",
+      "status": "A"
+    },
+    {
+      "path": "papers/neutrino/metadata/entities.json",
+      "status": "A"
+    },
+    {
+      "path": "papers/neutrino/metadata/paper.json",
+      "status": "A"
+    },
+    {
+      "path": "papers/neutrino/metadata/provenance.json",
+      "status": "A"
+    },
+    {
+      "path": "papers/neutrino/metadata/relationships.json",
+      "status": "A"
+    },
+    {
+      "path": "papers/neutrino/original/README.md",
+      "status": "A"
+    },
+    {
+      "path": "papers/neutrino/original/neutrino-artifact-43182f3082f5.zip",
+      "status": "A"
+    },
+    {
+      "path": "papers/neutrino/original/neutrino-main-4a82cd22f474.zip",
+      "status": "A"
+    },
+    {
+      "path": "papers/neutrino/paper/2025-neutrino-osdi.pdf",
+      "status": "A"
+    }
+  ]
+}

@@ -19,7 +19,7 @@ This directory records scientific experiment identity and intent. It does not re
 8. Generate the experiment `content_hash` and its change record:
 
    ```bash
-   python3 scripts/experiment_versions.py update exp-0015 \
+   python3 scripts/experiment_versions.py update --paper profinfer exp-0015 \
      --reason "Register exp-0015"
    ```
 

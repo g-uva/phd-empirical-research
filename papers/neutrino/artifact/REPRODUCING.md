@@ -42,9 +42,13 @@ tools, Python, a PTX-included PyTorch 2.5.0 build, Triton, and CUTLASS 3.5.0.
 1. Review `evaluation/prepare_env.py` before running it. It downloads executable
    code and a third-party PyTorch wheel without recorded checksums.
 2. Prefer a disposable environment and pin/checksum every downloaded input.
-3. Install the package from this directory and confirm the CLI:
+3. Extract and install the pinned artifact-branch snapshot rather than allowing
+   `prepare_env.py` to clone the moving `artifact` branch:
 
    ```bash
+   mkdir -p /path/to/neutrino-ae
+   unzip ../original/neutrino-artifact-43182f3082f5.zip -d /path/to/neutrino-ae
+   cd /path/to/neutrino-ae/neutrino-artifact
    python3 -m venv .venv
    . .venv/bin/activate
    python -m pip install .

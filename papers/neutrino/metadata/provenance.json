@@ -1,0 +1,28 @@
+{
+  "schema_version": "0.1.0",
+  "configurations": [
+    {
+      "id": "configuration:neutrino-static-notebook",
+      "experiment": "experiment:neutrino-exp-0001",
+      "path": "../artifact/evaluation/static.ipynb",
+      "sha256": "397d996235c81d11439845783987af050e030d74c595925213804b7db323a07b"
+    },
+    {
+      "id": "configuration:neutrino-dynamic-notebook",
+      "experiment": "experiment:neutrino-exp-0001",
+      "path": "../artifact/evaluation/dynamic.ipynb",
+      "sha256": "2f5bb91f716f2ea10b4b9720f4187d355b3df6eb8a3348ecc1c01af98271e5e0"
+    },
+    {
+      "id": "configuration:neutrino-prepare-env",
+      "experiment": "experiment:neutrino-exp-0001",
+      "path": "../artifact/evaluation/prepare_env.py",
+      "sha256": "8dd0cdf8157d304b9345afb430c15c9a19776f235b677fa49cfa5e302c3ed5ae"
+    }
+  ],
+  "results": [],
+  "notes": [
+    "The notebooks are shared configurations for all six draft evaluation families.",
+    "No generated Neutrino results have been captured in this workspace."
+  ]
+}

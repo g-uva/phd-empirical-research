@@ -9,15 +9,36 @@
   "objective": "Reproduce Neutrino's exposed-latency result in Figure 12.",
   "description": "Pre-registered from the official artifact branch; not executed in this workspace.",
   "git_commit": null,
-  "paper_sections": ["Figure 12"],
-  "datasets": ["dataset:neutrino-collected-traces"],
-  "software_components": ["software:neutrino", "software:cuda", "software:pytorch"],
-  "configuration_files": ["evaluation/static.ipynb", "evaluation/dynamic.ipynb"],
-  "configuration_entities": ["configuration:neutrino-static-notebook", "configuration:neutrino-dynamic-notebook"],
-  "execution_commands": ["Run the exposed_latency section of the static or dynamic notebook."],
-  "expected_outputs": ["Exposed-latency analysis and Figure 12"],
+  "paper_sections": [
+    "Figure 12"
+  ],
+  "datasets": [
+    "dataset:neutrino-collected-traces"
+  ],
+  "software_components": [
+    "software:neutrino",
+    "software:cuda",
+    "software:pytorch"
+  ],
+  "configuration_files": [
+    "evaluation/static.ipynb",
+    "evaluation/dynamic.ipynb"
+  ],
+  "configuration_entities": [
+    "configuration:neutrino-static-notebook",
+    "configuration:neutrino-dynamic-notebook"
+  ],
+  "execution_commands": [
+    "Run the exposed_latency section of the static or dynamic notebook."
+  ],
+  "expected_outputs": [
+    "Exposed-latency analysis and Figure 12"
+  ],
   "actual_outputs": [],
   "result_entities": [],
   "notes": [],
-  "metadata_gaps": ["Hardware/software environment and exact run parameters are not yet recorded."]
+  "metadata_gaps": [
+    "Hardware/software environment and exact run parameters are not yet recorded."
+  ],
+  "content_hash": "b85db369af600f59e7240633209e0781b63552094d70fd3ca8f427a908c07c5c"
 }

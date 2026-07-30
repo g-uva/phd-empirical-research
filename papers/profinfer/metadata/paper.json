@@ -53,7 +53,7 @@
   },
   "classification_evidence": [
     {
-      "source_file": "papers/profinfer/paper/profinfer-mlsys-2026.pdf",
+      "source_file": "papers/profinfer/paper/2026-profinfer-eurosys.pdf",
       "description": "The title identifies an eBPF fine-grained LLM inference profiler; the manuscript evaluates profiling across CPU and accelerator backends."
     },
     {
@@ -70,7 +70,7 @@
     "Author affiliations have not been verified."
   ],
   "evidence": {
-    "source_file": "papers/profinfer/paper/profinfer-mlsys-2026.pdf",
+    "source_file": "papers/profinfer/paper/2026-profinfer-eurosys.pdf",
     "description": "Title, author list, MLSys designation, and year are taken from embedded PDF metadata."
   }
 }

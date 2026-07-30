@@ -10,7 +10,8 @@ As of **2026-07-13**, the research direction is focused on **GPU telemetry, obse
 
 | Research work | Paper version | Artifact status | Artifact version | Paper | Artifact and installation | Metadata | Experiments |
 |---|---:|---|---:|---|---|---|---|
-| ProfInfer | MLSys 2026 manuscript | Working; Linux CPU subset reproduced locally | `0.1.0` / `a311e7c` | [PDF](papers/profinfer/paper/profinfer-mlsys-2026.pdf) | [README](papers/profinfer/artifact/README.md) | [Paper](papers/profinfer/metadata/paper.json) · [Artifact](papers/profinfer/metadata/artifact.json) | [Index](papers/profinfer/artifact/experiments/index.json) |
+| ProfInfer | MLSys 2026 manuscript | Working; Linux CPU subset reproduced locally | `0.1.0` / upstream `210890a1` | [PDF](papers/profinfer/paper/2026-profinfer-eurosys.pdf) | [README](papers/profinfer/artifact/README.md) | [Paper](papers/profinfer/metadata/paper.json) · [Artifact](papers/profinfer/metadata/artifact.json) | [Index](papers/profinfer/artifact/experiments/index.json) |
+| Neutrino | OSDI 2025 | Available; not yet executed locally | `0.1.0` / main `4a82cd22` / AE `43182f30` | [PDF](papers/neutrino/paper/2025-neutrino-osdi.pdf) | [README](papers/neutrino/artifact/README.md) · [Reproducing](papers/neutrino/artifact/REPRODUCING.md) | [Paper](papers/neutrino/metadata/paper.json) · [Artifact](papers/neutrino/metadata/artifact.json) | [Index](papers/neutrino/artifact/experiments/index.json) |
 
 External repositories used by the current artifact are pinned or marked unknown explicitly:
 
@@ -19,8 +20,13 @@ External repositories used by the current artifact are pinned or marked unknown 
 | ProfInfer artifact | Research implementation; tracked directly in this catalogue | Pinned snapshot preserved | Upstream `210890a1f06c`; catalogue import `a311e7c` | [Canonical ProfInfer directory](https://gitcode.com/openharmony-robot/oh-llama.cpp/tree/main/profinfer) · [snapshot details](papers/profinfer/original/README.md) |
 | llama.cpp | Local inference dependency; excluded from Git | Present locally | `d04e7163` | [ggml-org/llama.cpp](https://github.com/ggml-org/llama.cpp) |
 | oh-llama.cpp | Upstream containing ProfInfer and optional accelerator-capable code | ProfInfer snapshot pinned; accelerator build not validated | `210890a1f06c` for preserved ProfInfer source | [OpenHarmony fork](https://gitcode.com/openharmony-robot/oh-llama.cpp) |
+| Neutrino | GPU kernel profiler and OSDI artifact | Main and artifact-evaluation snapshots pinned; not run locally | Main `4a82cd22f474`; artifact `43182f3082f5` | [open-neutrino/neutrino](https://github.com/open-neutrino/neutrino) |
 
-The machine-readable entry point is [`catalog.json`](catalog.json). Its metadata model is documented in [`docs/metadata-model.md`](docs/metadata-model.md).
+The machine-readable entry point is [`catalog.json`](catalog.json). Its metadata
+model is documented in [`docs/metadata-model.md`](docs/metadata-model.md). The
+repeatable contributor and Agent/LLM workflow is documented in
+[`AGENTS.md`](AGENTS.md) and
+[`docs/adding-research-work.md`](docs/adding-research-work.md).
 
 ### Reproducibility completeness checklist
 
@@ -38,6 +44,23 @@ The machine-readable entry point is [`catalog.json`](catalog.json). Its metadata
 | Paper-identical results reproduced | ❌ | Exact hardware and full experiment mapping remain missing |
 | Automated metadata/hash validation | ✅ | Local Git hooks and GitHub Actions |
 | Artifact licence and citation | ❌ | No covering upstream licence or citation file found |
+
+### Neutrino
+
+| Item | Status | Evidence or remaining work |
+|---|:---:|---|
+| Paper PDF | ✅ | [`papers/neutrino/paper/`](papers/neutrino/paper/) |
+| Artifact source tracked directly | ✅ | [`papers/neutrino/artifact/`](papers/neutrino/artifact/) |
+| Canonical upstream URL | ✅ | [open-neutrino/neutrino](https://github.com/open-neutrino/neutrino) |
+| Main and artifact revisions pinned | ✅ | `4a82cd22…` and `43182f30…` |
+| Original source snapshots and SHA-256 | ✅ | [`papers/neutrino/original/README.md`](papers/neutrino/original/README.md) |
+| Installation and reproduction instructions | ✅ | [`REPRODUCING.md`](papers/neutrino/artifact/REPRODUCING.md) |
+| Experiment IDs, lineage, and content hashes | ✅ | [`experiments/index.json`](papers/neutrino/artifact/experiments/index.json) |
+| Static trace evaluation reproduced locally | ❌ | Official notebook preserved; not run in this workspace |
+| Dynamic GPU evaluation reproduced locally | ❌ | Requires a validated CUDA/PTX environment and GPU |
+| Paper-identical A100 results reproduced | ❌ | No local A100 execution; some original upstream traces were deleted |
+| Artifact licence resolved | ❌ | Upstream statements conflict and licence texts are absent |
+| Citation available | ✅ | Upstream README supplies the OSDI 2025 BibTeX |
 
 ## Interactive graph
 
@@ -57,7 +80,10 @@ Model weights and external source checkouts are deliberately not versioned. The 
 
 ## Adding another paper
 
-Create `papers/<slug>/paper`, `artifact`, and `metadata` directories; place installation and execution guidance at that artifact's root; assign stable namespaced entity IDs; add references to `catalog.json`; and run:
+Follow the complete layout, provenance, metadata, snapshot, experiment, and
+checklist workflow in [`AGENTS.md`](AGENTS.md). In particular, imported
+artifacts must be ordinary files in the root repository—not nested Git
+repositories. After registering the work in `catalog.json`, run:
 
 ```bash
 python3 scripts/experiment_versions.py check
@@ -70,11 +96,11 @@ Enable the repository-managed commit and push checks once per clone:
 git config core.hooksPath .githooks
 ```
 
-When experiment metadata changes, explicitly refresh its content hash and create
+When experiment metadata changes, refresh its content hash and create
 a Git-diff-based change record before committing:
 
 ```bash
-python3 scripts/experiment_versions.py update exp-0014 \
+python3 scripts/experiment_versions.py update --paper profinfer exp-0014 \
   --reason "Describe why this experiment metadata changed"
 ```
 
@@ -100,7 +126,7 @@ When creating or modifying an experiment, update its content hash and generate
 the machine-readable change record before staging:
 
 ```bash
-python3 scripts/experiment_versions.py update exp-0014 \
+python3 scripts/experiment_versions.py update --paper profinfer exp-0014 \
   --reason "Describe the scientific or metadata change"
 git add .
 python3 scripts/experiment_versions.py check --staged

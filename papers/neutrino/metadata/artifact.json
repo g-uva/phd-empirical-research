@@ -1,0 +1,72 @@
+{
+  "id": "artifact:neutrino",
+  "type": "research-artifact",
+  "name": "Neutrino",
+  "version": "0.1.0",
+  "status": "available-unvalidated",
+  "supports_paper": "paper:neutrino",
+  "source_path": "../artifact",
+  "repository": {
+    "url": "https://github.com/open-neutrino/neutrino",
+    "main_revision": "4a82cd22f474c31ac2fecfa174d381a19bb3f469",
+    "artifact_revision": "43182f3082f5617d8bc85cd8902af4f6fbaeeb24",
+    "tracking": "Files are tracked directly by the catalogue repository; upstream Git history is not embedded."
+  },
+  "original_source_snapshots": [
+    {
+      "path": "papers/neutrino/original/neutrino-main-4a82cd22f474.zip",
+      "revision": "4a82cd22f474c31ac2fecfa174d381a19bb3f469",
+      "sha256": "0f006387c948a12440787a6eb43dfebf0ad50ada8c67e2d4b46b5001eed44284"
+    },
+    {
+      "path": "papers/neutrino/original/neutrino-artifact-43182f3082f5.zip",
+      "revision": "43182f3082f5617d8bc85cd8902af4f6fbaeeb24",
+      "sha256": "696d23c3ebefc5e1b9871d75f2569eed693401fe998d053bbc3b644db6fa11b2"
+    }
+  ],
+  "components": [
+    {"name": "Probe engine and Python package", "path": "../artifact/neutrino"},
+    {"name": "Evaluation notebooks", "path": "../artifact/evaluation"},
+    {"name": "Experiment provenance", "path": "../artifact/experiments/index.json"}
+  ],
+  "provenance_path": "provenance.json",
+  "software": ["software:neutrino", "software:cuda", "software:pytorch", "software:triton", "software:cutlass"],
+  "datasets": ["dataset:neutrino-collected-traces"],
+  "experiments": [
+    "experiment:neutrino-exp-0001",
+    "experiment:neutrino-exp-0002",
+    "experiment:neutrino-exp-0003",
+    "experiment:neutrino-exp-0004",
+    "experiment:neutrino-exp-0005",
+    "experiment:neutrino-exp-0006"
+  ],
+  "environments": ["CPU-only static trace analysis", "NVIDIA CUDA GPU dynamic trace collection"],
+  "reproducibility": {
+    "documentation_available": true,
+    "automated_setup": true,
+    "containerised": false,
+    "tests_available": false,
+    "sample_data_available": true,
+    "expected_outputs_documented": true,
+    "licence_available": false,
+    "citation_metadata_available": true
+  },
+  "execution": {
+    "entry_points": ["evaluation/static.ipynb", "evaluation/dynamic.ipynb", "neutrino/cli.py"],
+    "requirements": ["pyproject.toml", "setup.py"],
+    "commands": ["python -m pip install .", "neutrino --help", "jupyter notebook evaluation/static.ipynb"]
+  },
+  "external_repositories": [
+    {
+      "id": "software:neutrino",
+      "url": "https://github.com/open-neutrino/neutrino",
+      "revision": "4a82cd22f474c31ac2fecfa174d381a19bb3f469"
+    }
+  ],
+  "metadata_gaps": [
+    "No Neutrino evaluation has been run in this workspace.",
+    "The collected trace archive and downloaded PyTorch wheel lack author-supplied checksums.",
+    "No licence text is present; the artifact README and setup.py make conflicting Apache-2.0/CC-BY-4.0 and MIT statements.",
+    "Exact CUDA, driver, PyTorch build, CUTLASS commit, and runtime environment remain to be captured."
+  ]
+}

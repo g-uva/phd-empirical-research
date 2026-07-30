@@ -212,7 +212,7 @@ def render(
     <aside id="details">
       <h2 id="detail-title">Select a node or edge</h2>
       <p id="detail-kind" class="kind">Details</p>
-      <p id="detail-hint" class="hint">The three ProfInfer identities are roots. Click a node to expand or collapse its immediate relationships and inspect its metadata.</p>
+      <p id="detail-hint" class="hint">Paper, artifact, and matching software identities are roots. Click a node to expand or collapse its immediate relationships and inspect its metadata.</p>
       <pre id="metadata">No selection</pre>
     </aside>
   </main>
@@ -394,4 +394,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

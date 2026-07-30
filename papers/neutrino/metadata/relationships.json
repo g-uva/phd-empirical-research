@@ -1,0 +1,15 @@
+{
+  "relationships": [
+    {"source": "paper:neutrino", "predicate": "has-artifact", "target": "artifact:neutrino", "evidence": {"source_file": "papers/neutrino/artifact/UPSTREAM_README.md"}},
+    {"source": "artifact:neutrino", "predicate": "supports-paper", "target": "paper:neutrino", "evidence": {"source_file": "papers/neutrino/artifact/evaluation/static.ipynb"}},
+    {"source": "paper:neutrino", "predicate": "published-at", "target": "venue:osdi", "evidence": {"source_file": "papers/neutrino/artifact/UPSTREAM_README.md"}},
+    {"source": "paper:neutrino", "predicate": "authored-by", "target": "person:songlin-huang", "evidence": {"source_file": "papers/neutrino/artifact/UPSTREAM_README.md"}},
+    {"source": "paper:neutrino", "predicate": "authored-by", "target": "person:chenshu-wu", "evidence": {"source_file": "papers/neutrino/artifact/UPSTREAM_README.md"}},
+    {"source": "artifact:neutrino", "predicate": "implements-software", "target": "software:neutrino", "evidence": {"source_file": "papers/neutrino/artifact/README.md"}},
+    {"source": "artifact:neutrino", "predicate": "uses-dataset", "target": "dataset:neutrino-collected-traces", "evidence": {"source_file": "papers/neutrino/artifact/evaluation/static.ipynb"}},
+    {"source": "software:neutrino", "predicate": "uses-software", "target": "software:cuda", "evidence": {"source_file": "papers/neutrino/artifact/UPSTREAM_README.md"}},
+    {"source": "software:neutrino", "predicate": "uses-software", "target": "software:pytorch", "evidence": {"source_file": "papers/neutrino/artifact/evaluation/prepare_env.py"}},
+    {"source": "software:neutrino", "predicate": "uses-software", "target": "software:triton", "evidence": {"source_file": "papers/neutrino/artifact/evaluation/prepare_env.py"}},
+    {"source": "software:neutrino", "predicate": "uses-software", "target": "software:cutlass", "evidence": {"source_file": "papers/neutrino/artifact/evaluation/prepare_env.py"}}
+  ]
+}

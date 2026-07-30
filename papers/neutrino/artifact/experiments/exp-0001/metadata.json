@@ -9,15 +9,38 @@
   "objective": "Reproduce Neutrino's block-scheduling evaluation in Section 4.5.",
   "description": "Pre-registered from the official artifact branch; not executed in this workspace.",
   "git_commit": null,
-  "paper_sections": ["Section 4.5"],
-  "datasets": ["dataset:neutrino-collected-traces"],
-  "software_components": ["software:neutrino", "software:cuda", "software:pytorch"],
-  "configuration_files": ["evaluation/static.ipynb", "evaluation/dynamic.ipynb"],
-  "configuration_entities": ["configuration:neutrino-static-notebook", "configuration:neutrino-dynamic-notebook"],
-  "execution_commands": ["Run the block_sched section of the static or dynamic notebook."],
-  "expected_outputs": ["Block scheduling statistics and plots"],
+  "paper_sections": [
+    "Section 4.5"
+  ],
+  "datasets": [
+    "dataset:neutrino-collected-traces"
+  ],
+  "software_components": [
+    "software:neutrino",
+    "software:cuda",
+    "software:pytorch"
+  ],
+  "configuration_files": [
+    "evaluation/static.ipynb",
+    "evaluation/dynamic.ipynb"
+  ],
+  "configuration_entities": [
+    "configuration:neutrino-static-notebook",
+    "configuration:neutrino-dynamic-notebook"
+  ],
+  "execution_commands": [
+    "Run the block_sched section of the static or dynamic notebook."
+  ],
+  "expected_outputs": [
+    "Block scheduling statistics and plots"
+  ],
   "actual_outputs": [],
   "result_entities": [],
-  "notes": ["The authors state that original traces for some Section 4.5 values were deleted."],
-  "metadata_gaps": ["Hardware/software environment and exact run parameters are not yet recorded."]
+  "notes": [
+    "The authors state that original traces for some Section 4.5 values were deleted."
+  ],
+  "metadata_gaps": [
+    "Hardware/software environment and exact run parameters are not yet recorded."
+  ],
+  "content_hash": "98e51ef1b3ccc5da50653addbae84283b294de84afbbeb2040ff0c9eed2ffd93"
 }
