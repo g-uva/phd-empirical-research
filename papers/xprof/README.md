@@ -10,4 +10,6 @@ learning stacks, described in the MLSys 2026 paper.
 - Experiments: [`artifact/experiments/index.json`](artifact/experiments/index.json)
 - Original snapshot: [`original/README.md`](original/README.md)
 
-The implementation is preserved but has not been built or evaluated locally.
+The official demo profiles have been served and discovered successfully with
+XProf 2.22.3. The pinned source itself has not yet been built, and the
+paper-scale distributed evaluation has not been reproduced.

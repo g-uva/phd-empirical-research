@@ -1,6 +1,29 @@
 {
   "schema_version": "0.1.0",
-  "configurations": [],
-  "results": [],
-  "notes": ["No XProf experiment has been executed in this workspace."]
+  "configurations": [
+    {
+      "id": "configuration:xprof-exp-0001-demo",
+      "experiment": "experiment:xprof-exp-0001",
+      "path": "../artifact/experiments/exp-0001/run_demo.sh",
+      "sha256": "3b7c1584703e5026aaeac467f371c6122ccd8bf5b5d823c47ac6da1de80d7ad2",
+      "description": "Extract the official demo profiles, install xprof 2.22.3 in an isolated environment, and serve them locally."
+    }
+  ],
+  "results": [
+    {
+      "id": "result:xprof-exp-0001-smoke-test",
+      "experiment": "experiment:xprof-exp-0001",
+      "path": "../artifact/experiments/exp-0001",
+      "manifest_sha256": "3a20939cda2fec30a780ce767d7215ce3e1bfe13e6b54f0479dfc0700d27a8ed",
+      "manifest_algorithm": "SHA-256 over the sorted per-file SHA-256 manifest",
+      "files": [
+        "result.json"
+      ],
+      "status": "passed"
+    }
+  ],
+  "notes": [
+    "The demo-profile processing smoke test was executed locally on 2026-07-31.",
+    "No new profiles or paper-scale results were produced."
+  ]
 }

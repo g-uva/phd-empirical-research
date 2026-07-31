@@ -44,7 +44,7 @@ that scheduler adaptation does not silently alter the experiment.
 |---|---:|---|---:|---|---|---|---|
 | ProfInfer | MLSys 2026 manuscript | Working; Linux CPU subset reproduced locally | `0.1.0` / upstream `210890a1` | [PDF](papers/profinfer/paper/2026-profinfer-eurosys.pdf) | [README](papers/profinfer/artifact/README.md) | [Paper](papers/profinfer/metadata/paper.json) · [Artifact](papers/profinfer/metadata/artifact.json) | [Index](papers/profinfer/artifact/experiments/index.json) |
 | Neutrino | OSDI 2025 | Available; not yet executed locally | `0.1.0` / main `4a82cd22` / AE `43182f30` | [PDF](papers/neutrino/paper/2025-neutrino-osdi.pdf) | [README](papers/neutrino/artifact/README.md) · [Reproducing](papers/neutrino/artifact/REPRODUCING.md) | [Paper](papers/neutrino/metadata/paper.json) · [Artifact](papers/neutrino/metadata/artifact.json) | [Index](papers/neutrino/artifact/experiments/index.json) |
-| XProf | MLSys 2026 | Available; not yet built or evaluated locally | Upstream `713b05f0` | [PDF](papers/xprof/paper/2026-xprof-mlsys.pdf) | [README](papers/xprof/artifact/README.md) · [Reproducing](papers/xprof/artifact/REPRODUCING.md) | [Paper](papers/xprof/metadata/paper.json) · [Artifact](papers/xprof/metadata/artifact.json) | [Index](papers/xprof/artifact/experiments/index.json) |
+| XProf | MLSys 2026 | Demo-profile experiment passed, including manual UI inspection; pinned source not built | Upstream `713b05f0` | [PDF](papers/xprof/paper/2026-xprof-mlsys.pdf) | [README](papers/xprof/artifact/README.md) · [Reproducing](papers/xprof/artifact/REPRODUCING.md) | [Paper](papers/xprof/metadata/paper.json) · [Artifact](papers/xprof/metadata/artifact.json) | [Index](papers/xprof/artifact/experiments/index.json) |
 | eGPU | HCDS 2025 | Original paper artifact available; not yet built or evaluated locally | Upstream `166c175b` | [PDF](papers/egpu/paper/2025-egpu-hcds.pdf) | [README](papers/egpu/artifact/README.md) · [Reproducing](papers/egpu/artifact/REPRODUCING.md) | [Paper](papers/egpu/metadata/paper.json) · [Artifact](papers/egpu/metadata/artifact.json) | [Index](papers/egpu/artifact/experiments/index.json) |
 | eInfer | eBPF 2025 | Public artifact unavailable; review due 2026-09-08 | Not available | [PDF](papers/einfer/paper/2025-einfer.pdf) | [Status](papers/einfer/artifact/README.md) · [Reminder](papers/einfer/REMINDER.md) | [Paper](papers/einfer/metadata/paper.json) · [Artifact](papers/einfer/metadata/artifact.json) | [Empty index](papers/einfer/artifact/experiments/index.json) |
 
@@ -56,7 +56,7 @@ External repositories used by the current artifact are pinned or marked unknown 
 | llama.cpp | Local inference dependency; excluded from Git | Present locally | `d04e7163` | [ggml-org/llama.cpp](https://github.com/ggml-org/llama.cpp) |
 | oh-llama.cpp | Upstream containing ProfInfer and optional accelerator-capable code | ProfInfer snapshot pinned; accelerator build not validated | `210890a1f06c` for preserved ProfInfer source | [OpenHarmony fork](https://gitcode.com/openharmony-robot/oh-llama.cpp) |
 | Neutrino | GPU kernel profiler and OSDI artifact | Main and artifact-evaluation snapshots pinned; not run locally | Main `4a82cd22f474`; artifact `43182f3082f5` | [open-neutrino/neutrino](https://github.com/open-neutrino/neutrino) |
-| XProf | Modern ML profiling system | Snapshot pinned; not run locally | `713b05f09e30` | [openxla/xprof](https://github.com/openxla/xprof) |
+| XProf | Modern ML profiling system | Demo profiles served and inspected in the UI | `713b05f09e30` | [openxla/xprof](https://github.com/openxla/xprof) |
 | eGPU | GPU eBPF runtime and original paper artifact | Snapshot pinned; not run locally | `166c175bdc6c` | [eunomia-bpf/eGPU](https://github.com/eunomia-bpf/eGPU) |
 | eInfer | Distributed LLM tracing artifact | Unavailable; reminder open | Unknown | No verified source; review on 2026-09-08 |
 
@@ -111,7 +111,9 @@ repeatable contributor and Agent/LLM workflow is documented in
 | Original source snapshot and SHA-256 | ✅ | [`papers/xprof/original/README.md`](papers/xprof/original/README.md) |
 | Installation and SLURM-aware reproduction guide | ✅ | [`REPRODUCING.md`](papers/xprof/artifact/REPRODUCING.md) |
 | Experiment IDs, lineage, and content hashes | ✅ | [`experiments/index.json`](papers/xprof/artifact/experiments/index.json) |
-| Local build/demo-profile processing | ❌ | Not yet executed |
+| Stable-package/demo-profile processing | ✅ | `exp-0001`: HTTP, two sessions, ten tools per session, and browser UI manually validated |
+| New profile capture | ❌ | Capture UI is present; no compatible live workload/profile service has been recorded yet |
+| Pinned source build | ❌ | Bazel build at `713b05f09e30…` not yet executed |
 | Paper-scale distributed/scalability results | ❌ | Raw profiles and exact evaluation matrix not identified |
 | Artifact licence | ✅ | Apache-2.0; see [`artifact/LICENSE`](papers/xprof/artifact/LICENSE) |
 | Citation available | ✅ | Citation guidance is preserved in the upstream README |

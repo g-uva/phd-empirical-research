@@ -10,9 +10,10 @@ the catalogue repository.
 - Licence: [`LICENSE`](LICENSE), Apache-2.0
 - Experiment catalogue: [`experiments/index.json`](experiments/index.json)
 
-Status: source preserved; installation, demo-profile processing, distributed
-processing, and paper-identical scalability results have not been reproduced
-in this workspace.
+Status: the stable XProf package has processed the two official demo profiles
+successfully (`exp-0001`). A build of the pinned source, distributed processing,
+new profile collection, and paper-identical scalability results have not been
+reproduced in this workspace.
 
 Large checked-in `.xplane.pb` test/demo inputs are omitted from the flattened
 artifact to avoid duplicating them in Git. They remain preserved in the

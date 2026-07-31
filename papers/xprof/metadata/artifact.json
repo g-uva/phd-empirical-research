@@ -3,7 +3,7 @@
   "type": "research-artifact",
   "name": "XProf",
   "version": null,
-  "status": "available-unvalidated",
+  "status": "working",
   "artifact_available": true,
   "supports_paper": "paper:xprof",
   "source_path": "../artifact",
@@ -32,7 +32,7 @@
   "environments": ["Python/Bazel local server", "Distributed profile processing", "DAS-6 CPU/GPU allocation"],
   "reproducibility": {
     "documentation_available": true,
-    "automated_setup": false,
+    "automated_setup": true,
     "containerised": false,
     "tests_available": true,
     "sample_data_available": true,
@@ -43,12 +43,13 @@
   "execution": {
     "entry_points": ["install_and_run.py", "plugin", "xprof"],
     "requirements": ["requirements.in", "requirements_lock_3_12.txt", "WORKSPACE"],
-    "commands": ["bazel run --config=public_cache plugin:build_pip_package", "xprof --logdir=/path/to/profile-data --port=6006"]
+    "commands": ["experiments/exp-0001/run_demo.sh", "bazel run --config=public_cache plugin:build_pip_package", "xprof --logdir=/path/to/profile-data --port=6006"]
   },
   "external_repositories": [],
   "metadata_gaps": [
     "No paper-specific raw evaluation dataset or complete result-reproduction script was identified.",
     "Large upstream XPlane demo/test inputs are preserved only in the original ZIP and omitted from the flattened artifact.",
-    "DAS-6 modules, SLURM wrappers, profile inputs, and distributed port policy remain unvalidated."
+    "The stable xprof 2.22.3 package was validated with the preserved demo profiles, but the pinned source revision has not been built.",
+    "DAS-6 modules, SLURM wrappers, new profile collection, and distributed port policy remain unvalidated."
   ]
 }

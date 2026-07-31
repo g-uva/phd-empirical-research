@@ -1,0 +1,61 @@
+{
+  "schema_version": "0.1.0",
+  "experiment": "experiment:xprof-exp-0001",
+  "executed_at": "2026-07-31T15:27:40+02:00",
+  "environment": {
+    "os": "Linux",
+    "architecture": "x86_64",
+    "python": "3.12.3",
+    "xprof": "2.22.3",
+    "setuptools": "69.5.1"
+  },
+  "input_snapshot": {
+    "path": "papers/xprof/original/xprof-713b05f09e30.zip",
+    "sha256": "45726f5dae9ddb5dca7c2f141a13b673336b464b23584de50def04956c208564"
+  },
+  "profiles": [
+    {
+      "session": "v6e-4-training",
+      "file": "xprof/demo/plugins/profile/v6e-4-training/t1v-n-9bfa07b4-w-0.xplane.pb",
+      "sha256": "aac90ba2d9abdc115f900baee36c2a2a90609c27a3db754717f9f9812a7d0e72"
+    },
+    {
+      "session": "tpu-training",
+      "file": "xprof/demo/plugins/profile/tpu-training/gke-tpu-b309f56b-rq5s.xplane.pb",
+      "sha256": "979c0b4161e2fd850e7e970a4561dda728b9ef2913c2e9c7a7bb940c84743a25"
+    }
+  ],
+  "checks": {
+    "root_http_status": 200,
+    "reported_version": "2.22.3",
+    "discovered_sessions": ["v6e-4-training", "tpu-training"],
+    "manual_ui_inspection": {
+      "status": "passed",
+      "observations": [
+        "The browser displayed the XProf v2.22.3 interface.",
+        "Both preserved sessions were selectable.",
+        "Graph Viewer rendered HLO modules and operation graphs for both examples.",
+        "The Capture Profile dialog opened and exposed profiling-service, duration, host-trace, device-trace, and Python-trace controls."
+      ]
+    },
+    "tools_for_each_session": [
+      "overview_page",
+      "trace_viewer@",
+      "graph_viewer",
+      "op_profile",
+      "input_pipeline_analyzer",
+      "memory_profile",
+      "memory_viewer",
+      "roofline_model",
+      "framework_op_stats",
+      "hlo_stats"
+    ]
+  },
+  "status": "passed",
+  "limitations": [
+    "The browser UI was manually inspected, but screenshots are not stored in the repository.",
+    "The Capture Profile dialog was inspected, but no new profile was captured.",
+    "This run processes preserved TPU demo profiles; it does not collect a new profile.",
+    "This run does not reproduce the paper's fleet-scale evaluation."
+  ]
+}

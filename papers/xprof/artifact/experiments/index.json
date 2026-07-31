@@ -7,8 +7,8 @@
       "id": "exp-0001",
       "uid": "7ffc6ff9",
       "path": "exp-0001/metadata.json",
-      "status": "draft",
-      "content_hash": "053393cab79180ae4f5a9a02f5dcafc2a4d16241c280d18937509196f2836a93"
+      "status": "validated",
+      "content_hash": "dd5eb1df03935e9ac10c559980fdaa6e0270665887b192e34e421f3333924ad1"
     }
   ]
 }

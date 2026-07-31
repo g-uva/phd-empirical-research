@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.0.0",
+  "created": "2026-07-31T13:29:22Z",
+  "reason": "Record the executed XProf 2.22.3 official demo-profile smoke test",
+  "base_git_commit": "a91dccee32d6ef4465c8e0c60bf5142a4a72b3db",
+  "hash_algorithm": "sha256",
+  "hash_format": "experiment-content-v1",
+  "experiments": [
+    {
+      "experiment_id": "exp-0001",
+      "uid": "7ffc6ff9",
+      "previous_content_hash": "053393cab79180ae4f5a9a02f5dcafc2a4d16241c280d18937509196f2836a93",
+      "content_hash": "086bc081a591770f449b374c0b3d9f69aab8add20c0c1480d928d140e683f868",
+      "metadata_path": "papers/xprof/artifact/experiments/exp-0001/metadata.json"
+    }
+  ],
+  "working_tree_changes": [
+    {
+      "path": "papers/xprof/README.md",
+      "status": "M"
+    },
+    {
+      "path": "papers/xprof/artifact/README.md",
+      "status": "M"
+    },
+    {
+      "path": "papers/xprof/artifact/REPRODUCING.md",
+      "status": "M"
+    },
+    {
+      "path": "papers/xprof/artifact/experiments/README.md",
+      "status": "M"
+    },
+    {
+      "path": "papers/xprof/artifact/experiments/exp-0001/metadata.json",
+      "status": "M"
+    },
+    {
+      "path": "papers/xprof/artifact/experiments/exp-0001/result.json",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/experiments/exp-0001/run_demo.sh",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/experiments/index.json",
+      "status": "M"
+    },
+    {
+      "path": "papers/xprof/metadata/artifact.json",
+      "status": "M"
+    },
+    {
+      "path": "papers/xprof/metadata/provenance.json",
+      "status": "M"
+    }
+  ]
+}

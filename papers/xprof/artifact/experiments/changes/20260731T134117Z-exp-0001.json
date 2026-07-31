@@ -1,0 +1,67 @@
+{
+  "schema_version": "1.0.0",
+  "created": "2026-07-31T13:41:17Z",
+  "reason": "Record manual XProf UI, session, Graph Viewer, and capture-dialog validation",
+  "base_git_commit": "a91dccee32d6ef4465c8e0c60bf5142a4a72b3db",
+  "hash_algorithm": "sha256",
+  "hash_format": "experiment-content-v1",
+  "experiments": [
+    {
+      "experiment_id": "exp-0001",
+      "uid": "7ffc6ff9",
+      "previous_content_hash": "7873573b06fcabc410fe69dee29f9fb5543e434386e16c6a1b1c7c177541f94d",
+      "content_hash": "dd5eb1df03935e9ac10c559980fdaa6e0270665887b192e34e421f3333924ad1",
+      "metadata_path": "papers/xprof/artifact/experiments/exp-0001/metadata.json"
+    }
+  ],
+  "working_tree_changes": [
+    {
+      "path": "papers/xprof/README.md",
+      "status": "M"
+    },
+    {
+      "path": "papers/xprof/artifact/README.md",
+      "status": "M"
+    },
+    {
+      "path": "papers/xprof/artifact/REPRODUCING.md",
+      "status": "M"
+    },
+    {
+      "path": "papers/xprof/artifact/experiments/README.md",
+      "status": "M"
+    },
+    {
+      "path": "papers/xprof/artifact/experiments/changes/20260731T132922Z-exp-0001.json",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/experiments/changes/20260731T132955Z-exp-0001.json",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/experiments/exp-0001/metadata.json",
+      "status": "M"
+    },
+    {
+      "path": "papers/xprof/artifact/experiments/exp-0001/result.json",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/experiments/exp-0001/run_demo.sh",
+      "status": "untracked"
+    },
+    {
+      "path": "papers/xprof/artifact/experiments/index.json",
+      "status": "M"
+    },
+    {
+      "path": "papers/xprof/metadata/artifact.json",
+      "status": "M"
+    },
+    {
+      "path": "papers/xprof/metadata/provenance.json",
+      "status": "M"
+    }
+  ]
+}

@@ -2,12 +2,12 @@
   "id": "exp-0001",
   "uid": "7ffc6ff9",
   "title": "XProf installation and demo-profile smoke test",
-  "status": "draft",
+  "status": "validated",
   "parent": null,
-  "created": null,
-  "last_modified": null,
-  "objective": "Build XProf and validate its core views against a checked-in or newly captured profile.",
-  "description": "Pre-registered from upstream instructions; not executed in this workspace.",
+  "created": "2026-07-31",
+  "last_modified": "2026-07-31",
+  "objective": "Install XProf and validate profile discovery, available analysis tools, and browser rendering against the official preserved demo profiles.",
+  "description": "Executed locally with the stable xprof 2.22.3 package and two raw XPlane demo profiles extracted from the pinned source snapshot; the browser UI and Graph Viewer were subsequently inspected manually.",
   "git_commit": null,
   "paper_sections": [],
   "datasets": [
@@ -16,24 +16,42 @@
   "software_components": [
     "software:xprof"
   ],
-  "configuration_files": [],
-  "configuration_entities": [],
+  "configuration_files": [
+    "experiments/exp-0001/run_demo.sh"
+  ],
+  "configuration_entities": [
+    "configuration:xprof-exp-0001-demo"
+  ],
   "execution_commands": [
-    "xprof --logdir=/path/to/profile-data --port=6006"
+    "experiments/exp-0001/run_demo.sh",
+    "xprof --logdir=/tmp/xprof-demo/profile-data --port=18791"
   ],
   "expected_outputs": [
     "Working XProf server",
     "Overview",
     "Trace viewer",
-    "Memory profile"
+    "Memory profile",
+    "Two discovered demo sessions and their supported-tool lists"
   ],
-  "actual_outputs": [],
-  "result_entities": [],
+  "actual_outputs": [
+    "HTTP 200 from the XProf root page",
+    "XProf API reported version 2.22.3",
+    "Discovered sessions v6e-4-training and tpu-training",
+    "Each session exposed ten analysis tools including overview, trace, graph, memory, roofline, framework-op and HLO views",
+    "Manual browser inspection confirmed both sessions and rendered HLO graphs",
+    "The Capture Profile dialog opened; no new workload profile was captured"
+  ],
+  "result_entities": [
+    "result:xprof-exp-0001-smoke-test"
+  ],
   "notes": [
-    "Paper-scale evaluation inputs and commands are not present in the upstream repository."
+    "Paper-scale evaluation inputs and commands are not present in the upstream repository.",
+    "The test used the stable binary package rather than building revision 713b05f09e30 from source.",
+    "Capture Profile requires a separately running compatible profiling service and is outside this demo-profile experiment."
   ],
   "metadata_gaps": [
-    "DAS-6 environment, profile input, hardware, versions, and exact invocation remain unrecorded."
+    "DAS-6 collection and distributed-processing environments remain unvalidated.",
+    "No new JAX or TensorFlow computation has been captured."
   ],
-  "content_hash": "053393cab79180ae4f5a9a02f5dcafc2a4d16241c280d18937509196f2836a93"
+  "content_hash": "dd5eb1df03935e9ac10c559980fdaa6e0270665887b192e34e421f3333924ad1"
 }
